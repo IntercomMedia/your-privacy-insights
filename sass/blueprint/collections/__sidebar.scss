@@ -1,0 +1,9 @@
+.sidebar {
+	@include box-style($color-black-3);
+	color: $color-white-1;
+	overflow-y: auto;
+	min-height: 100vh;
+	.sidebar-content {
+		padding: baseline(2);
+	}
+}

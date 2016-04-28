@@ -1,0 +1,22 @@
+.text-media-media {
+	@include phone {
+		order: -1;
+	}
+}
+.text-media-copy {
+	display: flex;
+	vertical-align: middle;
+	justify-content: center;
+	flex-direction: column;
+	padding-top: baseline(1);
+	padding-bottom: baseline(1);
+}
+
+.text-media-title {
+	margin-bottom: 0;
+	font-weight: normal;
+}
+
+.text-media-btn {
+	margin-top: baseline(1/2);
+}

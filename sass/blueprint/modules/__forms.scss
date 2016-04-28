@@ -1,0 +1,265 @@
+@mixin field {
+	position: relative;
+	&::before,
+	&::after {
+		content: ' ';
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		height: $line-s;
+		width: 100%;
+		background: $color-white-3;
+		transition: all 0.2s;
+	}
+	
+	&::after {
+		width: 0;
+		left: 50%;
+		transform: translateX(-50%);
+	}
+	
+	& > label{
+		display: block;
+		padding: 0 baseline(1/2);
+		transform-origin: top left;
+		line-height: baseline(1.5);
+		transform: scale(1) translate3d(0, baseline(1.5), 0);
+		transition: all 0.2s;	
+	}
+	
+	label.is-active,
+	&.is-filled label,
+	&.is-focused label {
+		color: $color-black-1;	
+		transform: scale(0.9) translate3d(0, baseline(0.5), 0);
+		
+	}
+	
+	&.is-filled::after,
+	&.is-focused::after {
+			width: 100%;
+			background: $color-neutral-1;
+	}
+	
+	&.is-filled.is-valid::after,
+	&.is-focused.is-valid::after,
+	&.is-valid::after {
+		width: 100%;
+		background: $color-secondary-1;
+	}
+	
+	&.is-filled.is-error::after,
+	&.is-focused.is-error::after,
+	&.is-error::after {
+		width: 100%;
+		background: $color-primary-1;
+	}
+	
+	.icon {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 0;
+		opacity: 0;
+		transform: translateY(baseline(-1/2));
+		visibility: hidden;
+		transition : opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease
+	}
+	
+	&.is-error .icon,
+	&.is-valid .icon {
+		opacity: 1;
+		transform: translateY(0);
+		visibility: visible;
+	}
+	
+	&.is-error .icon::after {
+		content: '\f05c';
+		position: absolute;
+		top: baseline(1);
+		right: 0;
+		transform: translate3d(-50%, -50%, 0);
+		color: $color-primary-1;
+	}
+	
+	&.is-valid .icon::after {
+		content: '\f05d';
+		position: absolute;
+		top: baseline(1);
+		transform: translate3d(-50%, -50%, 0);
+		color: $color-tertiary-1;
+	}
+}
+.form-callout {
+	@include row();
+	box-shadow: $depth-m;
+
+	button {
+		width: 100%;
+	}
+	
+	@include phone {
+		flex-wrap: wrap;
+	}
+}
+.form-callout-field {
+	@include box-style($background : $color-white-1);
+	@include field;
+	position: relative;
+	width: 100%;
+	
+	input[type="text"],
+	input[type="email"],
+	input[type="password"] {
+		display: block;
+		width: 100%;
+		height: baseline(3);
+		padding-left: baseline(1);
+		
+		&::focus {
+			outline: none;
+		}
+	}
+}
+
+.form-short {
+	text-align: center;
+}
+.form-short-field {
+	@include box-style($background : $color-white-2);
+	@include field;
+	margin-bottom: $size-s;
+	position: relative;
+	width: 100%;
+	
+	input[type="text"],
+	input[type="email"],
+	input[type="password"] {
+		display: block;
+		text-align: left;
+		width: 100%;
+		height: baseline(2);
+		padding-left: baseline(1);
+		
+		&::focus {
+			outline: none;
+		}
+	}
+}
+
+
+.form-long {
+}
+
+.form-long-row {
+	@include row();
+	
+	@include phone {
+		flex-wrap: wrap;
+	}
+}
+
+.form-long-field {
+	@include field;
+	width: 100%;
+	border-right: $line-s solid $color-white-3;
+	
+	input[type="text"],
+	input[type="email"],
+	input[type="password"] {
+		display: block;
+		text-align: left;
+		width: 100%;
+		height: baseline(2);
+		padding: 0 baseline(1/2);
+		
+		&:focus {
+			outline: 0;
+		}
+	}
+	
+	select {
+		@include type-style($fontSize : 0);
+		-webkit-appearance:none ;
+		-moz-appearance:none;
+		background: none;
+		border: none;
+		display: block;
+		text-align: left;
+		width: 100%;
+		height: baseline(2);
+		padding: 0 baseline(1/2);
+	}
+	
+	.select-arrow{
+			background: url(../public/images/icon-dropdown-select.svg);
+			height: $size-m;
+			width: $size-m;
+			background-size: cover;
+			position: absolute;
+			right: $size-s;
+			bottom: baseline(1);
+			z-index: -1;
+	}
+	
+	&.multi-select-field select {
+		border: $color-white-3 solid $line-s;
+		width: auto;
+		height: $size-m;
+		display: inline-block;
+		border-radius: 0;
+		padding-right: baseline(1);
+		background: url(../public/images/icon-select-arrow.svg) no-repeat;;
+		background-position: right center;
+		margin: baseline(1/2) 0 baseline(1/2) baseline(1/2);
+
+	}
+	&.dob-field {
+		input[type="text"]{
+			display: inline-block;
+			width: 30%;
+		}
+		span {
+			width: 3%;
+		}
+	}
+}
+
+.form-long-optin {
+	margin-top: baseline(2);
+	
+	p {
+		@include type-style($fontSize : -1);
+	}
+}
+
+.form-long-heading {
+	text-align: center;
+	max-width: 600px;
+	margin: baseline(2) auto;
+}
+
+.form-long-title {
+	margin-bottom: 0;
+}
+
+
+// Search
+
+.search-field {
+	position: relative;
+	&::after {
+		content:  ' ';
+		position: absolute;
+		left: auto;
+		bottom: auto;
+		top: 50%;
+		right: baseline(1/2);
+		height: baseline(1);
+		width: baseline(1);
+		background: url(../public/images/icon-search.svg);
+		background-size: 100% auto;
+		transform: translateY(-50%);
+	}
+}

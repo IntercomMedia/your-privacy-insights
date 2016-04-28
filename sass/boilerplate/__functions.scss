@@ -1,0 +1,63 @@
+//  Round a number to the nearest multiple of another 
+	//	@param : Base number to round
+	// 	@param : Multiple to round to
+
+@function roundUpToAny($n,$x:$base-line-height) {
+    @return round(($n+$x/2)/$x)*$x;
+}
+
+//  Equate exponents 
+	// @param : Base
+	// @param : Power
+
+@function pow($number, $exp) {
+  $value: 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+// Calculate multiples of the baseline. 
+	// @param : Multiplier
+	// @param : Baseline number
+
+@function baseline($multiplier : 1, $baseline : $base-line-height){
+	@return ($multiplier * $baseline) * 1rem;
+}
+
+//  Easily calculate the various font sizes based on $base-font-size and $font-ratio. 
+	// @param : Multiplier
+	// @param : Base font size
+	// @param : Ratio to scale by
+
+@function fontsize($multiplier : 0, $fontsize : $base-font-size, $ratio : $font-ratio){
+	@return ($fontsize * pow($ratio, $multiplier)) * 1rem;
+}
+
+@function roundToDivisible($base, $divisible) {
+	@return round($base / $divisible) * $divisible;
+}
+
+// Max-Number
+	// @param : Check Number
+	// @param : Max Number
+
+@function max-number($checknum, $max){
+	$checknum : $checknum * 16;
+	@if $checknum > $max {
+		@return $max * 1px;
+		
+	}@else {
+		
+		@return ($checknum/16) * 1rem;
+		
+	}
+}

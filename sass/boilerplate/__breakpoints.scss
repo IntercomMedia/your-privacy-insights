@@ -1,0 +1,54 @@
+$sitewidth: max-number($base-line-height * 46, 1120); 
+
+$phone-height: 568px;
+$phone-width: 320px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin phone {
+	@media (max-width: #{$tablet-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin phone-down {
+	@media (max-width: #{$phone-height - 1px}) {
+		@content;
+	}
+}
+
+@mixin phone-portrait {
+	@media (orientation: portrait) and (max-width: #{$phone-height - 1px}) {
+		@content;
+	}
+}
+
+@mixin phone-landscape {
+	@media (orientation: landscape) and (max-width: #{$tablet-width - 1px}) {
+		@content;
+	}
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-down {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: #{$tablet-width}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}

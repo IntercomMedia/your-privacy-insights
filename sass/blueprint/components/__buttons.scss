@@ -1,0 +1,191 @@
+$btn-callout : (
+	height : $size-l,
+	transition : $transition-1,
+	fontSize : 1,
+	fontWeight : bold,
+	caps : true,
+	background : $color-secondary-1,
+	color : $color-white-1,
+);
+
+$btn-small : (
+	height : $size-m,
+	transition : $transition-1,
+	background : $color-primary-1,
+	fontSize : -1,
+	caps : true,
+	color : $color-white-1,
+);
+
+$btn-small-alt : (
+	height : $size-m,
+	transition : $transition-1,
+	background : $color-white-2,
+	caps : true,
+	fontSize : -1,
+	color : $color-black-1,
+);
+
+$btn-icon : (
+	height : baseline(2),
+	transition : $transition-1,
+	caps : true,
+	borderSize : $line-s,
+	borderColor : $color-tertiary-1,
+);
+
+
+$btn-dot : (
+	height : $size-m,
+	width : $size-m,
+	transition : $transition-1,
+	background : $color-primary-1,
+	color : $color-white-1,
+	padding : null,
+	corners : 100%
+);
+
+$btn-circle-s : (
+	height : $size-m,
+	width : $size-m,
+	transition : $transition-1,
+	background : $color-primary-1,
+	color : $color-white-1,
+	padding : null,
+	corners : 100%
+);
+
+.btn-callout {
+	@include btn($btn-callout);
+}
+
+.btn-callout-alt {
+	@include btn($btn-callout);
+	@include box-style($color : $color-primary-1);
+	@include border-style($line-m, $color-primary-1, all);
+}
+
+.btn-action {
+	@include btn($btn-small);
+}
+
+.btn-action-alt {
+	@include btn($btn-small-alt);
+}
+
+.btn-aside {
+	@include btn($btn-callout);
+	@include box-style($color-primary-1, $color-white-1, $size-l, null);
+}
+
+.btn-aside-alt {
+	@include btn($btn-callout);
+	@include box-style(null, $color-primary-1, $size-s, null);
+	@include border-style($line-m, $color-primary-1, all);
+}
+
+.btn-icon {
+	@include btn($btn-icon);
+	
+	.icon {
+		margin-left: baseline(-1);
+		margin-right: baseline(1);
+		height: calc(#{map-get($btn-icon, height)} - #{map-get($btn-icon, borderSize) * 2};
+		width: map-get($btn-icon, height);
+		vertical-align: middle;
+		background: map-get($btn-icon, borderColor);
+		float: left;
+		img {
+			vertical-align: middle;
+		}
+	}
+}
+
+.btn-icon-alt {
+	@include btn($btn-callout);
+	@include box-style(null, $color-white-1, $size-xs, null);
+}
+
+.btn-circle {
+	@include btn($btn-callout);
+	@include box-style($color-secondary-1, $color-white-1, $size-full, null);
+}
+
+.btn-circle-alt {
+	@include btn($btn-callout);
+	@include box-style(null, null, $size-full, null);
+	@include border-style($line-m, $color-primary-1, all);	
+}
+
+.btn-circle-s {
+	@include btn($btn-circle-s);
+}
+
+.btn-circle-s-alt {
+	@include btn($btn-callout);
+	@include box-style(null, null, $size-full, null);
+	@include border-style($line-s, $color-primary-1, all);
+}
+
+.btn-dot {
+	@include btn($btn-dot);
+	margin: 0 auto;
+	transform: rotate(90deg);
+	transition:  all .35s ease;
+	border: none;
+	text-decoration: none;
+	z-index: 90000;
+	
+	span {
+		background: $color-white-1;
+		border: none;
+		height: 10%;
+		width: 10%;
+		border-radius: baseline(1/2);
+		position: absolute;
+		top: 25%;
+		left: 45%;
+		transition:  all .35s ease;
+		cursor: pointer;
+		
+		&:nth-of-type(2) {
+			top: 45%;
+		}
+
+		&:nth-of-type(3) {
+			top: 65%;
+		}
+	}
+	
+	.is-active &{
+		transform: rotate(0);
+	}
+	
+	.is-active & span {
+		background: $color-white-1;
+		border: none;
+		height: 6%;
+		width: 60%;
+		position: absolute;
+		left: 20%;
+	}
+	.is-active & span:nth-of-type(1) {
+		top: 50%;
+		transform: rotate(45deg);
+	}
+	
+	.is-active & span:nth-of-type(2) {
+		opacity: 0;
+	}
+
+	.is-active & span:nth-of-type(3) {
+		top: 50%;
+		transform: rotate(-45deg);
+	}
+}
+
+.btn-dot-alt {
+	@include btn($btn-callout);
+	@include box-style(null, null, $size-full, null);
+	@include border-style($line-s, $color-primary-1, all);
+}

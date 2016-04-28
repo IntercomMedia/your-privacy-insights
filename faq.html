@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+	<div class="global-header-spacer">
+		<header class="global-header sticky js-header">
+			<div class="logo">
+				<a href="index.html"><img src="public/images/logo.svg"></a>
+			</div>
+			<nav class="global-nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li class="is-active"><a href="faq.html">Faqs</a></li>
+					<li ><a href="blog.html">Blog</a></li>
+				</ul>
+			</nav>
+			<div class="global-actions">
+				<a href="register.html" class="btn-action">Sign Up</a>
+				<button class="btn-action-alt" onclick="openLogin()">Login</button>
+			</div>
+			<div class="global-mobile-actions">
+				<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
+			</div>
+			
+			<div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="row">
+		<div class="sidebar col-1-4" id="sidebar">
+			<div class="sidebar-content" >
+				<form class="search-bar form-short">
+					<div class="form-short-field search-field">
+						<input type="text" name="search" placeholder="Search">
+					</div>
+				</form>
+				<ul class="category-list">
+					<li><a href="#">What is the Dark Web? </a>						
+					<li><a href="#">What is Identity Fraud?</a></li>
+					<li><a href="#">What are the key features of the product? </a></li>
+					<li><a href="#">How Much Can I Borrow?</a></li>
+					<li><a href="#">Is a username required?</a></li>
+					<li><a href="#">How are the results presented?</a></li>
+					<li><a href="#">How are the results fed back? </a></li>
+					<li><a href="#">Where does the data you hold come from?</a></li>
+					<li><a href="#">How did the data get there?</a></li>
+					<li><a href="#">Who does this data gathering?</a></li>
+					<li><a href="#">My credit card details were still circulated after they had expired. Why?</a></li>
+					<li><a href="#">What should I do if I still have the credit card for which you found details?</a></li>
+					<li><a href="#">What if you have my credit card details but they have not been used by any criminals?</a></li>
+				</ul>
+			</div>
+		</div>
+		<section class="col-3-4">
+			<div class="page-header">
+				<h1 class="page-header-title">FAQ</h1>
+			</div>
+			<div class="content-section">
+				<div id="faq1" class="faq-item">	
+					<h3>Q: What is the Dark Web?</h3>
+					<p>A: More data has been generated in the last two years than in the rest of human history; most of which is held online in public websites, databases, blogs and more.</p> 
+
+<p>Unknown to many, the Internet accounts for less than 1% of the entire World Wide Web, and more than 99% is hidden beneath the surface in the Dark Web.</p> 
+  
+
+<p>The Dark Web is a network of websites and material similar to the regular Internet, but which mask/hide the IP address of the servers that host them. The websites and material on the Dark Web is not indexed by search engines. Due to this, it is a haven for criminal activity.</p> 
+
+
+<p>With our unique data analytics capability, we provide visibility on the data held in the depths of the Dark Web, allowing businesses to identify fraud and improve their processes. </p> 
+</div>
+			</div>
+		</section>
+	</div>
+	<section>
+		<form class="callout"  id="singup-form-2">
+			<div class="container">
+				<h4 class="callout-title"><span class="color-primary">YOUR PRIVACY MAY BE AT RISK! START 10 DAY FREE TRIAL</span></h4>
+				<p class="callout-caption">Stop identity theft before it hits your finances</p>
+				<div class="form-callout">
+					<div class="form-callout-field">
+						<input class="field-element validate"  required data-message="Please fill in your First Name." type="text" placeholder="First Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="email" placeholder="Email Address">
+					</div>
+					<button type="submit" class="btn-callout">Start My Free Trial</button>
+				</div>
+			</div>
+		</form>
+	</section>
+	<footer class="global-footer">
+		<nav class="global-footer-nav">
+			<ul>
+				<li class="is-active"><a href="#">Faqs</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms of Use</a></li>
+				<li><a href="#">Terms of Membership</a></li>
+				<li><a href="#">Become and Affiliate</a></li>
+				<li><a href="#">Complaints</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Cookie Policy</a></li>
+			</ul>
+		</nav>
+		<div class="global-footer-disclaimer">
+			<div class="container">
+				<p>&copy; Copyright 2016. All rights reserved.<br>
+This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at
+Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH.
+Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858.
+†Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report.
+IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="public/js/dom-interaction.js"></script>
+	<script src="public/js/forms.js"></script>
+	<script>
+		var sign_up_form = document.getElementById('singup-form');
+		var validateForm = new validator(sign_up_form, {
+      	success : function(event) { window.location = 'register.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+      
+      var sign_up_form2 = document.getElementById('singup-form-2');
+		var validateForm2 = new validator(sign_up_form2, {
+      	success : function(event) { window.location = 'register.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+	</script>
+</body>
+</html>

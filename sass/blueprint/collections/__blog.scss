@@ -1,0 +1,52 @@
+// Sidebar
+.category-list {
+	a{
+		color: $color-white-1;
+		line-height: baseline(2);
+	}
+	li {
+		border-color: $color-black-1;
+	}
+}
+
+
+// Recent Posts
+.article-item {
+	margin-bottom: baseline(1);
+	@include clear-fix;
+}
+
+.article-thumb {
+	width: 25%;
+	float: left;
+	margin-right: baseline(1/2);
+	img {
+		max-width: 100%;
+		display: block;
+	}
+}
+
+.article-title {
+	margin-bottom: 0;
+}
+
+.article-date {
+	@include type-style($fontSize : -1, $color : darken($color-white-3,30));
+}
+
+
+// Single Post
+
+.post-photo {
+	display: block;
+	text-align: center;
+}
+
+.post-title {
+	@include type-style($fontSize : 4, $fontFamily : $font-body);
+	margin-bottom: baseline(1);
+}
+
+.post-meta {
+	margin-bottom: baseline(2);
+}

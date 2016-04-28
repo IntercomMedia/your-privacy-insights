@@ -1,0 +1,65 @@
+// Type Style
+	// @param : Font Family
+	// @param : Font Size, exponent of font ratio
+	// @param : Color
+	// @param : Bottom Margin
+
+@mixin type-style($fontFamily : null, $fontSize: null, $color : null, $lineHeight : null, $caps : false, $fontWeight: null) {
+	font-family: $fontFamily;
+	color: $color;
+	font-weight:  $fontWeight;
+	@if $fontSize {
+		font-size: fontsize($fontSize);
+	}
+	@if $lineHeight {
+		line-height: baseline($lineHeight);
+	}
+	@if $caps {
+		text-transform: uppercase;
+	}
+	
+	@include phone {
+		@if $fontSize and $fontSize > 2 {
+			font-size: fontsize(2);
+		}
+	}
+}
+
+// Box Style
+	// @param : Background Color
+	// @param : Font Color
+	// @param : Border Radius
+	// @param : Shadow Style
+
+@mixin box-style($background :null, $color : null, $corners : null, $depth : null) {
+	background-color: $background;
+	color: $color;
+	border-radius: $corners;
+	box-shadow: $depth;
+	
+	* {
+		color: $color;
+	}
+}
+
+// Border Style
+	// @param : Position (All, Top, Right, Bottom, Left)
+		// note: selection "all" styles the element using the 'outline' property so that two border-style mixins can be used at one time
+	// @param : Size of border
+	// @param : Color of border
+
+@mixin border-style($size, $color : null, $position : all) {
+	@if $position == all {
+		border: solid $size $color;
+	} @else if $position == outline {
+		outline: solid $size $color;
+	} @else if $position == top {
+		border-top: solid $size $color;
+	} @else if $position == right {
+		border-right: solid $size $color;
+	} @else if $position == bottom {
+		border-bottom: solid $size $color;
+	} @else if $position == left {
+		border-left: solid $size $color;
+	}
+}

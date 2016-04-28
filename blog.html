@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+	<div class="global-header-spacer">
+		<header class="global-header sticky js-header">
+			<div class="logo">
+				<a href="index.html"><img src="public/images/logo.svg"></a>
+			</div>
+			<nav class="global-nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="faq.html">Faqs</a></li>
+					<li class="is-active"><a href="blog.html">Blog</a></li>
+				</ul>
+			</nav>
+			<div class="global-actions">
+				<a href="register.html" class="btn-action">Sign Up</a>
+				<button class="btn-action-alt" onclick="openLogin()">Login</button>
+			</div>
+			<div class="global-mobile-actions">
+				<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
+			</div>
+			
+			<div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="row">
+		<div class="sidebar col-1-4" id="sidebar">
+			<div class="sidebar-content" >
+				<form class="search-bar form-short">
+					<div class="form-short-field search-field">
+						<input type="text" name="search" placeholder="Search">
+					</div>
+				</form>
+				<div class="widget categories">
+					<h4 class="widget-title">
+						Categories
+					</h4>
+					<ul class="category-list">
+						<li><a href="#">Lorem ipsum </a></li>
+						<li><a href="#">dolor sit amet </a></li>
+						<li><a href="#">consectetur adipiscing </a></li>
+						<li><a href="#">Integer imperdiet  </a></li>
+						<li><a href="#">neque sit amet  </a></li>
+						<li><a href="#">luctus tristique </a></li>
+						<li><a href="#">Nullam eget tortor </a> </li>
+						<li><a href="#">condimentum </a></li>
+					</ul>
+				</div>
+				<div class="widget recent-articles">
+					<h4 class="widget-title">
+						Recent Posts
+					</h4>
+					<article class="article-item">
+						<div class="article-thumb">
+							<img src="public/images/article-image-thumb.jpg">
+						</div>
+						<h5 class="article-title">Lorem ipsum  dolor sit amet,</h5>
+						<p class="article-date">April 18th, 2016</p>
+					</article>
+					<article class="article-item">
+						<div class="article-thumb">
+							<img src="public/images/article-image-thumb.jpg">
+						</div>
+						<h5 class="article-title">Lorem ipsum  dolor sit amet,</h5>
+						<p class="article-date">April 18th, 2016</p>
+					</article>
+					<article class="article-item">
+						<div class="article-thumb">
+							<img src="public/images/article-image-thumb.jpg">
+						</div>
+						<h5 class="article-title">Lorem ipsum  dolor sit amet,</h5>
+						<p class="article-date">April 18th, 2016</p>
+					</article>
+				</div>
+			</div>
+		</div>
+		<section class="col-3-4">
+			<div class="content-section">
+				<div class="post-photo">
+					<img src="public/images/article-image.jpg">
+				</div>
+				<header class="post-header">
+					<h2 class="post-title">Mauris blandit et neque vitae consequat. </h2>
+					<div class="post-meta">
+						<span class="post-date">April 18th, 2016</span> <span class="post-categories "><a href="#" class="chip">Consectetur adipiscing</a></span>
+					</div>
+				</header>
+				<div class="post-entry">
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel fermentum metus. Aenean pretium, leo vitae blandit hendrerit, massa nibh ultrices nibh, eget dignissim ex turpis vestibulum risus. Morbi tristique maximus mi, at consequat arcu scelerisque vel. Mauris blandit et neque vitae consequat. Cras feugiat tristique risus non convallis. Vestibulum feugiat id eros pulvinar consectetur. Nunc ultrices fermentum sem ut tempus. Vestibulum quis gravida dui. Nulla sit amet rhoncus sapien, non sagittis dui. In hac habitasse platea dictumst. Duis nec metus nec leo scelerisque suscipit. Integer in maximus augue. Nulla in tellus semper, bibendum tortor vel, pellentesque risus. Vivamus at pellentesque sem, vitae consectetur enim.</p>
+		
+		<p>Ut eget mi porttitor, fermentum tortor nec, egestas mi. Integer at lorem felis. Morbi et urna dolor. Suspendisse potenti. Integer vel nibh vitae magna tempor tempus. Nam maximus, ex eu fermentum vestibulum, felis tortor mollis ipsum, ac molestie odio mi non est. Curabitur tincidunt libero augue, id euismod libero ultricies at. Morbi fermentum ante non sem consectetur, in lobortis purus pulvinar. Donec id facilisis magna. Aenean sed lectus purus. Pellentesque sed ligula rhoncus, consectetur felis vitae, ultrices nisl. Sed ac consequat metus.</p>
+		
+		<p>Nam gravida odio nec mi imperdiet laoreet. Sed risus purus, laoreet vel magna sed, congue auctor lorem. Etiam odio leo, porttitor quis pulvinar vel, laoreet eu quam. Praesent fringilla, neque pellentesque lobortis viverra, dui nibh accumsan eros, varius faucibus purus libero id augue. Sed tortor tortor, fringilla vitae dictum in, egestas eu risus. Cras eget pellentesque felis, et finibus justo. Quisque sapien odio, dapibus at tristique sed, suscipit vel massa.</p>
+		<p>Fusce sit amet dignissim massa, eget vulputate felis. Pellentesque pretium purus at ligula sodales, at eleifend justo semper. Suspendisse ut interdum risus. Phasellus dapibus, tortor non porta vestibulum, libero justo euismod metus, in fermentum purus augue sit amet enim. Vivamus diam nulla, suscipit nec semper vitae, dignissim sed dolor. Nunc gravida, sapien et finibus congue, metus nunc ultrices erat, eu elementum sem urna ac augue. Vivamus elementum, tortor a ullamcorper bibendum, diam est vehicula mi, sed imperdiet erat urna at sem. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.</p>
+		
+		<p>Nullam quam nulla, hendrerit vitae erat in, scelerisque pulvinar felis. Nunc ante velit, tristique non quam accumsan, laoreet venenatis leo. Phasellus eu libero et nulla congue varius. In hac habitasse platea dictumst. Phasellus fringilla scelerisque venenatis. Sed vel ex porttitor, ornare libero at, porttitor eros. Phasellus a malesuada arcu. In quis neque nec ipsum maximus rutrum sed quis erat. Aenean interdum efficitur sodales.</p></div>
+			</div>
+		</section>
+	</div>
+	<section>
+		<form class="callout"  id="singup-form-2">
+			<div class="container">
+				<h4 class="callout-title"><span class="color-primary">YOUR PRIVACY MAY BE AT RISK! START 10 DAY FREE TRIAL</span></h4>
+				<p class="callout-caption">Stop identity theft before it hits your finances</p>
+				<div class="form-callout">
+					<div class="form-callout-field">
+						<input class="field-element validate"  required data-message="Please fill in your First Name." type="text" placeholder="First Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="email" placeholder="Email Address">
+					</div>
+					<button type="submit" class="btn-callout">Start My Free Trial</button>
+				</div>
+			</div>
+		</form>
+	</section>
+	<footer class="global-footer">
+		<nav class="global-footer-nav">
+			<ul>
+				<li class="is-active"><a href="#">Faqs</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms of Use</a></li>
+				<li><a href="#">Terms of Membership</a></li>
+				<li><a href="#">Become and Affiliate</a></li>
+				<li><a href="#">Complaints</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Cookie Policy</a></li>
+			</ul>
+		</nav>
+		<div class="global-footer-disclaimer">
+			<div class="container">
+				<p>&copy; Copyright 2016. All rights reserved.<br>
+This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at
+Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH.
+Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858.
+†Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report.
+IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="public/js/dom-interaction.js"></script>
+	<script src="public/js/forms.js"></script>
+	<script>
+		var sign_up_form = document.getElementById('singup-form');
+		var validateForm = new validator(sign_up_form, {
+      	success : function(event) { window.location = 'register.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+      
+      var sign_up_form2 = document.getElementById('singup-form-2');
+		var validateForm2 = new validator(sign_up_form2, {
+      	success : function(event) { window.location = 'register.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+	</script>
+</body>
+</html>

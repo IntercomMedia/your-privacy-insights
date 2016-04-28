@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+    <div class="global-header-spacer">
+        <header class="global-header sticky js-header">
+            <div class="logo">
+                <a href="index.html"><img src="public/images/logo.svg"></a>
+            </div>
+
+            <nav class="global-nav">
+                <ul>
+                    <li class="is-active">
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+
+                    <li>
+                        <a href="faq.html">Faqs</a>
+                    </li>
+
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="global-actions">
+                <a href="#" class="btn-action">Sign Up</a> <button class="btn-action-alt" onclick="openLogin()">Login</button>
+            </div>
+
+            <div class="global-mobile-actions">
+                <a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"></a>
+            </div>
+            <div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+        </header>
+    </div>
+
+    <section class="section-spacing-1 register-section">
+        <div class="container">
+            <header class="section-header">
+                <p class="leader">Fill out the form below and take control of the safety of your identity online.</p>
+            </header>
+
+            <form class="form-long" id="register">
+                <div class="form-long-row">
+                    <div class="form-long-field select-field">
+                        <label class="is-active" for="name_title_id">Title:</label> <select name="Customer[name_title_id]" class="browser-default" id="name_title_id">
+                            <option value="" selected="selected" disabled="disabled">
+                                Title
+                            </option>
+
+                            <option value="d6ecabd8-f997-4633-816d-609312a99dbe">
+                                Mr.
+                            </option>
+
+                            <option value="6ce525db-3958-4f11-b455-5e838af7a57b">
+                                Mrs.
+                            </option>
+
+                            <option value="11423dc2-96c9-45ad-9c4d-c8ebf4bdbff1">
+                                Ms.
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="first_name" class="is-active">First Name</label> <input type="text" name="Customer[first_name]" class="validate field-element" id="first_name" maxlength="30" required="" data-message="Please input a valid First Name.">
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="surname" class="is-active">Surname</label> <input type="text" name="Customer[surname]" class="validate field-element" id="surname" maxlength="30" required="" data-message="Please input a valid Surname.">
+                    </div>
+                </div>
+
+                <div class="form-long-row">
+                    <div class="form-long-field">
+                        <label for="email_address" class="is-active">Email Address</label> <input type="text" name="Customer[email_address]" class="validate field-element" id="email_address" maxlength="60" value="johnny@hotmail.com" required="" data-validate="isEmail" data-message="Please input a valid email.">
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="phone_number">Home Phone</label> <input type="text" name="Customer[phone_number]" class="validate field-element" id="phone_number" maxlength="11" required="" data-validate="isPhone" data-message="Please input a valid Phone number.">
+                    </div>
+
+                    <div class="form-long-field dob-field" id="dob-fields">
+                        <label class="is-active" for="birth_date_day">Date of Birth</label>
+                        <input type="text" name="birth_date_day" class="field-element" id="birth_date_day" maxlength="2" placeholder="DD" required data-validate="isNumber" data-message="Please input a valid Day for DOB" >
+                        <span class="">/</span>
+                        <input type="text" name="birth_date_month" class="field-element" id="birth_date_month" maxlength="2" placeholder="MM" required data-validate="isNumber" data-message="Please input a valid Month for DOB">
+                        <span class="">/</span>
+                        <input type="text" name="birth_date_year" class="field-element" id="birth_date_year" maxlength="4" placeholder="YYYY" required data-validate="isNumber" data-message="Please input a valid Year for DOB">
+                    </div>
+                </div>
+
+                <div class="form-long-row">
+                    <div class="form-long-field">
+                        <label for="home_address_house">House No/Name</label> <input type="text" name="Customer[home_address_house]" class="validate field-element" id="home_address_house" maxlength="50" required data-message="Please input your house no/name">
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="flat">Flat No</label> <input type="text" name="Customer[home_address_flat]" class="validate field-element" id="flat" maxlength="10" required data-message="Please input your Flat No">
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="street">Street Name</label> <input type="text" name="Customer[home_address_street]" class="validate field-element" id="street" maxlength="50" required data-message="Please input your Street Name">
+                    </div>
+                </div>
+
+                <div class="form-long-row">
+                    <div class="form-long-field">
+                        <label for="town">Town/City</label> <input type="text" name="Customer[home_address_town]" class="validate field-element" id="town" maxlength="25" required data-message="Please input your Town/City">
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="postcode">Post Code</label> <input type="text" name="Customer[home_address_postcode]" class="validate field-element" id="postcode" maxlength="8" required data-message="Please input your Postcode">
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="county">County</label> <input type="text" name="Customer[home_address_county]" class="validate field-element" id="county" maxlength="30" required data-message="Please input your County">
+                    </div>
+                </div>
+
+                <div class="form-long-heading">
+                    <h2 class="form-long-title"><span>Card Information</span></h2>
+
+                    <p>Your card details will be used for billing of the membership fee so that you may enjoy uninterrupted access after your 10 day trial</p>
+                </div>
+
+                <div class="form-long-row">
+                    <div class="form-long-field" id="cc-type-fields">
+                        <div id="cc-types">
+                            <input type="radio" name="Customer[credit_card_type_id]" value="1e80c27f-26c9-416c-a66d-d6ac14cd624f" class="with-gap" id="mastercard"><img src="public/images/mastercard-bw.png"> <label for="mastercard">MasterCard</label> <input type="radio" name="Customer[credit_card_type_id]" value="a4713abc-b991-44ff-b85c-0c53be73bc0a" class="with-gap" id="visa"><label for="visa"><img src="public/images/visa-bw.png" class="selected" alt=""> Visa</label>
+                        </div>
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="credit_card_holder">Card Holder's Name</label> <input type="text" name="Customer[credit_card_holder]" class="validate field-element" id="credit_card_holder" maxlength="30" required data-message="Please input your Card Holder's Name">
+                    </div>
+                </div>
+
+                <div class="form-long-row">
+                    <div class="form-long-field">
+                        <label for="credit_card_number">Card Number</label> <input type="text" name="Customer[credit_card_number]" class="bin-check validate field-element" id="credit_card_number" maxlength="16" required data-message="Please input your Card Number" data-validate="isNumber" >
+                    </div>
+
+                    <div class="form-long-field multi-select-field">
+                        <label class="is-active" for="credit_card_expiry_month">Expiry Date</label> <select name="credit_card_expiry_month" class="browser-default field-element" id="credit_card_expiry_month" required data-message="Please select your card's Month of expiration">
+                            <option value="" selected="selected" disabled="disabled">
+                                Month
+                            </option>
+
+                            <option value="1">
+                                1
+                            </option>
+
+                            <option value="2">
+                                2
+                            </option>
+
+                            <option value="3">
+                                3
+                            </option>
+
+                            <option value="4">
+                                4
+                            </option>
+
+                            <option value="5">
+                                5
+                            </option>
+
+                            <option value="6">
+                                6
+                            </option>
+
+                            <option value="7">
+                                7
+                            </option>
+
+                            <option value="8">
+                                8
+                            </option>
+
+                            <option value="9">
+                                9
+                            </option>
+
+                            <option value="10">
+                                10
+                            </option>
+
+                            <option value="11">
+                                11
+                            </option>
+
+                            <option value="12">
+                                12
+                            </option>
+                        </select> <select name="credit_card_expiry_year" class="browser-default field-element" id="credit_card_expiry_year" required data-message="Please select your card's Year of expiration">
+                            <option value="" selected="selected" disabled="disabled">
+                                Year
+                            </option>
+
+                            <option value="2016">
+                                2016
+                            </option>
+
+                            <option value="2017">
+                                2017
+                            </option>
+
+                            <option value="2018">
+                                2018
+                            </option>
+
+                            <option value="2019">
+                                2019
+                            </option>
+
+                            <option value="2020">
+                                2020
+                            </option>
+
+                            <option value="2021">
+                                2021
+                            </option>
+                        </select>
+                    </div>
+
+                    <div class="form-long-field">
+                        <label for="credit_card_cv2">Cv2 Code</label> <input type="text" name="Customer[credit_card_cv2]" class="validate field-element" id="credit_card_cv2" maxlength="3" required data-message="Please input your Cv2 Code.">
+                    </div>
+                </div>
+
+                <div class="form-long-optin">
+                    <p>By clicking "Submit" you agree to <a href="privacy.html">privacy policy</a> and the <a href="terms.html">terms of membership</a>of Your Privacy Insights. You agree to your membership starting when you submit your information and by doing so your legal right to cancel within the first 14 days may be affected. Following the end of the 10 days trial period you will be charged £19.95 per month on a continuous payment authority until you cancel. You can cancel at any time by contacting us on 0808 189 0346. If you cancel within the first 10 days you will not be charged.</p>
+                </div><button type="submit" class="btn-callout">Submit</button>
+            </form>
+        </div>
+    </section>
+
+    <footer class="global-footer">
+        <nav class="global-footer-nav">
+            <ul>
+                <li>
+                    <a href="#">Faqs</a>
+                </li>
+
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+
+                <li>
+                    <a href="#">Terms of Use</a>
+                </li>
+
+                <li>
+                    <a href="#">Terms of Membership</a>
+                </li>
+
+                <li>
+                    <a href="#">Become and Affiliate</a>
+                </li>
+
+                <li>
+                    <a href="#">Complaints</a>
+                </li>
+
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+
+                <li>
+                    <a href="#">Cookie Policy</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="global-footer-disclaimer">
+            <div class="container">
+                <p>&copy; Copyright 2016. All rights reserved.<br>
+                This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+                IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH. Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858. †Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report. IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+            </div>
+        </div>
+    </footer><script src="public/js/dom-interaction.js">
+</script> <script src="public/js/forms.js">
+</script> <script>
+var register_form = document.getElementById('register');
+        var validateForm = new validator(register_form, {
+        success : function(event) { window.location = 'register.html' },
+        fail    : function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+    </script>
+</body>
+</html>

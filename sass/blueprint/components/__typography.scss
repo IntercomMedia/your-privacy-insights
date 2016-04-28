@@ -1,0 +1,103 @@
+/* ========================================
+
+Typography
+
+======================================== */
+
+body {
+	@include type-style($font-body, 0);
+}
+
+h1 {
+	@include type-style($font-heading, 3);
+	@include spacing($size-m, margin, vertical);
+}
+
+h2 {
+	@include type-style($font-heading, 2);
+	@include spacing($size-m, margin, vertical);
+}
+
+h3 {
+	@include type-style($font-heading, 2);
+	@include spacing($size-m, margin, vertical);
+}
+
+h4 {
+	@include type-style($font-body, 1);
+	@include spacing($size-m, margin, vertical);
+}
+
+h5 {
+	@include type-style($font-body, 0);
+	@include spacing($size-m, margin, vertical);
+}
+
+h6 {
+	@include type-style($font-heading, -1);
+	@include spacing($size-m, margin, vertical);
+}
+
+p {
+	@include type-style($font-body, 0);
+	@include spacing($size-s, margin, vertical);
+	line-height: roundUpToAny($base-font-size) * 1rem;
+}
+
+strong {
+	@include spacing($size-s, margin, vertical);
+	font-weight: 700;
+}
+
+small {
+	@include type-style($font-body, -1);
+	@include spacing($size-s, margin, vertical);
+}
+
+.leader {
+	@include type-style($fontSize : 1, $lineHeight : $font-ratio);
+	@include spacing($size-s, margin, vertical);
+}
+
+.caption {
+	@include type-style($font-body, 1);
+	@include spacing($size-s, margin, vertical);
+}
+
+a {
+	color: $color-primary-1;
+}
+
+/* ========================================
+
+Color Overrides
+
+======================================== */
+
+.color-primary {
+	color : $color-primary-1;
+}
+
+
+/* =======================================
+
+HTML Tags
+
+======================================== */
+
+hr {
+	@include border-style($line-xs, $color-neutral-1, all);
+	@include spacing(0, margin, vertical);;
+}
+
+pre {
+	@include box-style($color-black-1, $color-white-1, null, null);
+	@include spacing($size-xs, padding, horizontal);
+	margin: 0;
+	hyphens: none;
+	tab-size: 4;
+}
+
+code {
+	@include type-style($font-code, 0);
+}

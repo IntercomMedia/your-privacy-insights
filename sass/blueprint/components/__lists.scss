@@ -1,0 +1,3 @@
+li {
+	@include border-style($line-xs, $color-white-3, bottom);
+}
