@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+	<div class="global-header-spacer">
+		<header class="global-header sticky js-header">
+			<div class="logo">
+				<a href="index.html"><img src="public/images/logo.svg"></a>
+			</div>
+			<nav class="global-nav">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="#">About</a></li>
+					<li><a href="faq.html">Faqs</a></li>
+					<li><a href="blog.html">Blog</a></li>
+				</ul>
+			</nav>
+			<div class="global-actions">
+				<a href="register.html" class="btn-action">Sign Up</a>
+				<button class="btn-action-alt" onclick="openLogin()">Login</button>
+			</div>
+			<div class="global-mobile-actions">
+				<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
+			</div>
+			
+			<div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+	<section class="section-spacing-full">
+		<form class="callout"  id="singup-form">
+			<div class="container">
+				<h4 class="callout-title"><span class="color-primary">Access Your Privacy Insights In Less Than 60 Seconds</span></h4>
+				<p class="callout-caption">A scan of our database of over half a billions records can tell you in seconds how much of your personal information is available on the internet.<br>
+Complete the fields below to generate your personal identity security report.</p>
+				<div class="form-callout">
+					<div class="form-callout-field">
+						<input class="field-element validate"  required data-message="Please fill in your First Name." type="text" placeholder="First Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-message="Please input a valid email." type="text" placeholder="Post Code" name="postcode">
+					</div>
+					<button type="submit" class="btn-callout">SEE MY RESULTS</button>
+				</div>
+			</div>
+		</form>
+	</section>
+	<footer class="global-footer">
+		<nav class="global-footer-nav">
+			<ul>
+				<li class="is-active"><a href="#">Faqs</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms of Use</a></li>
+				<li><a href="#">Terms of Membership</a></li>
+				<li><a href="#">Become and Affiliate</a></li>
+				<li><a href="#">Complaints</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Cookie Policy</a></li>
+			</ul>
+		</nav>
+		<div class="global-footer-disclaimer">
+			<div class="container">
+				<p>&copy; Copyright 2016. All rights reserved.<br>
+This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at
+Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH.
+Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858.
+†Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report.
+IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="public/js/dom-interaction.js"></script>
+	<script src="public/js/forms.js"></script>
+	<script>
+		var sign_up_form = document.getElementById('singup-form');
+		var validateForm = new validator(sign_up_form, {
+      	success : function(event) { window.location = 'page3.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+	</script>
+</body>
+</html>

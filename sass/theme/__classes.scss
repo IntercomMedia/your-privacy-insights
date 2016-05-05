@@ -1,9 +1,13 @@
 .dark-section-3 {
 	@include box-style($background : $color-black-3, $color : $color-white-3);
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 .dark-section-2 {
 	@include box-style($background : $color-black-2, $color : $color-white-3);
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 .register-section {
@@ -21,4 +25,9 @@
 		display: block;
 		margin: baseline(2) auto;
 	}
+}
+
+.faq-item {
+	padding: $size-l 0;
+	border-bottom: $line-s solid $color-primary-1;
 }

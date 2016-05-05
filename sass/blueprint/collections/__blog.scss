@@ -2,10 +2,10 @@
 .category-list {
 	a{
 		color: $color-white-1;
-		line-height: baseline(2);
 	}
 	li {
 		border-color: $color-black-1;
+		padding: $size-s 0;
 	}
 }
 

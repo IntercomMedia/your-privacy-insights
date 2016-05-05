@@ -35,6 +35,8 @@
 	line-height: $size-l;
 	height: $size-l;
 	padding: 0 baseline(1);
+	position: fixed;
+	width: 100%;
 	
 	.logo {
 		margin-right: auto;

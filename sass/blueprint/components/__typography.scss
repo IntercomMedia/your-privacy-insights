@@ -54,6 +54,11 @@ small {
 	@include spacing($size-s, margin, vertical);
 }
 
+.mega-type {
+	@include type-style($font-heading, 4);
+	@include spacing($size-m, margin, vertical);
+}
+
 .leader {
 	@include type-style($fontSize : 1, $lineHeight : $font-ratio);
 	@include spacing($size-s, margin, vertical);
@@ -64,8 +69,23 @@ small {
 	@include spacing($size-s, margin, vertical);
 }
 
+.sub-title {
+	@include type-style($fontSize : 2, $lineHeight : $font-ratio);
+	margin-top: $size-m * -0.5;
+}
+
 a {
 	color: $color-primary-1;
+}
+
+ul.list {
+	list-style: circle;
+	margin-left: $size-s;
+	
+	li {
+		padding: 0 0 $size-s 0;
+		border: none;
+	}
 }
 
 /* ========================================

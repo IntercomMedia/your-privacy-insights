@@ -1,6 +1,18 @@
+.text-media {
+	width: 100%;
+	display: flex;
+	overflow: hidden;
+}
 .text-media-media {
+	background-size: cover;
+	background-position: center center;
 	@include phone {
 		order: -1;
+	}
+	
+	img {
+		width: 100%;
+		height: auto;
 	}
 }
 .text-media-copy {

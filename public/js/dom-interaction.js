@@ -187,12 +187,14 @@ var Sticky = function Sticky(element, options) {
 				stop = container_offset.top + container.offsetHeight - element.offsetHeight;
 				
 				if(scroll_pos > container_offset.top && scroll_pos < stop) {
-					element.style.transform = 'translateY('+ (scroll_pos - container_offset.top) + 'px)';
-				}
-				else if(scroll_pos > container_offset.top) {
+					element.style.width = element.offsetWidth + 'px';
+					element.classList.add('stickied');
+					element.style.top = container_offset.top + 'px';
 				}
 				else {
-					element.style.transform = 'translateY(0)';
+					element.classList.remove('stickied');
+					element.style.top = '';
+					element.style.bottom = container_offset.top +  container.outerHeight + 'px';
 				}
 			}
 			
@@ -246,7 +248,6 @@ var ModalPanel = function ModalPanel() {
 	function killPanel() {
 		closeTimer = setTimeout(function(){ 
 			open = false;
-			panel.style.display = 'none'; 
 		}, 300);
 	};
 	

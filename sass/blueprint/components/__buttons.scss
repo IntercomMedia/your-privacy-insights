@@ -8,6 +8,15 @@ $btn-callout : (
 	color : $color-white-1,
 );
 
+$btn-callout-alt : (
+	height : $size-l,
+	fontSize : 1,
+	fontWeight : bold,
+	caps : true,
+	background : $color-primary-1,
+	color : $color-white-1,
+);
+
 $btn-small : (
 	height : $size-m,
 	transition : $transition-1,
@@ -60,9 +69,8 @@ $btn-circle-s : (
 }
 
 .btn-callout-alt {
-	@include btn($btn-callout);
-	@include box-style($color : $color-primary-1);
-	@include border-style($line-m, $color-primary-1, all);
+	@include btn($btn-callout-alt);
+	min-width: $size-xl;
 }
 
 .btn-action {
