@@ -43,6 +43,7 @@
 		margin-left: 0;
 		img {
 			vertical-align: middle;
+			max-width: 250px;
 		}
 	}
 }
@@ -177,6 +178,8 @@
 
 .global-footer {
 	background: $color-black-1;
+	position: relative;
+	z-index: 10;
 }
 
 

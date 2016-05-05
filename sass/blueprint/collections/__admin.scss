@@ -1,0 +1,91 @@
+.admin-page-header {
+	position: fixed;
+	@include box-style($background : $color-white-2);
+	line-height: $size-l;
+	width: 5/6 * 100%;
+}
+
+.admin-page-header-title {
+	@include type-style($fontFamily : $font-body, $fontSize: 1, $caps: true, $fontWeight: normal);
+	@include phone {
+		text-align: center;
+	}
+	margin: 0;
+	margin-left: $size-s;
+}
+
+.admin-page-header-arrow {
+	float: left;
+	padding: $size-xs;
+	width: $size-m;
+	height: $size-l;
+	line-height: calc(#{$size-l} - #{$size-xs} * 2);
+	color: $color-neutral-3;
+	background: $color-white-3;
+	img {
+		vertical-align: middle;
+	}
+}
+
+.admin-sidebar {
+	@include box-style($color-neutral-4);
+	position: fixed;
+	height: 100vh;
+	color: $color-white-1;
+	overflow: hidden;
+	min-height: calc(100vh - #{$size-m});
+}
+
+.admin-header {
+	background-color : $color-neutral-6;
+	.logo {
+		height: $size-l;
+		padding: $size-s;
+		
+		img {
+			max-width: 100%;
+		}
+	}
+}
+
+.admin-nav {
+	li{
+		line-height: $size-l;
+		border-bottom: none;
+		border-left: 0 solid $color-primary-1;
+		transition : $transition-1;
+	}
+	
+	li:hover,
+	li.is-active {
+		border-left: $line-l solid $color-secondary-2;
+		background: $color-neutral-5;
+	}
+	
+	a {
+		padding-left: $size-m;
+		display: block;
+		color: $color-white-2;
+	}
+}
+
+.admin-edit-table {
+	width:100%;
+	td {
+		padding: $size-s 0;
+		position: relative;
+		border-bottom: $line-s solid $color-white-3;
+	}
+	
+	.btn-edit {
+		position: absolute;
+		right : $size-s;
+		bottom: 50%;
+		transform: translateY(50%);
+	}
+}
+
+.admin-edit-actions {
+	text-align: right;
+	padding: $size-s 0;
+}

@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+	<div class="global-header-spacer">
+		<header class="global-header sticky js-header">
+			<div class="logo">
+				<a href="index.html"><img src="public/images/logo.svg"></a>
+			</div>
+			<nav class="global-nav">
+				<ul>
+					<li><a href="#">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="faq.html">Faqs</a></li>
+					<li><a href="blog.html">Blog</a></li>
+					<li class="is-active"><a href="profile.html">My Profile</a></li>
+				</ul>
+			</nav>
+			<div class="global-actions">
+				<button class="btn-action-alt" onclick="openLogin()">Log out</button>
+			</div>
+			<div class="global-mobile-actions">
+				<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
+			</div>
+			
+			<div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="row">
+		<div class="admin-sidebar col-1-6" id="sidebar">
+			<nav class="admin-nav">
+				<ul class="">
+					<li class="is-active"><a href="#faq1">My Account</a>						
+					<li><a href="#faq2">My Report</a></li>
+				</ul>
+			</nav>
+		</div>
+		<section class="col-5-6 section-spacing-full">
+			<div class="container">
+					<h3>Account Details</h3>
+					<div class="account-details">
+						<table class="admin-edit-table">
+		                    <tbody>
+			                    <tr>
+			                        <td width="30%">Membership number</td>
+			                        <td>1075692</td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>Name</td>
+			                        <td>Test Customer</td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>Email Address</td>
+			                        <td>livetest@example.com</td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>Telephone number</td>
+			
+			                        <td>
+			                            <div class="edit-fields slide-toggle is-up" id="phone-form">
+		                                	<form method="post" accept-charset="utf-8" class="form-long" id="users-edit-phone-form" action="/customer_panel/my-account" novalidate="novalidate">
+			                                	<div class="form-long-field is-filled">
+							                        <label for="phone-field">Phone Number</label>
+							                        <input type="text" name="Customer[phone_number]" id="phone-field" class="validate field-element" maxlength="11" value="0123456789">
+			                                	</div>
+			                                	<div class="admin-edit-actions">
+			                                    	<button type="button" class="btn-circle-s" onclick="togglePhone()">x</button>
+			                                    	<button type="submit" class="btn-circle-s-alt"><img src="public/images/icon-check.svg"></button>
+												</div>
+				                        	</form>
+				                        </div>
+			
+			                            <div id="phone-data" class="slide-toggle is-down">
+			                                <div id="phone-data-holder">
+			                                    0123456789
+			                                </div>
+			                                <button class="btn-circle-s btn-edit" onclick="togglePhone()"><img src="public/images/icon-pencil.svg"></button>
+			                            </div>
+			                        </td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>Address</td>
+			
+			                        <td>
+				                        <div id="address-data" class="slide-toggle is-down" style="display: block;">
+			                                <div id="address-data-holder">
+			                                    123 Fake St.<br>
+			                                    London Y7GV 25A
+			                                </div>
+			                                <button class="btn-circle-s btn-edit" onclick="toggleAddress()"><img src="public/images/icon-pencil.svg"></button>
+			                            </div>
+			                            <div class="edit-fields slide-toggle is-up" id="address-form" style="height: 0;">
+			                                <form method="post" accept-charset="utf-8" class="form-long" id="users-edit-home-address-form" action="/customer_panel/my-account" novalidate="novalidate">					    <div class="form-long-row">
+									                    <div class="form-long-field is-filled">
+									                        <label for="home_address_house">Address 1</label> <input type="text" name="Customer[home_address_house]" class="validate field-element" id="home_address_house" maxlength="50" required data-message="Please input your house no/name" value="123 Fake St.">
+									                    </div>
+									
+									                    <div class="form-long-field">
+									                        <label for="flat">Address 2</label> <input type="text" name="Customer[home_address_flat]" class="validate field-element" id="flat" maxlength="10" data-message="Please input your Flat No">
+									                    </div>
+									                </div>
+									
+									                <div class="form-long-row">
+									                    <div class="form-long-field is-filled">
+									                        <label for="town">Town/City</label> <input type="text" name="Customer[home_address_town]" class="validate field-element" id="town" maxlength="25" required data-message="Please input your Town/City" value="London">
+									                    </div>
+									
+									                    <div class="form-long-field is-filled">
+									                        <label for="postcode">Post Code</label> <input type="text" name="Customer[home_address_postcode]" class="validate field-element" id="postcode" maxlength="8" required data-message="Please input your Postcode" value="Y7GV 25A">
+									                    </div>
+									
+									                    <div class="form-long-field">
+									                        <label for="county">County</label> <input type="text" name="Customer[home_address_county]" class="validate field-element" id="county" maxlength="30" required data-message="Please input your County">
+									                    </div>
+									                </div>
+			
+				                                <div class="admin-edit-actions">
+				                                    <button type="button" class="btn-circle-s" onclick="toggleAddress()">x</button>
+				                                    <button type="submit" class="btn-circle-s-alt"><img src="public/images/icon-check.svg"></button>
+				                                </div>
+			                                </form>
+			                            </div>
+			                        </td>
+			                    </tr>
+			                    <tr>
+			                        <td>Password</td>
+			
+			                        <td>
+			                            <div class="edit-fields slide-toggle is-up" id="pw-form">
+		                                	<form method="post" accept-charset="utf-8" class="form-long" id="users-edit-password-form" action="/customer_panel/my-account" novalidate="novalidate">
+			                                	<div class="form-long-field">
+							                        <label for="pw-field">Old Password</label>
+							                        <input type="password" name="Customer[old_password]" required id="pw-field" class="validate field-element" data-message="Please input your old password">
+			                                	</div>
+			                                	<div class="form-long-field">
+							                        <label for="pw-field-2">New Password</label>
+							                        <input type="password" name="Customer[password]" required id="pw-field-2" class="validate field-element" data-message="Please input a new password">
+			                                	</div>
+			                                	<div class="form-long-field">
+							                        <label for="pw-field-3">Confirm New Password</label>
+							                        <input type="password" name="Customer[password_confirm]" required id="pw-field-3" class="validate field-element" data-validate="isMatch" val-match="pw-field-2" data-message="Please make sure the confirm password matches your new password">
+			                                	</div>
+			                                	<div class="admin-edit-actions">
+			                                    	<button type="button" class="btn-circle-s" onclick="togglePw()">x</button>
+			                                    	<button type="submit" class="btn-circle-s-alt"><img src="public/images/icon-check.svg"></button>
+												</div>
+				                        	</form>
+				                        </div>
+			
+			                            <div id="pw-data" class="slide-toggle is-down">
+			                                <input type="password" id="pw-data-holder" disabled value="sldfsldfhp913h">
+				                            <button class="btn-circle-s btn-edit" onclick="togglePw()"><img src="public/images/icon-pencil.svg"></button>
+			                            </div>
+			                        </td>
+			                    </tr>
+			                    
+			                    <tr>
+			                        <td>Password</td>
+			
+			                        <td>
+			                            <div class="edit-fields slide-toggle is-up" id="cc-form">
+		                                	<form method="post" accept-charset="utf-8" class="form-long" id="users-edit-cc-form" action="/customer_panel/my-account" novalidate="novalidate">
+			                                	<div class="form-long-row">
+								                    <div class="form-long-field" id="cc-type-fields">
+								                        <div id="cc-types">
+								                            <input type="radio" name="Customer[credit_card_type_id]" value="1e80c27f-26c9-416c-a66d-d6ac14cd624f" class="with-gap" id="mastercard"><img src="public/images/mastercard-bw.png"> <label for="mastercard">MasterCard</label> <input type="radio" name="Customer[credit_card_type_id]" value="a4713abc-b991-44ff-b85c-0c53be73bc0a" class="with-gap" id="visa"><label for="visa"><img src="public/images/visa-bw.png" class="selected" alt=""> Visa</label>
+								                        </div>
+								                    </div>
+								
+								                    <div class="form-long-field">
+								                        <label for="credit_card_holder">Card Holder's Name</label> <input type="text" name="Customer[credit_card_holder]" class="validate field-element" id="credit_card_holder" maxlength="30" required data-message="Please input your Card Holder's Name">
+								                    </div>
+								                </div>
+								
+								                <div class="form-long-row">
+								                    <div class="form-long-field">
+								                        <label for="credit_card_number">Card Number</label> <input type="text" name="Customer[credit_card_number]" class="bin-check validate field-element" id="credit_card_number" maxlength="16" required data-message="Please input your Card Number" data-validate="isNumber" >
+								                    </div>
+								
+								                    <div class="form-long-field multi-select-field">
+								                        <label class="is-active" for="credit_card_expiry_month">Expiry Date</label> <select name="credit_card_expiry_month" class="browser-default field-element" id="credit_card_expiry_month" required data-message="Please select your card's Month of expiration">
+								                            <option value="" selected="selected" disabled="disabled">
+								                                Month
+								                            </option>
+								
+								                            <option value="1">
+								                                1
+								                            </option>
+								
+								                            <option value="2">
+								                                2
+								                            </option>
+								
+								                            <option value="3">
+								                                3
+								                            </option>
+								
+								                            <option value="4">
+								                                4
+								                            </option>
+								
+								                            <option value="5">
+								                                5
+								                            </option>
+								
+								                            <option value="6">
+								                                6
+								                            </option>
+								
+								                            <option value="7">
+								                                7
+								                            </option>
+								
+								                            <option value="8">
+								                                8
+								                            </option>
+								
+								                            <option value="9">
+								                                9
+								                            </option>
+								
+								                            <option value="10">
+								                                10
+								                            </option>
+								
+								                            <option value="11">
+								                                11
+								                            </option>
+								
+								                            <option value="12">
+								                                12
+								                            </option>
+								                        </select> <select name="credit_card_expiry_year" class="browser-default field-element" id="credit_card_expiry_year" required data-message="Please select your card's Year of expiration">
+								                            <option value="" selected="selected" disabled="disabled">
+								                                Year
+								                            </option>
+								
+								                            <option value="2016">
+								                                2016
+								                            </option>
+								
+								                            <option value="2017">
+								                                2017
+								                            </option>
+								
+								                            <option value="2018">
+								                                2018
+								                            </option>
+								
+								                            <option value="2019">
+								                                2019
+								                            </option>
+								
+								                            <option value="2020">
+								                                2020
+								                            </option>
+								
+								                            <option value="2021">
+								                                2021
+								                            </option>
+								                        </select>
+								                    </div>
+								
+								                    <div class="form-long-field">
+								                        <label for="credit_card_cv2">Cv2 Code</label> <input type="text" name="Customer[credit_card_cv2]" class="validate field-element" id="credit_card_cv2" maxlength="3" required data-message="Please input your Cv2 Code.">
+								                    </div>
+								                </div>
+								                <div class="admin-edit-actions">
+			                                    	<button type="button" class="btn-circle-s" onclick="toggleCc()">x</button>
+			                                    	<button type="submit" class="btn-circle-s-alt"><img src="public/images/icon-check.svg"></button>
+												</div>
+				                        	</form>
+				                        </div>
+			
+			                            <div id="cc-data" class="slide-toggle is-down">
+			                                <div id="cc-data-holder">
+				                                Visa ending in 4444
+			                                </div>
+				                            <button class="btn-circle-s btn-edit" onclick="toggleCc()"><img src="public/images/icon-pencil.svg"></button>
+			                            </div>
+			                        </td>
+			                    </tr>
+			                    
+			                    
+			                </tbody>
+                		</table>
+					</div>
+			</div>
+		</section>
+	</div>
+	<footer class="global-footer">
+		<nav class="global-footer-nav">
+			<ul>
+				<li class="is-active"><a href="#">Faqs</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms of Use</a></li>
+				<li><a href="#">Terms of Membership</a></li>
+				<li><a href="#">Become and Affiliate</a></li>
+				<li><a href="#">Complaints</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Cookie Policy</a></li>
+			</ul>
+		</nav>
+		<div class="global-footer-disclaimer">
+			<div class="container">
+				<p>&copy; Copyright 2016. All rights reserved.<br>
+This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at
+Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH.
+Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858.
+†Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report.
+IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="public/js/dom-interaction.js"></script>
+	<script src="public/js/forms.js"></script>
+	<script>
+		// Address Validation
+		var address_form = document.getElementById('users-edit-home-address-form');
+        var validateForm = new validator(address_form, {
+       		success : function(event) { 
+	       		// Do stuff like save the information
+	       		toggleAddress();
+	       		var address = address_form.elements[0].value + ' ' + address_form.elements[1].value + '<br>'
+	       		+ address_form.elements[2].value + ', ' + address_form.elements[3].value + '<br>'
+	       		+ address_form.elements[4].value;
+	       		document.getElementById('address-data-holder').innerHTML = address;
+	       	},
+        	fail    : function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      	});
+      	
+      	// Phone Validation
+      	var phone_form = document.getElementById('users-edit-phone-form');
+        var validateForm = new validator(phone_form, {
+       		success : function(event) {
+	       		// Do stuff like save the information
+	       		togglePhone();
+	       		var phone = phone_form.elements[0].value;
+	       		document.getElementById('phone-data-holder').innerHTML = phone;
+       		},
+        	fail    : function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      	});
+      	
+      	// Password Validation
+      	var pw_form = document.getElementById('users-edit-password-form');
+        var validateForm = new validator(pw_form, {
+       		success : function(event) {
+	       		// Do stuff like save the information
+	       		togglePw();
+	       		var pw = pw_form.elements[1].value;
+	       		document.getElementById('pw-data-holder').value = pw;
+       		},
+        	fail    : function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      	});
+      	
+      	// Credit Card Validation
+      	var cc_form = document.getElementById('users-edit-cc-form');
+        var validateForm = new validator(cc_form, {
+       		success : function(event) {
+	       		// Do stuff like save the information
+	       		toggleCc();
+	       		var cc =  cc_form.elements[0].value + ' ending in ' + cc_form.elements[3].value.substr(cc_form.elements[3].value.length - 4);
+	       		document.getElementById('cc-data-holder').innerHTML = cc;
+       		},
+        	fail    : function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      	});
+      	
+      	function toggleAddress() {
+	      	var address_form_container = document.getElementById('address-form');
+	      	var address_data_container = document.getElementById('address-data');
+	      	slideToggle(address_form_container, 300);
+	      	slideToggle(address_data_container, 300);
+      	}
+      	function togglePhone() {
+	      	var phone_form_container = document.getElementById('phone-form');
+	      	var phone_data_container = document.getElementById('phone-data');
+	      	slideToggle(phone_form_container, 300);
+	      	slideToggle(phone_data_container, 300);
+      	}
+      	
+      	function togglePw() {
+	      	var pw1 = document.getElementById('pw-form');
+	      	var pw2 = document.getElementById('pw-data');
+	      	slideToggle(pw1, 300);
+	      	slideToggle(pw2, 300);
+      	}
+      	
+      	function toggleCc() {
+	      	var cc1 = document.getElementById('cc-form');
+	      	var cc2 = document.getElementById('cc-data');
+	      	slideToggle(cc1, 300);
+	      	slideToggle(cc2, 300);
+      	}
+      	
+	</script>
+</body>
+</html>

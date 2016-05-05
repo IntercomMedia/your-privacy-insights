@@ -45,6 +45,15 @@
 	@if map-get($conf, background) or map-get($conf, color) or map-get($conf, corners) or map-get($conf, depth){
 		@include box-style($background : map-get($conf, background), $color : map-get($conf, color), $corners : map-get($conf, corners), $depth : map-get($conf, depth))
 	}
+	img {
+		@if map-get($conf, fontSize) {
+			max-height: map-get($conf, fontSize);
+		}
+		@else {
+			max-height: 60%;
+		}
+		vertical-align: middle;
+	}
 }
 
 // Tool-tip

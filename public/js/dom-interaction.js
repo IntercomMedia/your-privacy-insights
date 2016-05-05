@@ -1064,11 +1064,10 @@ function slideUp(element, duration){
 	}
 }
 
-function slideToggle(element, callback){
-	var height = element.scrollHeight;
+function slideToggle(element, duration, callback){
 	element.style.height = element.offsetHeight + 'px';
 	
-	if(element.offsetHeight < 1) {
+	if(element.classList.contains('is-up')) {
 		slideDown(element, duration);
 	}else {
 		slideUp(element, duration);

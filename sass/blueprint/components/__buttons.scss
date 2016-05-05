@@ -64,6 +64,16 @@ $btn-circle-s : (
 	corners : 100%
 );
 
+$btn-circle-s-alt : (
+	height : $size-m,
+	width : $size-m,
+	transition : $transition-1,
+	background : $color-tertiary-1,
+	color : $color-white-1,
+	padding : null,
+	corners : 100%
+);
+
 .btn-callout {
 	@include btn($btn-callout);
 }
@@ -130,9 +140,7 @@ $btn-circle-s : (
 }
 
 .btn-circle-s-alt {
-	@include btn($btn-callout);
-	@include box-style(null, null, $size-full, null);
-	@include border-style($line-s, $color-primary-1, all);
+	@include btn($btn-circle-s-alt);
 }
 
 .btn-dot {

@@ -102,3 +102,20 @@
 		@include spacing($size-xs, margin, horizontal);	
 	}
 }
+
+.slide-toggle {
+	transition: $transition-1;
+	visibility: hidden;
+	opacity: 0;
+	overflow: hidden;
+	&.is-up {
+		visibility: hidden;
+		opacity: 0;
+		height: 0;
+	}
+	
+	&.is-down {
+		visibility: visible;
+		opacity: 1;
+	}
+}
