@@ -47,7 +47,7 @@
 	}
 	img {
 		@if map-get($conf, fontSize) {
-			max-height: map-get($conf, fontSize);
+			max-height: fontsize(map-get($conf, fontSize));
 		}
 		@else {
 			max-height: 60%;

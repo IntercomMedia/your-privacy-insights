@@ -74,6 +74,16 @@
 	justify-content: center;
 	@include box-style($background : $color-white-2);
 	@include spacing($size-m, padding);
+	
+	@include phone {
+		text-align: center;
+		flex-direction: column;
+		
+		.warning-icon {
+			margin-left: auto;
+			margin-right: auto;
+		}
+	}
 }
 
 .note {
@@ -117,5 +127,13 @@
 	&.is-down {
 		visibility: visible;
 		opacity: 1;
+	}
+}
+
+.set-apart {
+	position: relative;
+	transition: $transition-1;
+	&.is-active {
+		box-shadow: $depth-xs;
 	}
 }

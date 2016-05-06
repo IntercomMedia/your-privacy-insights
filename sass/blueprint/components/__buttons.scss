@@ -57,6 +57,7 @@ $btn-dot : (
 $btn-circle-s : (
 	height : $size-m,
 	width : $size-m,
+	fontSize : -1,
 	transition : $transition-1,
 	background : $color-primary-1,
 	color : $color-white-1,
@@ -67,11 +68,34 @@ $btn-circle-s : (
 $btn-circle-s-alt : (
 	height : $size-m,
 	width : $size-m,
+	fontSize : -1,
 	transition : $transition-1,
 	background : $color-tertiary-1,
 	color : $color-white-1,
 	padding : null,
 	corners : 100%
+);
+
+$btn-circle-xs : (
+	height : $size-s,
+	width : $size-s,
+	transition : $transition-1,
+	background : $color-primary-1,
+	color : $color-white-1,
+	padding : null,
+	corners : 100%,
+	fontSize : -1,
+);
+
+$btn-circle-xs-alt : (
+	height : $size-s,
+	width : $size-s,
+	transition : $transition-1,
+	background : $color-tertiary-1,
+	color : $color-white-1,
+	padding : null,
+	corners : 100%,
+	fontSize : -1,
 );
 
 .btn-callout {
@@ -141,6 +165,15 @@ $btn-circle-s-alt : (
 
 .btn-circle-s-alt {
 	@include btn($btn-circle-s-alt);
+}
+
+
+.btn-circle-xs {
+	@include btn($btn-circle-xs);
+}
+
+.btn-circle-xs-alt {
+	@include btn($btn-circle-xs-alt);
 }
 
 .btn-dot {

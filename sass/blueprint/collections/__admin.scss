@@ -34,6 +34,19 @@
 	color: $color-white-1;
 	overflow: hidden;
 	min-height: calc(100vh - #{$size-m});
+	width: baseline(12);
+	@include tablet-down {
+		width: baseline(3);
+	}
+}
+
+.admin-content {
+	width: calc(100vw - #{baseline(12)});
+	margin-left: auto;
+	
+	@include tablet-down {
+		width: calc(100vw - #{baseline(3)});
+	}
 }
 
 .admin-header {
@@ -60,19 +73,63 @@
 	li.is-active {
 		border-left: $line-l solid $color-secondary-2;
 		background: $color-neutral-5;
+		
+		.svg-color-2 {
+			fill: $color-primary-1;
+		}
+		.svg-color {
+			fill: $color-secondary-2;
+		}
 	}
 	
 	a {
-		padding-left: $size-m;
+		padding:0 $size-m;
 		display: block;
 		color: $color-white-2;
 	}
+	
+	.icon {
+		display: inline-block;
+		width: $size-m;
+		margin-right: $size-s;
+		svg,
+		img {
+			max-width: 100%;
+			vertical-align: middle;
+		}
+	}
+	
+	.svg-color {
+		transition : $transition-1;
+		fill: $color-white-2;
+	}
+	
+	.svg-color-2 {
+		transition : $transition-1;
+		fill: $color-white-2;
+	}
+	
+	@include tablet-down{
+		.title {
+			display: none;
+		}
+		a {
+			text-align: center;
+			padding: 0;
+		}
+		.icon {
+			width: $size-s;
+			margin-right:0;
+			text-align: center;
+		}
+	}
 }
 
-.admin-edit-table {
+.admin-account-details {
 	width:100%;
-	td {
-		padding: $size-s 0;
+	margin-bottom: $size-l;
+	.row {
+		padding: $size-s;
 		position: relative;
 		border-bottom: $line-s solid $color-white-3;
 	}

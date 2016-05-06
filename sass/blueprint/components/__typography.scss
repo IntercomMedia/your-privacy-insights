@@ -4,6 +4,12 @@ Typography
 
 ======================================== */
 
+html {
+	@include phone {
+		font-size: 14px;
+	}
+}
+
 body {
 	@include type-style($font-body, 0);
 }
