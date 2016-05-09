@@ -155,7 +155,7 @@ button {
   padding: 0 1.5rem;
   font-weight: bold;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   line-height: 4.5rem;
   background-color: #65a8b8;
@@ -176,7 +176,7 @@ button {
   padding: 0 1.5rem;
   font-weight: bold;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   line-height: 4.5rem;
   background-color: #eb6054;
@@ -309,7 +309,7 @@ button {
   padding: 0 1.5rem;
   font-weight: bold;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   line-height: 4.5rem;
   background-color: #65a8b8;
@@ -335,7 +335,7 @@ button {
   padding: 0 1.5rem;
   font-weight: bold;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   line-height: 4.5rem;
   background-color: #65a8b8;
@@ -362,7 +362,7 @@ button {
   padding: 0 1.5rem;
   font-weight: bold;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   line-height: 4.5rem;
   background-color: #65a8b8;
@@ -527,7 +527,7 @@ button {
   padding: 0 1.5rem;
   font-weight: bold;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   line-height: 4.5rem;
   background-color: #65a8b8;
@@ -544,7 +544,7 @@ input[type="text"],
 input[type="email"],
 input[type="password"] {
   font-size: 1rem;
-  line-height: 3rem; }
+  line-height: 2.25rem; }
 
 .warning-icon {
   height: 4.5rem;
@@ -910,13 +910,12 @@ Typography
 body {
   font-family: Open Sans, arial, sans-serif;
   font-size: 1rem;
-  line-height: 1.5rem;
   line-height: 1.5rem; }
 
 h1 {
   font-family: Open Sans Condensed, arial, sans-serif;
   font-size: 2.37037rem;
-  line-height: 3rem;
+  line-height: 2.25rem;
   margin-top: 2.25rem;
   margin-bottom: 2.25rem; }
   @media (max-width: 767px) {
@@ -926,20 +925,20 @@ h1 {
 h2 {
   font-family: Open Sans Condensed, arial, sans-serif;
   font-size: 1.77778rem;
-  line-height: 3rem;
+  line-height: 1.5rem;
   margin-top: 2.25rem;
   margin-bottom: 2.25rem; }
 
 h3 {
   font-family: Open Sans Condensed, arial, sans-serif;
   font-size: 1.77778rem;
-  line-height: 3rem;
+  line-height: 2.25rem;
   margin-top: 2.25rem;
   margin-bottom: 2.25rem; }
 
 h4 {
   font-family: Open Sans, arial, sans-serif;
-  font-size: 1.33333rem;
+  font-size: 1rem;
   line-height: 1.5rem;
   margin-top: 2.25rem;
   margin-bottom: 2.25rem; }
@@ -963,8 +962,7 @@ p {
   font-size: 1rem;
   line-height: 1.5rem;
   margin-top: 1.125rem;
-  margin-bottom: 1.125rem;
-  line-height: 1.5rem; }
+  margin-bottom: 1.125rem; }
 
 strong {
   margin-top: 1.125rem;
@@ -990,20 +988,20 @@ small {
 
 .leader {
   font-size: 1.33333rem;
-  line-height: 2rem;
+  line-height: 2.25rem;
   margin-top: 1.125rem;
   margin-bottom: 1.125rem; }
 
 .caption {
   font-family: Open Sans, arial, sans-serif;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   margin-top: 1.125rem;
   margin-bottom: 1.125rem; }
 
 .sub-title {
   font-size: 1.77778rem;
-  line-height: 2rem;
+  line-height: 2.25rem;
   margin-top: -1.125rem; }
 
 a {
@@ -1078,7 +1076,7 @@ code {
 .callout-caption {
   color: #232323;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   margin-top: 0.75rem; }
 
 .callout-lines {
@@ -1111,7 +1109,7 @@ code {
 
 .section-header-title {
   font-size: 2.37037rem;
-  line-height: 3rem;
+  line-height: 3.75rem;
   margin-bottom: 0; }
   @media (max-width: 767px) {
     .section-header-title {
@@ -1177,6 +1175,15 @@ code {
   transition: all 0.3s ease; }
   .set-apart.is-active {
     box-shadow: 0 5px 0.75rem rgba(0, 0, 0, 0.1); }
+
+.blurb-title {
+  margin-bottom: 0;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: bold; }
+
+.blurb-copy {
+  margin-top: 0; }
 
 .form-callout {
   display: flex;
@@ -1852,7 +1859,7 @@ code {
 
 .hero-header-caption {
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   line-height: 1.33333; }
 
 .hero-header-media {
@@ -1992,7 +1999,7 @@ code {
   font-family: Open Sans, arial, sans-serif;
   font-weight: normal;
   font-size: 1.33333rem;
-  line-height: 1.5rem;
+  line-height: 2.25rem;
   text-transform: uppercase;
   margin: 0;
   margin-left: 1.125rem; }

@@ -11,12 +11,14 @@
 	@if $fontSize {
 		font-size: fontsize($fontSize);
 	}
-	@if $lineHeight {
-		line-height: baseline($lineHeight);
+	@if $lineHeight and $fontSize{
+		$fontSizer : fontsize($fontSize);
+		$fontSizer : strip-unit($fontSizer) * $lineHeight;
+		line-height: roundUpToAny($fontSizer) * 1rem;
 	}
 	@else if  $fontSize{
 		$fontSizer : fontsize($fontSize);
-		$fontSizer : strip-unit($fontSizer);
+		$fontSizer : strip-unit($fontSizer) * $baseline-ratio;
 		line-height: roundUpToAny($fontSizer) * 1rem;
 		
 	}

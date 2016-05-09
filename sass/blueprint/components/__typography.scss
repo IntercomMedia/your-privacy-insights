@@ -12,43 +12,41 @@ html {
 
 body {
 	@include type-style($font-body, 0);
-	line-height: roundUpToAny($base-font-size) * 1rem;
 }
 
 h1 {
-	@include type-style($font-heading, 3);
+	@include type-style($fontFamily: $font-heading, $fontSize: 3, $lineHeight : 1);
 	@include spacing($size-m, margin, vertical);
 }
 
 h2 {
-	@include type-style($font-heading, 2);
+	@include type-style($fontFamily: $font-heading, $fontSize: 2, $lineHeight : 1);
 	@include spacing($size-m, margin, vertical);
 }
 
 h3 {
-	@include type-style($font-heading, 2);
+	@include type-style($fontFamily: $font-heading, $fontSize: 2, $lineHeight : 1.2);
 	@include spacing($size-m, margin, vertical);
 }
 
 h4 {
-	@include type-style($font-body, 1);
+	@include type-style($fontFamily: $font-body, $fontSize: 0);
 	@include spacing($size-m, margin, vertical);
 }
 
 h5 {
-	@include type-style($font-body, 0);
+	@include type-style($fontFamily: $font-body, $fontSize: 0);
 	@include spacing($size-m, margin, vertical);
 }
 
 h6 {
-	@include type-style($font-heading, -1);
+	@include type-style($fontFamily: $font-heading, $fontSize: -1);
 	@include spacing($size-m, margin, vertical);
 }
 
 p {
-	@include type-style($font-body, 0);
+	@include type-style($fontFamily: $font-body, $fontSize: 0);
 	@include spacing($size-s, margin, vertical);
-	line-height: roundUpToAny($base-font-size) * 1rem;
 }
 
 strong {
@@ -67,7 +65,7 @@ small {
 }
 
 .leader {
-	@include type-style($fontSize : 1, $lineHeight : $font-ratio);
+	@include type-style($fontSize : 1);
 	@include spacing($size-s, margin, vertical);
 }
 

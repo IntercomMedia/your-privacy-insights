@@ -24,7 +24,7 @@
 }
 
 .hero-header-title {
-	@include type-style($fontSize : 5, $color : $color-primary-1);
+	@include type-style($fontSize : 5, $color : $color-primary-1, $lineHeight: 1);
 }
 
 .hero-header-caption {

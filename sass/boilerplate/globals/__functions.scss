@@ -3,7 +3,7 @@
 	// 	@param : Multiple to round to
 
 @function roundUpToAny($n,$x:$base-line-height) {
-    @return round(($n+$x/2)/$x)*$x;
+    @return roundToDivisible($n, $x/2);
 }
 
 //  Equate exponents 
