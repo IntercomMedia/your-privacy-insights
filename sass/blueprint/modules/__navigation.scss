@@ -1,5 +1,12 @@
+// Pagination
+
+.pagination {
+	display: flex;
+	justify-content: space-between;
+	padding: $size-m 0;
+}	
+
 // Accordion
-	// Collapsable lists
 
 .accordion {
 	.accordion-trigger {
@@ -41,9 +48,11 @@
 	.logo {
 		margin-right: auto;
 		margin-left: 0;
+		width: 250px;
 		img {
 			vertical-align: middle;
 			max-width: 250px;
+			width: 100%;
 		}
 	}
 }

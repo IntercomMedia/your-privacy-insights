@@ -12,6 +12,7 @@ html {
 
 body {
 	@include type-style($font-body, 0);
+	line-height: roundUpToAny($base-font-size) * 1rem;
 }
 
 h1 {
@@ -112,8 +113,9 @@ HTML Tags
 ======================================== */
 
 hr {
-	@include border-style($line-xs, $color-neutral-1, all);
-	@include spacing(0, margin, vertical);;
+	border: none;
+	@include border-style($line-m, $color-white-3, bottom);
+	@include spacing($size-m, margin, vertical);;
 }
 
 pre {

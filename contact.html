@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+    <div class="global-header-spacer">
+        <header class="global-header sticky js-header">
+            <div class="logo">
+                <a href="index.html"><img src="public/images/logo.svg"></a>
+            </div>
+
+            <nav class="global-nav">
+                <ul>
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+
+                    <li>
+                        <a href="faq.html">Faqs</a>
+                    </li>
+
+                    <li>
+                        <a href="blog.html">Blog</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="global-actions">
+                <a href="#" class="btn-action">Sign Up</a> <button class="btn-action-alt" onclick="openLogin()">Login</button>
+            </div>
+
+            <div class="global-mobile-actions">
+                <a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"></a>
+            </div>
+            <div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+        </header>
+    </div>
+
+    <section class="section-spacing-1 register-section">
+        <div class="container">
+		            <header class="section-header">
+			            <h2>Need Help? Get In Touch.</h2>
+		                <p class="leader">GPlease call 0808-189-0346 to speak with a customer service representative. If you prefer, you can submit an online request. Use the form provided below and we'll get back to you as soon as we can.</p>
+		            </header>
+		
+		            <form class="form-long" id="register">
+		                <div class="form-long-row">
+		
+		                    <div class="form-long-field">
+		                        <label for="first_name" >First Name</label> <input type="text" name="Customer[first_name]" class="validate field-element" id="first_name" maxlength="30" required="" data-message="Please input a valid First Name.">
+		                    </div>
+		
+		                    <div class="form-long-field">
+		                        <label for="surname">Surname</label> <input type="text" name="Customer[surname]" class="validate field-element" id="surname" maxlength="30" required="" data-message="Please input a valid Surname.">
+		                    </div>
+		                    
+		                    
+		                    <div class="form-long-field">
+		                        <label for="postcode">Post Code</label> <input type="text" name="Customer[home_address_postcode]" class="validate field-element" id="postcode" maxlength="8" required data-message="Please input your Postcode">
+		                    </div>
+		                    
+		                </div>
+						
+		                <div class="form-long-row">
+		                    <div class="form-long-field">
+		                        <label for="email_address" class="is-active">Email Address</label> <input type="text" name="Customer[email_address]" class="validate field-element" id="email_address" maxlength="60" value="johnny@hotmail.com" required="" data-validate="isEmail" data-message="Please input a valid email.">
+		                    </div>
+		                    <div class="form-long-field">
+		                        <label for="phone_number">Phone</label> <input type="text" name="Customer[phone_number]" class="validate field-element" id="phone_number" maxlength="11" required="" data-validate="isPhone" data-message="Please input a valid Phone number.">
+		                    </div>
+		                </div>
+		                <div class="form-long-row">
+		                    <div class="form-long-field">
+		                        <label for="message">Message</label>
+		                        <textarea name="message" class="validate field-element" id="message" required data-message="Please input a message."></textarea>
+		                    </div>
+		                </div>
+		
+		               <button type="submit" class="btn-callout">Send</button>
+		            </form>
+		        </div>
+        </div>
+    </section>
+    <section class="callout">
+	    <div class="container">
+	    	<div class="row">
+				<div class="col">
+					<p>
+						<strong>Address</strong><br>
+						Credit Reports Matter<br>
+						3rd Floor 207<br>
+						Regent Street<br>
+						London<br>
+						W1B 3HH
+					</p>
+					</div>
+					<div class="col">
+						<p><strong>Phone</strong><br>
+							0808-189-0346</p>
+						<p><strong>Opening Hours:</strong><br>
+							Monday - Friday<br>
+							8:00am - 5:30pm
+						</p>
+					</div>
+					<div class="col">
+						<p>
+						Calls made after 5:30pm may leave a voicemail for a return call. Calls to 080 numbers are normally free from landlines and most mobiles.
+						</p>
+					</div>
+	    		</div>
+	    	</div>
+	    </div>
+    </section>
+
+    <footer class="global-footer">
+        <nav class="global-footer-nav">
+            <ul>
+                <li>
+                    <a href="#">Faqs</a>
+                </li>
+
+                <li>
+                    <a href="#">Privacy</a>
+                </li>
+
+                <li>
+                    <a href="#">Terms of Use</a>
+                </li>
+
+                <li>
+                    <a href="#">Terms of Membership</a>
+                </li>
+
+                <li>
+                    <a href="#">Become and Affiliate</a>
+                </li>
+
+                <li>
+                    <a href="#">Complaints</a>
+                </li>
+
+                <li>
+                    <a href="#">Contact Us</a>
+                </li>
+
+                <li>
+                    <a href="#">Cookie Policy</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="global-footer-disclaimer">
+            <div class="container">
+                <p>&copy; Copyright 2016. All rights reserved.<br>
+                This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+                IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH. Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858. †Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report. IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+            </div>
+        </div>
+    </footer><script src="public/js/dom-interaction.js">
+</script> <script src="public/js/forms.js">
+</script> <script>
+var register_form = document.getElementById('register');
+        var validateForm = new validator(register_form, {
+        success : function(event) { window.location = 'register.html' },
+        fail    : function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+    </script>
+</body>
+</html>

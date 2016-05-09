@@ -146,3 +146,37 @@
 	text-align: right;
 	padding: $size-s 0;
 }
+
+
+.report-table {
+	width:100%;
+	box-shadow: $depth-m;
+	thead tr:nth-child(odd) {
+		background: $color-primary-1;
+	}
+	
+	th {
+		padding: $size-s;
+		font-weight: bold;
+		text-align: left;
+		color: $color-white-2;
+		text-transform: uppercase;
+	}
+	
+	tr:nth-child(odd) {
+		background: $color-white-2;
+	}
+	
+	td {
+		padding: $size-xs $size-s;
+	}
+	
+	td:nth-child(even) {
+		background: rgba(0,0,0,0.02);
+	}
+	
+	p {
+		margin: 0;
+		padding: 0;
+	}
+}

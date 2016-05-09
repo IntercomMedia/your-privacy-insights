@@ -14,6 +14,12 @@
 	@if $lineHeight {
 		line-height: baseline($lineHeight);
 	}
+	@else if  $fontSize{
+		$fontSizer : fontsize($fontSize);
+		$fontSizer : strip-unit($fontSizer);
+		line-height: roundUpToAny($fontSizer) * 1rem;
+		
+	}
 	@if $caps {
 		text-transform: uppercase;
 	}

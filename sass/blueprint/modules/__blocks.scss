@@ -1,6 +1,6 @@
 .page-header {
 	@include box-style($background : $color-white-2);
-	line-height: baseline(4);
+	padding: $size-s;
 }
 
 .page-header-title {
@@ -15,7 +15,6 @@
 .callout {
 	@include box-style($background : $color-white-2);
 	@include spacing($size-m, padding);
-	margin: $size-s auto;
 }
 
 .callout-title {

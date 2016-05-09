@@ -187,6 +187,19 @@
 		}
 	}
 	
+	textarea {
+		@include type-style($font-body, 0);
+		display: block;
+		text-align: left;
+		width: 100%;
+		height: baseline(5);
+		padding: 0 baseline(1/2);
+		border: none;
+		&:focus {
+			outline: 0;
+		}
+	}
+	
 	select {
 		@include type-style($fontSize : 0);
 		-webkit-appearance:none ;

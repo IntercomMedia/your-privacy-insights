@@ -115,15 +115,12 @@ $btn-circle-xs-alt : (
 	@include btn($btn-small-alt);
 }
 
-.btn-aside {
-	@include btn($btn-callout);
-	@include box-style($color-primary-1, $color-white-1, $size-l, null);
+.btn-small {
+	@include btn($btn-small);
 }
 
-.btn-aside-alt {
-	@include btn($btn-callout);
-	@include box-style(null, $color-primary-1, $size-s, null);
-	@include border-style($line-m, $color-primary-1, all);
+.btn-small-alt {
+	@include btn($btn-small-alt);
 }
 
 .btn-icon {

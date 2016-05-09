@@ -1,3 +1,8 @@
-@import '__baseline.scss';
-@import '__breakpoints.scss';
-@import '__functions.scss';
+@import 'globals/__baseline.scss';
+@import 'globals/__breakpoints.scss';
+@import 'globals/__functions.scss';
+@import 'mixins/__reset.scss';
+@import 'mixins/__skin.scss';
+@import 'mixins/__grid.scss';
+@import 'mixins/__helpers.scss';
+@import 'mixins/__gui.scss';

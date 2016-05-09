@@ -13,6 +13,7 @@
 	img {
 		width: 100%;
 		height: auto;
+		display: block;
 	}
 }
 .text-media-copy {
@@ -20,12 +21,11 @@
 	vertical-align: middle;
 	justify-content: center;
 	flex-direction: column;
-	padding-top: baseline(1);
-	padding-bottom: baseline(1);
+	padding: baseline(1);
 }
 
 .text-media-title {
-	margin-bottom: 0;
+	margin: 0;
 	font-weight: normal;
 }
 

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Your Privacy Insights</title>
+    <link rel="stylesheet" type="text/css" href="public/css/main.css">
+</head>
+
+<body>
+	<div class="global-header-spacer">
+		<header class="global-header sticky js-header">
+			<div class="logo">
+				<a href="index.html"><img src="public/images/logo.svg"></a>
+			</div>
+			<nav class="global-nav">
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="about.html">About</a></li>
+					<li><a href="faq.html">Faqs</a></li>
+					<li class="is-active"><a href="blog.html">Blog</a></li>
+				</ul>
+			</nav>
+			<div class="global-actions">
+				<a href="register.html" class="btn-action">Sign Up</a>
+				<button class="btn-action-alt" onclick="openLogin()">Login</button>
+			</div>
+			<div class="global-mobile-actions">
+				<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
+			</div>
+			
+			<div id="nav_overlay" class="nav-overlay">
+				<div class="mega-nav">
+					<ul>
+						<li class="is-active"><a href="index.html">Home</a></li>
+						<li><a href="#">About</a></li>
+						<li><a href="blog.html">Blog</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="#">Sign Up</a></li>
+						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+					</ul>
+				</div>
+			</div>
+		</header>
+	</div>
+	<div class="row">
+		<div class="blog-sidebar sidebar col-1-4" id="sidebar">
+				<form class="search-bar form-short">
+					<div class="form-short-field search-field">
+						<input type="text" name="search" placeholder="Search">
+					</div>
+				</form>
+				<div class="widget categories">
+					<h4 class="widget-title">
+						Categories
+					</h4>
+					<ul class="category-list">
+						<li><a href="#">Lorem ipsum </a></li>
+						<li><a href="#">dolor sit amet </a></li>
+						<li><a href="#">consectetur adipiscing </a></li>
+						<li><a href="#">Integer imperdiet  </a></li>
+						<li><a href="#">neque sit amet  </a></li>
+						<li><a href="#">luctus tristique </a></li>
+						<li><a href="#">Nullam eget tortor </a> </li>
+						<li><a href="#">condimentum </a></li>
+					</ul>
+				</div>
+				<div class="widget recent-articles">
+					<h4 class="widget-title">
+						Recent Posts
+					</h4>
+					<article class="article-item">
+						<div class="article-thumb">
+							<img src="public/images/article-image-thumb.jpg">
+						</div>
+						<h5 class="article-title">Lorem ipsum  dolor sit amet,</h5>
+						<p class="article-date">April 18th, 2016</p>
+					</article>
+					<article class="article-item">
+						<div class="article-thumb">
+							<img src="public/images/article-image-thumb.jpg">
+						</div>
+						<h5 class="article-title">Lorem ipsum  dolor sit amet,</h5>
+						<p class="article-date">April 18th, 2016</p>
+					</article>
+					<article class="article-item">
+						<div class="article-thumb">
+							<img src="public/images/article-image-thumb.jpg">
+						</div>
+						<h5 class="article-title">Lorem ipsum  dolor sit amet,</h5>
+						<p class="article-date">April 18th, 2016</p>
+					</article>
+				</div>
+		</div>
+		<section class="col-3-4">
+			<header class="category-header">
+				<h1 class="category-header-title">Category Title</h1>
+			</header>
+			<div class="container">
+				<div class="blog-roll">
+					<article class="text-media blog-post">
+						<div class="text-media-media col-1-2">
+								<img src="public/images/article-image.jpg">
+						</div>
+						<div class="text-media-copy col-1-2">
+							<h3 class="text-media-title">Mauris blandit et neque vitae consequat. </h3>
+							<p class="article-date">April 18th, 2016</p>
+							<div class="post-entry">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel fermentum metus. Aenean pretium, leo vitae blandit hendrerit, massa nibh ultrices nibh, eget dignissim ex turpis vestibulum risus. Morbi tristique maximus mi, at consequat arcu scelerisque vel. Mauris blandit et neque vitae consequat. Cras feugiat tristique risus non convallis. Vestibulum feugiat id eros pulvinar consectetur. Nunc ultrices fermentum sem ut tempus. Vestibulum quis gravida dui. Nulla sit amet rhoncus sapien, non sagittis dui. In hac habitasse platea dictumst. Duis nec metus nec leo scelerisque suscipit. Integer in maximus augue. Nulla in tellus semper, bibendum tortor vel, pellentesque risus. Vivamus at pellentesque sem, vitae consectetur enim.</p>
+								<a class="btn-small" href="/blog.html">Read More</a>
+							</div>
+						</div>
+					</article>
+					
+					<article class="text-media blog-post">
+						<div class="text-media-media col-1-2">
+								<img src="public/images/article-image.jpg">
+						</div>
+						<div class="text-media-copy col-1-2">
+							<h3 class="text-media-title">Mauris blandit et neque vitae consequat. </h3>
+							<p class="article-date">April 18th, 2016</p>
+							<div class="post-entry">
+								<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus vel fermentum metus. Aenean pretium, leo vitae blandit hendrerit, massa nibh ultrices nibh, eget dignissim ex turpis vestibulum risus. Morbi tristique maximus mi, at consequat arcu scelerisque vel. Mauris blandit et neque vitae consequat. Cras feugiat tristique risus non convallis. Vestibulum feugiat id eros pulvinar consectetur. Nunc ultrices fermentum sem ut tempus. Vestibulum quis gravida dui. Nulla sit amet rhoncus sapien, non sagittis dui. In hac habitasse platea dictumst. Duis nec metus nec leo scelerisque suscipit. Integer in maximus augue. Nulla in tellus semper, bibendum tortor vel, pellentesque risus. Vivamus at pellentesque sem, vitae consectetur enim.</p>
+								<a class="btn-small" href="/blog.html">Read More</a>
+							</div>
+						</div>
+					</article>
+				</div>
+				<div class="pagination">
+					<a href="#" class="pagination-prev">&#8592; Newer</a>
+					<a href="#" class="pagination-next">Older &#8594;</a>
+				</div>
+			</div>
+		</section>
+	</div>
+	<section>
+		<form class="callout"  id="singup-form-2">
+			<div class="container">
+				<h4 class="callout-title"><span class="color-primary">YOUR PRIVACY MAY BE AT RISK! START 10 DAY FREE TRIAL</span></h4>
+				<p class="callout-caption">Stop identity theft before it hits your finances</p>
+				<div class="form-callout">
+					<div class="form-callout-field">
+						<input class="field-element validate"  required data-message="Please fill in your First Name." type="text" placeholder="First Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+					</div>
+					<div class="form-callout-field">
+						<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="email" placeholder="Email Address">
+					</div>
+					<button type="submit" class="btn-callout">Start My Free Trial</button>
+				</div>
+			</div>
+		</form>
+	</section>
+	<footer class="global-footer">
+		<nav class="global-footer-nav">
+			<ul>
+				<li class="is-active"><a href="#">Faqs</a></li>
+				<li><a href="#">Privacy</a></li>
+				<li><a href="#">Terms of Use</a></li>
+				<li><a href="#">Terms of Membership</a></li>
+				<li><a href="#">Become and Affiliate</a></li>
+				<li><a href="#">Complaints</a></li>
+				<li><a href="#">Contact Us</a></li>
+				<li><a href="#">Cookie Policy</a></li>
+			</ul>
+		</nav>
+		<div class="global-footer-disclaimer">
+			<div class="container">
+				<p>&copy; Copyright 2016. All rights reserved.<br>
+This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
+IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at
+Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH.
+Credit Report and Scores are provided by Callcredit Consumer Limited, owned by one of the UK's leading credit reporting service providers, and is regulated by the Financial Conduct Authority Interim Permission Reference Number: 649858.
+†Access to Credit Reports Matter membership is instant; some members may need additional verification to access their credit report.
+IMT Technologies Limited is authorised and Regulated by the Financial Conduct Authority, Interim Permission Reference Number: 645149.</p>
+			</div>
+		</div>
+	</footer>
+	<script src="public/js/dom-interaction.js"></script>
+	<script src="public/js/forms.js"></script>
+	<script>
+		var sign_up_form = document.getElementById('singup-form');
+		var validateForm = new validator(sign_up_form, {
+      	success : function(event) { window.location = 'register.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+      
+      var sign_up_form2 = document.getElementById('singup-form-2');
+		var validateForm2 = new validator(sign_up_form2, {
+      	success : function(event) { window.location = 'register.html' },
+      	fail	: function(err) { alertBox.sendAlert(err.fields[0], 3000)},
+      });
+	</script>
+</body>
+</html>
