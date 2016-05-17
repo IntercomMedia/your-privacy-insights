@@ -37,7 +37,6 @@
 .global-header {
 	@include box-style($background: $color-white-1, $depth : $depth-m);
 	z-index: 100;
-	display: flex;
 	justify-content: center;
 	line-height: $size-l;
 	height: $size-l;
@@ -55,6 +54,15 @@
 			width: 100%;
 		}
 	}
+}
+
+.global-header-inner {
+	display: flex;
+	flex: 1;
+	-ms-flex: 1;
+	width: 100%;
+	max-width: 1124px;
+	margin: 0 auto;
 }
 
 .global-nav {

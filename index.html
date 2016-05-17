@@ -9,35 +9,37 @@
 <body>
 	<div class="global-header-spacer">
 		<header class="global-header sticky js-header">
-			<div class="logo">
-				<a href="index.html"><img src="public/images/logo.svg"></a>
-			</div>
-			<nav class="global-nav">
-				<ul>
-					<li class="is-active"><a href="#">Home</a></li>
-					<li><a href="about.html">About</a></li>
-					<li><a href="faq.html">Faqs</a></li>
-					<li><a href="blog.html">Blog</a></li>
-				</ul>
-			</nav>
-			<div class="global-actions">
-				<a href="register.html" class="btn-action">Sign Up</a>
-				<button class="btn-action-alt" onclick="openLogin()">Login</button>
-			</div>
-			<div class="global-mobile-actions">
-				<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
-			</div>
-			
-			<div id="nav_overlay" class="nav-overlay">
-				<div class="mega-nav">
+			<div class="global-header-inner">
+				<div class="logo">
+					<a href="index.html"><img src="public/images/logo.svg"></a>
+				</div>
+				<nav class="global-nav">
 					<ul>
-						<li class="is-active"><a href="index.html">Home</a></li>
-						<li><a href="#">About</a></li>
-						<li><a href="blog.html">Blog</a></li>
+						<li class="is-active"><a href="#">Home</a></li>
+						<li><a href="about.html">About</a></li>
 						<li><a href="faq.html">Faqs</a></li>
-						<li><a href="#">Sign Up</a></li>
-						<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+						<li><a href="blog.html">Blog</a></li>
 					</ul>
+				</nav>
+				<div class="global-actions">
+					<a href="register.html" class="btn-action">Sign Up</a>
+					<button class="btn-action-alt" onclick="openLogin()">Login</button>
+				</div>
+				<div class="global-mobile-actions">
+					<a id="toggle-nav" href=".global-header" class="btn-dot js-toggle"><span></span><span></span><span></span></a>
+				</div>
+				
+				<div id="nav_overlay" class="nav-overlay">
+					<div class="mega-nav">
+						<ul>
+							<li class="is-active"><a href="index.html">Home</a></li>
+							<li><a href="#">About</a></li>
+							<li><a href="blog.html">Blog</a></li>
+							<li><a href="faq.html">Faqs</a></li>
+							<li><a href="#">Sign Up</a></li>
+							<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+						</ul>
+					</div>
 				</div>
 			</div>
 		</header>
