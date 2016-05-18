@@ -1114,7 +1114,8 @@ function openLogin(){
 		'<header class="modal-header"><h3 class="modal-title">Login to your Account</h3></header>' +
 		'<div class="form-short-field"><input class="field-element" type="email" placeholder="Email"></div>' +
 		'<div class="form-short-field"><input class="field-element" type="password" placeholder="Password"></div>' +
-		'<button class="btn-action" type="submit">Login</button></div>' +
+		'<button class="btn-action" type="submit">Login</button>' +
+		'<p><a href="#">Forgot Password?</a></p></div>' +
 		'</form></div>';
 	panel.open(content);
 	return false;
