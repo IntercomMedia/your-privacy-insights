@@ -103,11 +103,19 @@
 		flex-wrap: wrap;
 	}
 }
+
+.form-callout-fields {
+	width: 250%;
+	display: flex;
+	@include phone {
+		flex-wrap: wrap;
+	}
+}
+
 .form-callout-field {
 	@include box-style($background : $color-white-1);
 	@include field;
 	position: relative;
-	width: 100%;
 	
 	input[type="text"],
 	input[type="email"],

@@ -14,4 +14,11 @@
 			position: fixed;
 		}
 	}
+	
+	input[type="text"],
+	input[type="email"],
+	input[type="password"],
+	input[type="search"] {
+		color: $color-black-3;
+	}
 }

@@ -1014,6 +1014,37 @@ ul.list {
     padding: 0 0 1.125rem 0;
     border: none; }
 
+ul.roman-list {
+  list-style-type: lower-alpha;
+  padding-left: 1em; }
+  ul.roman-list ul {
+    list-style: lower-roman;
+    padding-left: 1em; }
+  ul.roman-list li {
+    border: none; }
+
+ol.legal-list {
+  list-style-type: none;
+  counter-reset: item;
+  margin: 0;
+  padding: 0;
+  border: none; }
+  ol.legal-list ol {
+    counter-reset: item; }
+
+ol.legal-list li {
+  counter-increment: item;
+  display: table;
+  border: none;
+  padding: 1.125rem 0;
+  border: none; }
+  ol.legal-list li:before {
+    content: counters(item, ".") ". ";
+    padding: 0 1.125rem 0 0;
+    display: table-cell; }
+  ol.legal-list li ol > li:before {
+    content: counters(item, ".") " "; }
+
 /* ========================================
 
 Color Overrides
@@ -1205,11 +1236,17 @@ code {
     .form-callout {
       flex-wrap: wrap; } }
 
+.form-callout-fields {
+  width: 250%;
+  display: flex; }
+  @media (max-width: 767px) {
+    .form-callout-fields {
+      flex-wrap: wrap; } }
+
 .form-callout-field {
   background-color: white;
   position: relative;
-  position: relative;
-  width: 100%; }
+  position: relative; }
   .form-callout-field::before, .form-callout-field::after {
     content: ' ';
     position: absolute;
@@ -1829,6 +1866,11 @@ code {
     .sidebar .sidebar-content.stickied {
       top: 0;
       position: fixed; }
+  .sidebar input[type="text"],
+  .sidebar input[type="email"],
+  .sidebar input[type="password"],
+  .sidebar input[type="search"] {
+    color: #050505; }
 
 .hero-header {
   position: relative;

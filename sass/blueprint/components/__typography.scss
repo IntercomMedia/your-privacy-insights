@@ -93,6 +93,48 @@ ul.list {
 	}
 }
 
+ul.roman-list {
+	list-style-type: lower-alpha;
+	padding-left: 1em;
+	
+	ul {
+		list-style: lower-roman;
+		padding-left: 1em;
+	}
+	
+	li {
+		border: none;
+	}
+}
+
+ol.legal-list {
+	list-style-type: none;
+	counter-reset: item;
+	margin: 0;
+	padding: 0;
+	border: none;
+	ol {
+		counter-reset: item;
+	}
+}
+
+ol.legal-list li {
+	counter-increment: item;
+	display: table;
+	border: none;
+	padding: $size-s 0;
+	border: none;
+	
+	&:before {
+		content: counters(item, ".") ". ";
+		padding: 0 $size-s 0 0;
+		display: table-cell;
+	}
+	
+	ol > li:before {
+		content: counters(item, ".") " ";
+	}
+}
 /* ========================================
 
 Color Overrides

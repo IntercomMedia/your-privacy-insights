@@ -59,14 +59,22 @@
 				<h4 class="callout-title">Find out in Less Than 60 Seconds</h4>
 				<p class="callout-caption">Stop identity theft before it hits your finances</p>
 				<div class="form-callout">
-					<div class="form-callout-field">
-						<input class="field-element validate"  required data-message="Please fill in your First Name." type="text" placeholder="First Name">
-					</div>
-					<div class="form-callout-field">
-						<input class="field-element validate" required data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
-					</div>
-					<div class="form-callout-field">
-						<input class="field-element validate" required data-message="Please input a valid email." type="text" placeholder="Post Code" name="postcode">
+					<div class="form-callout-fields">
+						<div class="form-callout-field">
+							<input class="field-element validate"  required data-validate="isName" data-message="Please fill in your First Name." type="text" placeholder="First Name">
+						</div>
+						<div class="form-callout-field">
+							<input class="field-element validate" required data-validate="isName" data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+						</div>
+						<div class="form-callout-field col-1-2">
+							<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="text" placeholder="Email" name="postcode">
+						</div>
+						<div class="form-callout-field">
+							<input type="text" class="field-element validate" required data-validate="isPhone" data-min="10" data-message="Please input a valid Phone Number." type="text" placeholder="Phone" name="phone">
+						</div>
+						<div class="form-callout-field col-1-4">
+							<input class="field-element validate" required data-min="4" data-message="Please input a valid postcode." type="text" placeholder="Post Code" name="postcode">
+						</div>
 					</div>
 					<button type="submit" class="btn-callout">SEE MY RESULTS</button>
 				</div>
@@ -165,8 +173,7 @@ Complete the fields below to generate your personal identity security report.</p
 				<li><a href="#">Privacy</a></li>
 				<li><a href="#">Terms of Use</a></li>
 				<li><a href="#">Terms of Membership</a></li>
-				<li><a href="#">Become and Affiliate</a></li>
-				<li><a href="#">Complaints</a></li>
+				<li><a href="http://imtmarketplace.com/">Become an Affiliate</a></li>
 				<li><a href="#">Contact Us</a></li>
 				<li><a href="#">Cookie Policy</a></li>
 			</ul>

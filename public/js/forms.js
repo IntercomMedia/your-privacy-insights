@@ -1,6 +1,12 @@
 function validator(form, args) {
 	if (form) {
 		var self = this; // to reference this inside of event listener functions
+		
+		// Validate listener for Inputs
+		function validateListener(event) {
+			self.validateHandler(event.target)
+		}
+		
 		this.args = { // set default args
 			success : args.success ? args.success : function() { form.submit() },
 			fail : args.fail ?  args.fail : function(msg) { console.log(msg)}
@@ -191,9 +197,7 @@ function validator(form, args) {
 				element = (element.target) ? element.target : element;
 				var val = element.value;
 				if (validateMethods.required(element)) {
-					var re = /^[A-Za-z0-9 ]{3,50}$/;
-					var rslt = re.test(val);
-					return rslt;
+					return val.length > 1;
 				} else {
 					return true;
 				}
@@ -224,7 +228,7 @@ function validator(form, args) {
 				element = (element.target) ? element.target : element;
 				var val = element.value;
 				if (validateMethods.required(element)) {
-					var re = /^\d{5}(?:[-\s]\d{4})?$/;
+					var re = /[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}/g;
 					var rslt = re.test(val);
 					return rslt;
 				} else {
@@ -245,7 +249,13 @@ function validator(form, args) {
 			}
 		}
 		
-		this.validateHandler = function(element) {
+		this.validateHandler = function(element) {	
+			var method	= element.getAttribute('data-validate'),
+				message 	= element.getAttribute('data-message'),
+				parent_el	= element.parentNode,
+				required	= element.required;
+			method = (required && !method) ? 'isRequired' : method;
+			
 			if(element.dataset.depends && element.value == '') {
 				if(element.dataset.dependsValue && form.elements[element.dataset.depends].value !== element.dataset.dependsValue) {
 					element.parentNode.classList.remove('is-error');
@@ -259,11 +269,24 @@ function validator(form, args) {
 				}
 			}
 			
-			var method	= element.getAttribute('data-validate'),
-				message 	= element.getAttribute('data-message'),
-				parent_el	= element.parentNode,
-				required	= element.required;
-			method = (required && !method) ? 'isRequired' : method;
+			if(element.hasAttribute('data-min')) { 
+				if(element.value.length < Number(element.getAttribute('data-min'))){
+					parent_el.classList.remove('is-valid');
+					parent_el.classList.add('is-error');
+					element.addEventListener('input', validateListener);
+					return false;
+				}
+			}
+			
+			if(element.hasAttribute('data-max')) { 
+				if(element.value.length > Number(element.dataset.max)) {
+					parent_el.classList.remove('is-valid');
+					parent_el.classList.add('is-error');
+					element.addEventListener('input', validateListener);
+					return false;
+				}
+			}
+
 			
 			if(method) {
 				if (validateMethods[method](element)) {
@@ -273,7 +296,7 @@ function validator(form, args) {
 				} else {
 					parent_el.classList.remove('is-valid');
 					parent_el.classList.add('is-error');
-					element.addEventListener('input', function(event){ self.validateHandler(event.target); });
+					element.addEventListener('input', validateListener);
 					return false;
 				}
 			} else {
