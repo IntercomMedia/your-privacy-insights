@@ -1752,6 +1752,8 @@ code {
   padding: 4.5rem 0;
   color: white;
   text-align: center; }
+  .global-footer-disclaimer p {
+    font-size: 0.75rem; }
 
 .modal-panel {
   position: fixed;
@@ -1857,6 +1859,15 @@ code {
     color: white;
     margin: 0; }
 
+@media screen and (min-width: 960px) {
+  .panel-content.col-3-4 .content-section {
+    padding-right: 12.5vw;
+    max-width: calc(700px + 12.5vw); } }
+
+@media screen and (min-width: 960px) {
+  .panel-content.col-3-4 .page-header {
+    padding-right: 12.5vw; } }
+
 .sidebar {
   background-color: #050505;
   color: white;
@@ -1869,6 +1880,9 @@ code {
     .sidebar .sidebar-content.stickied {
       top: 0;
       position: fixed; }
+    @media (max-width: 767px) {
+      .sidebar .sidebar-content {
+        max-height: none; } }
   .sidebar input[type="text"],
   .sidebar input[type="email"],
   .sidebar input[type="password"],

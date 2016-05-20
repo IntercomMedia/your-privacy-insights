@@ -1,0 +1,19 @@
+.panel-aside {
+}
+
+.panel-content {
+	
+	&.col-3-4 {
+		.content-section {
+			@media screen and (min-width: 960px) {
+				padding-right: 12.5vw;
+				max-width: calc(700px + 12.5vw);
+			}
+		}
+		.page-header {
+			@media screen and (min-width: 960px) {
+				padding-right: 12.5vw;
+			}
+		}
+	}
+}

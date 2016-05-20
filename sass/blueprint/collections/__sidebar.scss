@@ -13,6 +13,9 @@
 			top: 0;
 			position: fixed;
 		}
+		@include phone {
+			max-height: none;
+		}
 	}
 	
 	input[type="text"],

@@ -171,6 +171,7 @@ var Sticky = function Sticky(element, options) {
 	this.elements = document.querySelectorAll(element);
 	var headerHeight = document.querySelector('.js-header');
 	document.addEventListener('scroll', makeSticky);
+	window.addEventListener("optimizedResize", makeSticky);
 	
 	function makeSticky(event) {
 		forEach(self.elements, function(element, index){
@@ -187,7 +188,7 @@ var Sticky = function Sticky(element, options) {
 				stop = container_offset.top + container.offsetHeight - element.offsetHeight;
 				
 				if(scroll_pos > container_offset.top && scroll_pos < stop) {
-					element.style.width = element.offsetWidth + 'px';
+					element.style.width = element.parentNode.offsetWidth + 'px';
 					element.classList.add('stickied');
 					element.style.top = container_offset.top + 'px';
 				}
@@ -195,6 +196,7 @@ var Sticky = function Sticky(element, options) {
 					element.classList.remove('stickied');
 					element.style.top = '';
 					element.style.bottom = container_offset.top +  container.outerHeight + 'px';
+					element.style.width = ''
 				}
 			}
 			
@@ -207,7 +209,7 @@ var Sticky = function Sticky(element, options) {
 				if(element.hasAttribute('data-header-offset')) offset_top = offset_top + headerHeight.offsetHeight;
 				
 				if(item_offset.top < scroll_pos + offset_top - start_top ) {
-					element.style.width = element.offsetWidth + 'px';
+					element.style.width = element.parentNode.offsetWidth + 'px';
 					element.classList.add('stickied');
 					element.style.top = offset_top + 'px';
 				}

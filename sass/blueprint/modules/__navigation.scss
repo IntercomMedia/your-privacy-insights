@@ -237,4 +237,8 @@
 	padding: $size-l 0;
 	color: $color-white-1;
 	text-align: center;
+	
+	p {
+		font-size : fontsize(-1);
+	}
 }
