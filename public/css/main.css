@@ -1320,6 +1320,9 @@ code {
     .form-callout-field input[type="email"]::focus,
     .form-callout-field input[type="password"]::focus {
       outline: none; }
+  @media (max-width: 767px) {
+    .form-callout-field {
+      width: 100%; } }
 
 .form-short {
   text-align: center; }
