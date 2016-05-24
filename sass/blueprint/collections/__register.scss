@@ -1,0 +1,16 @@
+.register-section {
+	padding: baseline(2);
+	
+	.container {
+		max-width: 980px;
+	}
+	.section-header {
+		margin-bottom: baseline(2);
+	}
+	
+	button {
+		width: baseline(10);
+		display: block;
+		margin: baseline(2) auto;
+	}
+}

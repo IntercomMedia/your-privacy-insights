@@ -99,7 +99,7 @@
 		width: 100%;
 	}
 	
-	@include phone {
+	@include tablet-down {
 		flex-wrap: wrap;
 	}
 }

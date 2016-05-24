@@ -16,7 +16,6 @@
 				<nav class="global-nav">
 					<ul>
 						<li class="is-active"><a href="#">Home</a></li>
-						<li><a href="about.html">About</a></li>
 						<li><a href="faq.html">Faqs</a></li>
 						<li><a href="blog.html">Blog</a></li>
 					</ul>
@@ -82,9 +81,9 @@
 		</form>
 	</section>
 	<section class="text-media">
-		<div class="text-media-media col-1-2" style="background-image: url(public/images/about-photo.jpg)">
+		<div class="text-media-media" style="background-image: url(public/images/about-photo.jpg)">
 		</div>
-		<div class="text-media-copy col-1-2">
+		<div class="text-media-copy">
 			<div class="spacer-1">
 				<header class="">
 					<h2>Is Your Identity for Sale? </h2>
@@ -99,7 +98,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="identity dark-section-3">
+	<section class="identity dark-block-1">
 		<div class="container">
 			<div class="row">
 				<div class="col text-media-media">
@@ -117,7 +116,7 @@
 		</div>
 	</section>
 	
-	<section class="dark-web dark-section-2">
+	<section class="dark-web dark-block-2">
 		<div class="container">
 			<div class="row">
 				<div class="col text-media-copy">
@@ -144,19 +143,22 @@
 			<div class="row">
 				<!-- {{edits}} extract titles out of the p tag and put them in an h3. Add blurb-title, blurb-copy to respective elements -->
 				<div class="col">
-					<h3 class="blurb-title">Real-time Search</h3>
+					<img src="public/images/icon-realtime-search.svg" class="blurb-icon">
+					<h4 class="blurb-title">Real-time Search</h4>
 					<p class="blurb-copy">
 We will search our dark web database of 600 million records to see if your data is currently for sale. Unlike other products on the market, we look this up for you in real-time. Our database is refreshed daily with 300,000 new records added each day, so you are constantly up to date on the most recent hacks</p>
 				</div>
 				<!-- {{edits}} extract titles out of the p tag and put them in an h3. Add blurb-title, blurb-copy to respective elements -->
 				<div class="col">
-					<h3 class="blurb-title">Monthly Alerts</h3>
+					<img src="public/images/icon-monthly-alerts.svg" class="blurb-icon">
+					<h4 class="blurb-title">Monthly Alerts</h4>
 					<p class="blurb-copy">
 We will check the Dark Web monthly to see if your data has been stolen and is available for sale. Criminals hack someone new every day so it is important to make sure you check frequently to determine if your data has been exposed.</p>
 				</div>				
 				<!-- {{edits}} extract titles out of the p tag and put them in an h3. Add blurb-title, blurb-copy to respective elements -->
 				<div class="col">
-					<h3 class="blurb-title">Data Security Tips</h3>
+					<img src="public/images/icon-tips.svg" class="blurb-icon">
+					<h4 class="blurb-title">Data Security Tips</h4>
 					<p class="blurb-copy">
 Data and identify theft can be a life changing event. We will provide you with the most frequent and up to date scan of the dark web and advise you on your best course of action to secure your information.</p>
 				</div>
@@ -165,20 +167,27 @@ Data and identify theft can be a life changing event. We will provide you with t
 		</div>
 	</section>
 	<section>
-		<form class="callout"  id="singup-form">
+		<form class="callout" id="singup-form">
 			<div class="container">
-				<h4 class="callout-title"><span class="color-primary">Access Your Privacy Insights In Less Than 60 Seconds</span></h4>
-				<p class="callout-caption">A scan of our database of over half a billions records can tell you in seconds how much of your personal information is available on the internet.<br>
-Complete the fields below to generate your personal identity security report.</p>
+				<h4 class="callout-title">Find out in Less Than 60 Seconds</h4>
+				<p class="callout-caption">Stop identity theft before it hits your finances</p>
 				<div class="form-callout">
-					<div class="form-callout-field">
-						<input class="field-element validate"  required data-message="Please fill in your First Name." type="text" placeholder="First Name">
-					</div>
-					<div class="form-callout-field">
-						<input class="field-element validate" required data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
-					</div>
-					<div class="form-callout-field">
-						<input class="field-element validate" required data-message="Please input a valid email." type="text" placeholder="Post Code" name="postcode">
+					<div class="form-callout-fields">
+						<div class="form-callout-field">
+							<input class="field-element validate"  required data-validate="isName" data-message="Please fill in your First Name." type="text" placeholder="First Name">
+						</div>
+						<div class="form-callout-field">
+							<input class="field-element validate" required data-validate="isName" data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+						</div>
+						<div class="form-callout-field col-1-2">
+							<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="text" placeholder="Email" name="postcode">
+						</div>
+						<div class="form-callout-field">
+							<input type="text" class="field-element validate" required data-validate="isPhone" data-min="10" data-message="Please input a valid Phone Number." type="text" placeholder="Phone" name="phone">
+						</div>
+						<div class="form-callout-field col-1-4">
+							<input class="field-element validate" required data-min="4" data-message="Please input a valid postcode." type="text" placeholder="Post Code" name="postcode">
+						</div>
 					</div>
 					<button type="submit" class="btn-callout">SEE MY RESULTS</button>
 				</div>
