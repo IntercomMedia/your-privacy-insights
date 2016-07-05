@@ -1,0 +1,249 @@
+//////////////////////////////////////////////////
+
+// Math
+
+//////////////////////////////////////////////////
+
+// Round a number to the nearest multiple of another 
+	//	@param : Base number to round
+	// 	@param : Multiple to round to
+
+@function roundUpToAny($n, $x: $base-line-height) {
+    @return round(($n+$x/2) / $x) * $x;
+}
+
+@function roundToBaseline($n) {
+    @return round($n / ($base-line-height/2)) * $base-line-height/2;
+}
+
+// Equate exponents 
+	// @param : Base
+	// @param : Power
+
+@function pow($number, $exp) {
+  $value: 1;
+  // Allow 1 $exp to return $number without any multiplication.
+  $exp : $exp - 1;
+  @if $exp > 0 {
+    @for $i from 1 through $exp {
+      $value: $value * $number;
+    }
+  }
+  @else if $exp < 0 {
+    @for $i from 1 through -$exp {
+      $value: $value / $number;
+    }
+  }
+  @return $value;
+}
+
+// Remove the unit of a value
+	// @param {Number} $number - Number to remove unit from
+	// @return {Number} - Unitless number
+
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// Round to A Divisible Number
+
+@function roundToDivisible($base, $divisible) {
+	@return round($base / $divisible) * $divisible;
+}
+
+// Max-Number
+	// @param : Check Number
+	// @param : Max Number
+
+@function max-number($checknum, $max){
+	$checknum : $checknum * 16;
+	@if $checknum > $max {
+		@return $max * 1px;
+	} @else {	
+		@return ($checknum/16) * 1rem;
+	}
+}
+
+// Circumference from Diameter
+@function circFromDiameter($diameter) {
+	$pi: 3.1415926535897932384626433832795028841971693993751;
+	@return ($diameter * $pi);
+}
+
+// Circumference from Radius
+@function circFromRadius($radius) {
+	$diameter: $radius * 2;
+	@return circFromDiameter($diameter);
+}
+
+//////////////////////////////////////////////////
+
+// Vertical Rhythm
+
+//////////////////////////////////////////////////
+
+// Calculate multiples of the baseline. 
+	// @param : Multiplier
+	// @param : Baseline number
+
+@function baseline($multiplier: 1, $baseline: $base-line-height){
+	@return ($multiplier * $baseline) * 1rem;
+}
+
+// Easily calculate the various font sizes based on $base-font-size and $font-ratio. 
+	// @param : Multiplier
+	// @param : Base font size
+	// @param : Ratio to scale by
+
+@function fontsize($multiplier: 0, $unit: true, $fontsize: $base-font-size, $ratio: $font-ratio){
+	@if $unit {
+		@return ($fontsize * pow($ratio, $multiplier)) * 1rem;
+	}@else {
+		@return ($fontsize * pow($ratio, $multiplier));
+	}
+}
+
+// Calculate the value to offset type based off from the cap height, font size, and the line-height
+	// @param : Font Size
+	// @param : Line Height
+
+@function typeset($font-size: 1, $line-height: 1) {
+	@return (($line-height - ($font-size * $cap-height)) / 2) * 1rem;
+}
+
+@function pxToBaseline($pixels, $context: $font-size) {
+	$relative: (strip-unit($pixels) / $context);
+	@return roundToBaseline($relative) * 1em;
+}
+
+//////////////////////////////////////////////////
+
+// Map Helpers
+
+//////////////////////////////////////////////////
+
+// Compute the depth of a map
+	// This is a recursive function, looping over each key/value pair from the map until it finds a map,
+	// in which case it calls itself and so on. Then, it returns a number: the map’s depth.
+
+@function depth($map) {
+  $level: 1;
+
+  @each $key, $value in $map {
+    @if type-of($value) == "map" {
+      $level: max(depth($value) + 1, $level);
+    }
+  }
+
+  @return $level;
+}
+
+// Easily fetch a value from a deeply nested map
+
+@function map-deep-get($map, $keys...) {
+  $value: $map;
+  @each $key in $keys {
+    $value: map-get($value, $key);
+  }
+  @return $value;
+}
+
+@function map-set($map, $key, $value) {
+	$new: ($key: $value);
+	@return map-merge($map, $new);
+}
+
+//////////////////////////////////////////////////
+
+// Sprite Helpers
+
+//////////////////////////////////////////////////
+
+// Gets an sprite attribute from the sass map
+@function sprite-attr($icon, $attr) {
+    $newIcon: map-get($icons, $icon);
+    @if $newIcon == null {
+        @warn "Can't find an icon with the name #{$icon}";
+    }
+    @return map-get($newIcon, $attr);
+}
+
+@function icon-attr($icon) {
+    $attr: (
+        width: sprite-attr($icon, width),
+        height: sprite-attr($icon, height),
+        x: sprite-attr($icon, backgroundX),
+        y: sprite-attr($icon, backgroundY)
+    );
+
+    @return $attr;
+}
+
+//////////////////////////////////////////////////
+
+// Ease
+
+//////////////////////////////////////////////////
+
+@function linear() {
+  @return cubic-bezier(0.250, 0.250, 0.750, 0.750); }
+
+@function ease() {
+  @return cubic-bezier(0.250, 0.100, 0.250, 1.000); }
+
+@function ease-in() {
+  @return cubic-bezier(0.420, 0.000, 1.000, 1.000); }
+@function ease-in-quad() {
+  @return cubic-bezier(0.550, 0.085, 0.680, 0.530); }
+@function ease-in-cubic() {
+  @return cubic-bezier(0.550, 0.055, 0.675, 0.190); }
+@function ease-in-quart() {
+  @return cubic-bezier(0.895, 0.030, 0.685, 0.220); }
+@function ease-in-quint() {
+  @return cubic-bezier(0.755, 0.050, 0.855, 0.060); }
+@function ease-in-sine() {
+  @return cubic-bezier(0.470, 0.000, 0.745, 0.715); }
+@function ease-in-expo() {
+  @return cubic-bezier(0.950, 0.050, 0.795, 0.035); }
+@function ease-in-circ() {
+  @return cubic-bezier(0.600, 0.040, 0.980, 0.335); }
+
+@function ease-out() {
+  @return cubic-bezier(0.000, 0.000, 0.580, 1.000); }
+@function ease-out-quad() {
+  @return cubic-bezier(0.250, 0.460, 0.450, 0.940); }
+@function ease-out-cubic() {
+  @return cubic-bezier(0.215, 0.610, 0.355, 1.000); }
+@function ease-out-quart() {
+  @return cubic-bezier(0.165, 0.840, 0.440, 1.000); }
+@function ease-out-quint() {
+  @return cubic-bezier(0.230, 1.000, 0.320, 1.000); }
+@function ease-out-sine() {
+  @return cubic-bezier(0.390, 0.575, 0.565, 1.000); }
+@function ease-out-expo() {
+  @return cubic-bezier(0.190, 1.000, 0.220, 1.000); }
+@function ease-out-circ() {
+  @return cubic-bezier(0.075, 0.820, 0.165, 1.000); }
+
+@function ease-in-out() {
+  @return cubic-bezier(0.420, 0.000, 0.580, 1.000); }
+@function ease-in-out-quad() {
+  @return cubic-bezier(0.455, 0.030, 0.515, 0.955); }
+@function ease-in-out-cubic() {
+  @return cubic-bezier(0.645, 0.045, 0.355, 1.000); }
+@function ease-in-out-quart() {
+  @return cubic-bezier(0.770, 0.000, 0.175, 1.000); }
+@function ease-in-out-quint() {
+  @return cubic-bezier(0.860, 0.000, 0.070, 1.000); }
+@function ease-in-out-sine() {
+  @return cubic-bezier(0.445, 0.050, 0.550, 0.950); }
+@function ease-in-out-expo() {
+  @return cubic-bezier(1.000, 0.000, 0.000, 1.000); }
+@function ease-in-out-circ() {
+  @return cubic-bezier(0.785, 0.135, 0.150, 0.860); }
+@function ease-in-out-strong() {  
+	@return cubic-bezier(0.875, 0.450, 0.000, 1.000);
+}

@@ -1,0 +1,194 @@
+.nametag {
+	@include box-style($background: $color-white-3, $color: $color-black-1, $corners: $size-s);
+	padding: $size-m;
+	white-space: nowrap;
+}
+
+.chip {
+	@include box-style($background: $color-white-3, $color: $color-black-1, $corners: $size-s);
+	padding: $size-m;
+	white-space: nowrap;
+}
+
+.blurb { }
+	.blurb-icon {
+		
+	}
+	.blurb-title {
+		
+	}
+	.blurb-content {
+		
+	}
+	.blurb-controls {
+		
+	}
+
+.card {
+	.card-front {
+		.card-title {
+
+		}
+		.card-content {
+
+		}
+		.card-controls {
+
+		}
+	}
+	.card-back {
+		.card-title {
+
+		}
+		.card-content {
+
+		}
+		.card-controls {
+
+		}
+	}
+}
+
+.slat {
+	.slat-title {
+
+	}
+	.slat-content {
+
+	}
+	.slat-controls {
+
+	}
+}
+
+.note {
+	position: relative;
+	@include border-style($size: $line-l, $color: $color-primary-1, $position: left);
+	padding: $size-s;
+	outline: solid $line-xs $color-white-3;
+	margin-bottom: $size-m;
+}
+
+.snippet {
+	outline: solid $line-xs $color-white-3;
+	margin-bottom: $size-m;
+	position: relative;
+	.snippet-title {
+		padding-left: $size-s;
+		color: $color-neutral-1;
+	}
+	.snippet-example {
+		padding: $size-s;
+	}
+}
+
+.grid-example {
+	.row {
+		@include row($size-s);
+	}
+}
+
+.console {
+	@include box-style($background: $color-black-1);
+	padding: $size-s;
+	overflow: scroll;
+	max-height: baseline(9); // This shows 8 lines in the console
+}
+
+.grid-filler {
+	height: baseline(3);
+}
+
+.namespace {
+	opacity: .7;
+}
+
+.line-numbers {
+	padding-left: $size-m;
+	position: relative;
+	counter-reset: linenumber;
+	.line-numbers-rows {
+		padding-left: $size-s;
+		position: absolute;
+		pointer-events: none;
+		top: 0;
+		left: 0;
+		width: $size-m;
+		letter-spacing: -1px;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+}
+
+.line-numbers-rows > span {
+	pointer-events: none;
+	display: block;
+	counter-increment: linenumber;
+	&:before {
+		content: counter(linenumber);
+		color: #999;
+		display: block;
+		padding-right: 0.8em;
+		text-align: right;
+	}
+}
+
+.blockquote {
+	text-align: center;
+	padding: $size-l;
+	&:before,
+	&:after {
+		position: absolute;
+		font-family: $font-quotations;
+		font-size: baseline(5);
+	}
+	&:before {
+		content: "\201C";
+		left: 0;
+	}
+	&:after {
+		content: "\201D";
+		bottom: 0;
+		right: 0;
+	}
+}
+
+.list {
+	margin-bottom: $size-m;
+	ol {
+		list-style-type: decimal;
+		li {
+			display: list-item;
+		}
+	}
+
+	ul {
+		list-style-type: disc;
+		li {
+			display: list-item;
+		}
+	}
+	
+	dl {
+		dt {
+			padding-right: $size-s;
+			vertical-align: top;
+			width: 20%;
+			display: inline-block;
+			text-align: right;
+			font-weight: 700;
+		}
+		dd {
+			@include border-style($color: $color-neutral-1, $size: $line-s, $position: left);
+			padding-left: $size-s;
+			width: 75%;
+			display: inline-block;
+			margin-bottom: $size-m;
+			&:last-child {
+				margin-bottom: 0;
+			}
+		}
+	}
+}

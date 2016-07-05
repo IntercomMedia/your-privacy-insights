@@ -1,0 +1,135 @@
+//////////////////////////////////////////////////
+
+// Header Wrapper
+
+//////////////////////////////////////////////////
+
+.header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	z-index: $z-mid-top;
+}
+
+//////////////////////////////////////////////////
+
+// Utility Header
+
+//////////////////////////////////////////////////
+
+.header-utility {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vw;
+	height: $size-utility;
+	background-color: $color-utility;
+}
+
+.utility-options,
+.utility-login {
+	height: $size-utility;
+	ul {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.utility-options {
+	// padding:
+}
+
+.utility-login {
+	display: flex;
+	align-items: center;
+}
+
+//////////////////////////////////////////////////
+
+// Primary Header
+
+//////////////////////////////////////////////////
+
+.header-primary {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vw;
+	height: $size-header;
+	background-color: $color-header;
+	
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+	}
+}
+
+.header-logo {
+	height: 100%;
+	padding: $size-m;
+	img {
+		height: 100%;
+	}
+}
+
+.header-nav {
+	display: flex;
+	justify-content: space-between;
+	
+	ul {
+		display: flex;
+		justify-content: center;
+	}
+	li {
+		display: flex;
+		align-items: center;
+		a {
+			padding: 0 $size-m;
+		}
+		
+		&.is-active a {
+			font-weight: bold;
+		}
+	}
+	
+	@include phone {
+		display: none;
+	}
+}
+
+.header-options {
+	height: 100%;
+	width: $size-header;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+//////////////////////////////////////////////////
+
+// Utility Header
+
+//////////////////////////////////////////////////
+
+.header-nav-overlay {
+	position: fixed;
+	left: 0;
+	top:0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100vw;
+	height: 100vh;
+	background-color: $color-nav-overlay;
+	visibility: hidden;
+	z-index: 9;
+	transition: $transition-1;
+	
+	&:is-active {
+		opacity: 1;
+		visibility: visible;
+		z-index: $z-tippy-top;
+	}
+}

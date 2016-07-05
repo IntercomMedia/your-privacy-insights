@@ -1,0 +1,68 @@
+.dock {
+	display: none;
+	flex-direction: column;
+	align-content: center;
+	justify-content: center;
+	position: fixed;
+	text-align: center;
+	z-index: 998;
+	background: $color-primary-1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 110%;
+	opacity: 0;
+	visibility: hidden;
+	transition: all .35s ease;
+	overflow: hidden;
+	
+	ul {
+		width: 100%;
+		text-align: center;
+		padding: 0 baseline(2);
+	}
+
+	li {
+		display: block;
+		padding: 0 baseline(1);
+		line-height: baseline(1.5);
+	}
+
+	a {
+		color: $color-white-1;
+	}
+	
+	.mega-nav {
+		li {
+			line-height: baseline(2);
+			text-transform: uppercase;
+			font-weight: bold;
+			border: none;
+		}
+
+		a {
+			
+			&:hover:after,
+			&:focus:after,
+			&:active:after {
+				width: 50%;
+			}
+
+			&:after {
+				content: '';
+				position: absolute;
+				left: 50%;
+				width: 0%;
+				transform: translateX(-50%);
+				height: 3px;
+				background: $color-white-1;
+				transition: .35s;
+			}
+		}
+	}
+	
+	.is-active {
+		opacity: .95;
+		display: flex;
+	}
+}

@@ -1,0 +1,203 @@
+// Resuable - put on a tags to make them fill their wrapper
+.nav-item {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+}
+
+// Accordion
+	// Collapsable lists
+
+.accordion {
+	.accordion-trigger {
+		
+	}
+	
+	> .accordion-content {
+		height: 0;
+		opacity: 0;
+		overflow: hidden;
+		transition: $transition-1;
+		transform: translateY(baseline(-1));
+	}
+	
+	&.is-active .accordion-content {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+// Breadcrumbs
+
+.nav-breadcrumbs {
+	display: flex;
+}
+
+// Tabbed Content Menu
+.tab-nav {
+	background-color: $color-neutral-1;
+	text-align: center;
+	z-index: $z-top;
+	.tab-item {
+		display: inline-block;
+		width: 100%;
+		height: 100%;
+	}
+	&.stickied {
+		top: 0;
+	}
+}
+
+// Slider Navigation
+
+.nav-step {
+	display: flex;
+}
+
+.navi-arrows {
+	display: flex;
+	bottom: $size-l;
+	justify-content: center;
+	position: absolute;
+	left: 50%;
+	transform: translateX(-50%);
+	// Default
+	&.navi-default {
+		button {
+			display: none;
+		}
+		.counter {
+			position: absolute;
+			left: calc(50% - #{baseline(3/8)});
+			top: baseline(-3/8);
+			height: baseline(3/4);
+			width: baseline(3/4);
+			background: $color-primary-1;
+			border-radius: baseline(1/2);
+			color: $color-white-1;
+			line-height: baseline(3/4);
+		}
+
+		[class^="btn"] {
+			background: none;
+			border: baseline(0.1) solid $color-primary-1;
+			line-height: baseline(1.3);
+			color: $color-secondary-1;
+			box-shadow: 0 baseline(1/8) baseline(1/2) rgba(0, 0, 0, 0.1);
+		}
+
+		[class^="btn"]:disabled {
+			opacity: 0.5;
+		}
+		
+		[class^="btn"]:first-child .icon::after{
+			content: '\f104';
+		}
+
+		[class^="btn"]:last-child .icon::after{
+			content: '\f105';
+		}
+
+		.place-container {
+			height: baseline(1.2);
+			position: relative;
+			display: inline-block;
+			border-bottom: baseline(1/8) solid $color-primary-1;
+			width: baseline(3);
+			vertical-align: middle;
+
+			.place-nav {
+				position: absolute;
+				display: flex;
+				flex-wrap: wrap;
+				visibility: hidden;
+				pointer-events: none;
+				min-height: baseline(1);
+				width: baseline(6);
+				padding: baseline(1/4);
+				justify-content: center;
+				bottom: 0;
+				left: 50%;
+				transition: all 300ms ease-in-out-circ();
+				text-align: center;
+				z-index: 2;
+				height: auto;
+				transform: translateX(-50%);
+				opacity: 0;
+				background: $color-white-1;
+			}
+
+			&:hover .place-nav {
+				visibility: visible;
+				pointer-events: all;
+				opacity: 1;
+				transform: translate3d(-50%, baseline(-1), 0);
+			}
+
+			.place-nav li {
+			}
+
+			.counter,
+			.place-nav li a {
+				display: inline-block;
+				height: baseline(3/4);
+				width: baseline(3/4);
+				background: $color-secondary-1;
+				border-radius: baseline(1/2);
+				color: $color-white-1;
+				line-height: baseline(3/4);
+				margin: baseline(1/8);
+			}
+
+			.counter {
+				margin-top: baseline(1.125);
+			}
+
+			.place-nav li.is-active a {
+				background: $color-primary-1;
+			}
+		}
+	}
+	// Banner
+	&.navi-banner {
+		button {
+			position: absolute;
+			height: 100%;
+			border-radius: 0;
+			&:first-child {
+				top: 50%;
+				transform: translateY(-50%);
+				left: 0;
+			}
+			&:last-child {
+				top: 50%;
+				transform: translateY(-50%);
+				right: 0;
+			}
+		}
+		.place-nav {
+			display: flex;
+			li {
+				display: inline-block;
+				height: $size-m;
+				width: $size-m;
+				border: 2px solid $color-tertiary-1;
+				border-radius: $size-s;
+				line-height: $size-m;
+				margin: $size-s;
+				transition: all 0.3s ease;
+
+				&.is-active {
+					background: $color-tertiary-1;
+				}
+
+				a {
+					display: block;
+					color: rgba(0, 0, 0, 0);
+				}
+			}
+		}
+	}
+}

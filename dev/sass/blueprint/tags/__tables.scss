@@ -1,0 +1,64 @@
+// Table
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+	width: 100%;
+	cursor: pointer;
+}
+
+// Table Captaion
+caption {
+	
+}
+
+// Table Head
+thead {
+	
+}
+
+// Table Body
+tbody {
+	tr {
+		&:nth-child(odd) {
+			background: $color-white-2;
+		}
+		&:hover {
+			background: $color-black-1;
+			color: $color-white-1;
+		}
+	}
+}
+
+// Table Row
+tr {
+
+}
+
+// Table Header Cell
+th {
+	text-align: left;
+	padding: $size-s;	
+	line-height: baseline(1);
+}
+
+// Table Data Cell
+td {
+	line-height: baseline(1);
+	padding: $size-s;
+	vertical-align: top;
+}
+
+// Table Column
+col {
+	
+}
+
+// Column Group
+colgroup {
+	
+}
+
+// Table Footer
+tfoot {
+
+}

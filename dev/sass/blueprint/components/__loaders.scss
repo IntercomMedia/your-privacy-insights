@@ -1,0 +1,592 @@
+.example-loaders {
+	> div {
+		padding: $size-l;
+		&:nth-child(odd) {
+			background: $color-white-2;
+		}
+	}
+}
+
+.loader-linear {
+	&.icon-square {
+		stroke: $color-primary-1;
+		stroke-width: $line-m;
+		stroke-dasharray: 1730%; // Need js to calulate a length of the path - this is just what happens to have worked at desktop size
+		stroke-dashoffset: 1730%;
+		animation: loaderLinear;
+		transition-timing-function: linear;
+		animation-duration: 6s;
+		animation-iteration-count: infinite;
+	}
+}
+
+@keyframes loaderLinear {
+	from {
+		transform: rotate(0deg);
+		stroke-dashoffset: -1725%;
+	}
+
+	50% {
+		transform: rotate(360deg);
+		stroke-dashoffset: 1725%;
+	}
+
+	to {
+		transform: rotate(0deg);
+		stroke-dashoffset: -1725%;
+	}
+}
+
+.loader-burst {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.icon-wrapper {
+		position: absolute;
+		transform: translateY(-50%);
+		top: 50%;
+		.icon-circle {
+			stroke: none;
+			stroke-width: 0;
+			position: absolute;
+			animation: loaderBurst;
+			animation-duration: 2s;
+			animation-iteration-count: infinite;
+			transform: translateX(-50%);
+			left: 50%;
+		}
+		&:first-child {
+			.icon-circle {
+				animation-delay: -1s;
+			}
+		}
+	}
+}
+
+@keyframes loaderBurst {
+	from {
+		width: 0;
+		fill: $color-primary-1;
+	}
+	to {
+		width: 100%;
+		fill: transparent;
+	}
+}
+
+.loader-increment {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.icon-wrapper {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		.icon-circle {
+			stroke: $color-primary-1;
+			stroke-width: $line-m;
+			position: absolute;
+			animation: loaderIncrement;
+			animation-duration: 2s;
+			animation-iteration-count: infinite;
+			transform: translateX(-50%);
+			left: 50%;
+			width: 100%;
+			animation-timing-function: linear;
+		}
+		&:first-child {
+			.icon-circle {
+				animation-delay: -1s;
+				width: 50%;
+			}
+		}
+	}
+}
+
+@keyframes loaderIncrement {
+	from {
+		stroke-width: 0;
+	}
+	50% {
+		stroke-width: $line-m;
+	}
+	to {
+		stroke-width: 0;
+	}
+}
+
+.loader-oscillate {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.icon-wrapper {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		&:first-child {
+			.icon-circle {
+				stroke: $color-white-3;
+			}
+		}
+		.icon-circle {
+			stroke: $color-primary-1;
+			stroke-width: $line-m;
+			position: absolute;
+		}
+		&:last-child {
+			.icon-circle {
+				animation: loaderOscillate;
+				stroke-dasharray: 1730%;
+				animation-duration: 6s;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+		}
+	}
+}
+
+@keyframes loaderOscillate {
+	from {
+		stroke-dashoffset: 1730%;
+	}
+	50% {
+		stroke-dashoffset: 0;
+	}
+	to {
+		stroke-dashoffset: 1730%;
+	}
+}
+
+.loader-spin {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.icon-wrapper {
+		position: absolute;
+		top: 50%;
+		transform: translateY(-50%);
+		&:first-child {
+			.icon-circle {
+				stroke: $color-white-3;
+			}
+		}
+		.icon-circle {
+			stroke: $color-primary-1;
+			stroke-width: $line-m;
+			position: absolute;
+		}
+		&:last-child {
+			.icon-circle {
+				animation: loaderSpin;
+				stroke-dasharray: 675%;
+				animation-duration: 2s;
+				animation-iteration-count: infinite;
+				animation-timing-function: linear;
+			}
+		}
+	}
+}
+
+@keyframes loaderSpin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+.loader-dot-pendulate {
+	&.icon-dot {
+		.path-1 {
+			fill: black;
+		}
+		.path-2 {
+			fill: grey;
+		}
+	}
+	
+}
+
+.loader-square-turn {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.icon-wrapper {
+		top: 50%;
+		transform: translateY(-50%);
+		position: absolute;
+		.icon-square {
+			animation: squareTurn;
+			animation-iteration-count: infinite;
+			animation-duration: 8s;
+			stroke: none;
+			stroke-width: 0;
+		}
+	}
+}
+
+@keyframes squareTurn {
+	from {
+		transform: rotate(0deg);
+		fill: $color-primary-1;
+	}
+	25% {
+		transform: rotate(90deg);
+		fill: $color-primary-2;
+	}
+	50% {
+		transform: rotate(180deg);
+		fill: $color-primary-3;
+	}
+	75% {
+		transform: rotate(270deg);
+		fill: $color-primary-2;
+	}
+	to {
+		transform: rotate(360deg);
+		fill: $color-primary-1;
+	}
+}
+
+.loader-dot-wave {
+	width: 100%;
+	.icon-wrapper {
+		.icon-circle {
+			fill: $color-primary-1;
+			stroke: none;
+			stroke-width: 0;
+			transform: translateX(-50%);
+			animation: dotWave;
+			animation-iteration-count: infinite;
+			animation-duration: 1s;
+			animation-timing-function: linear;
+		}
+		&:nth-child(2) {
+			.icon-circle {
+				animation-delay: .33s
+			}
+		}
+		&:nth-child(3) {
+			.icon-circle {
+				animation-delay: .66s
+			}
+		}
+	}
+}
+
+@keyframes dotWave {
+	from {
+		width: 75%;
+	}
+	50% {
+		width: 100%;
+	}
+	to {
+		width: 75%;
+	}
+}
+
+.loader-dot-bounce {
+	width: 100%;
+	.icon-wrapper {
+		width: 100%;
+		animation: dotBounce;
+		animation-iteration-count: infinite;
+		animation-duration: 1s;
+		animation-timing-function: linear;
+		&:nth-child(1) {
+
+		}
+		&:nth-child(2) {
+			animation-delay: .33s
+		}
+		&:nth-child(3) {
+			animation-delay: .66s
+		}
+		.icon-circle {
+			fill: $color-primary-1;
+			stroke: none;
+			stroke-width: 0;
+		}
+	}
+}
+
+@keyframes dotBounce {
+	from {
+		transform: translateY(0);
+	}
+	25% {
+		transform: translateY(-25%);
+	}
+	75% {
+		transform: translateY(25%);
+	}
+	to {
+		transform: translateY(0);
+	}
+}
+
+.loader-dot-spin {
+	.icon-circle {
+		animation: dotSpin;
+	}
+}
+
+.loader-dot-spin2 {
+	.icon-circle {
+		animation: dotWave;
+	}
+}
+
+.loader-dot-spin,
+.loader-dot-spin2 {
+	width: 100%;
+	height: 0;
+	position: relative;
+	padding-bottom: 100%;
+	.icon-wrapper {
+		transform: translate3d(-50%, -50%, 0);
+		width: 20%;
+		position: absolute;
+		&:nth-child(1) {
+			left: 0;
+			top: 50%;
+			.icon-circle {	
+				animation-delay: 0s;
+			}
+		}
+		&:nth-child(2) {
+			left: 20%;
+			top: 20%;
+			.icon {
+				transform: translate3d(-33%, -33%, 0);
+			}
+			.icon-circle {	
+				animation-delay: .2s;
+			}
+		}
+		&:nth-child(3) {
+			left: 20%;
+			top: 80%;
+			.icon {
+				transform: translate3d(-33%, 33%, 0);
+			}
+			.icon-circle {	
+				animation-delay: 1.4s;
+			}
+		}
+		&:nth-child(4) {
+			left: 50%;
+			.icon-circle {	
+				animation-delay: .4s;
+			}
+		}
+		&:nth-child(5) {
+			left: 50%;
+			top: 100%;
+			.icon-circle {	
+				animation-delay: 1.2s;
+			}
+		}
+		&:nth-child(6) {
+			left: 80%;
+			top: 20%;
+			.icon {
+				transform: translate3d(33%, -33%, 0);
+			}
+			.icon-circle {	
+				animation-delay: .6s;
+			}
+		}
+		&:nth-child(7) {
+			left: 80%;
+			top: 80%;
+			.icon {
+				transform: translate3d(33%, 33%, 0);
+			}
+			.icon-circle {	
+				animation-delay: 1s;
+			}
+		}
+		&:nth-child(8) {
+			left: 100%;
+			top: 50%;
+			.icon-circle {	
+				animation-delay: .8s;
+			}
+		} 
+		.icon-circle {
+			stroke: none;
+			stroke-width: 0;
+			fill: $color-primary-1;
+			transform: translateX(-50%);
+			animation-duration: 1.4s;
+			animation-iteration-count: infinite;
+		}
+	}
+}
+
+@keyframes dotSpin {
+	from {
+		fill: $color-primary-1;
+	}
+	50% {
+		fill: $color-primary-3;
+	}	
+	to {
+		fill: $color-primary-1;
+	}
+}
+
+
+.loader-bars-wave {
+	width: 100%;
+	.icon-wrapper {
+		margin-top: -100%;
+		top: 50%;
+		transform: translateY(-50%);
+		position: absolute;
+		&:nth-child(1) {
+			.icon-line-h {
+				top: 33%;
+			}
+		}
+		&:nth-child(2) {
+			.icon-line-h {
+				top: 50%;
+				animation-delay: 1s
+			}
+		}
+		&:nth-child(3) {
+			.icon-line-h {
+				top: 66%;
+				animation-delay: 2s
+			}
+		}
+	}
+	.icon-line-h {
+		stroke: $color-primary-1;
+		animation: barsWave;
+		stroke-dasharray: 1230%;
+		stroke-dashoffset: 1230%;
+		animation-iteration-count: infinite;
+		animation-duration: 3s;
+		animation-timing-function: linear;
+	}
+}
+
+@keyframes barsWave {
+	from {
+		stroke-dashoffset: 1230%;
+	}
+	to {
+		stroke-dashoffset: 0;
+	}
+}
+
+.loader-bars-equilizer {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.loader-wrapper {
+		width: 100%;
+		height: 100%;
+		top: 50%;
+		position: absolute;
+		transform: translateY(-50%);
+		.icon-wrapper {
+			display: flex;
+			align-items: center;
+			&:nth-child(1) {
+				.icon-line-v {
+				}
+			}
+			&:nth-child(2) {
+				.icon-line-v {
+					animation-delay: .33s
+				}
+			}
+			&:nth-child(3) {
+				.icon-line-v {
+					animation-delay: .66s
+				}
+			}
+		}
+		.icon-line-v {
+			stroke: $color-primary-1;
+			stroke-width: $line-m;
+			animation: barsEquilizer;
+			animation-iteration-count: infinite;
+			animation-duration: 1s;
+			animation-timing-function: linear;
+			stroke-dasharray: 310%;
+		}
+	}
+}
+
+@keyframes barsEquilizer {
+	from {
+		stroke-dashoffset: 0%;
+	}
+	50% {
+		stroke-dashoffset: 310%;
+	}
+	to {
+		stroke-dashoffset: 0%;
+	}
+}
+
+.loader-bars-shift {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	.loader-wrapper {
+		width: 100%;
+		height: 100%;
+		top: 50%;
+		transform: translateY(-50%);
+		position: absolute;
+		.icon-wrapper {
+			display: flex;
+			align-items: center;
+			&:nth-child(1) {
+				.icon-line-v {
+				}
+			}
+			&:nth-child(2) {
+				.icon-line-v {
+					animation-delay: .33s
+				}
+			}
+			&:nth-child(3) {
+				.icon-line-v {
+					animation-delay: .66s
+				}
+			}
+		}
+		.icon-line-v {
+			stroke: $color-primary-1;
+			stroke-width: $line-m;
+			animation: barsShift;
+			animation-iteration-count: infinite;
+			animation-duration: 1s;
+			animation-timing-function: linear;
+		}
+	}
+}
+
+@keyframes barsShift {
+	from {
+		transform: translateX(0);
+	}
+	25% {
+		transform: translateX(-10%);
+	}
+	75% {
+		transform: translateX(10%);
+	}
+	to {
+		transform: translateX(0);
+	}
+}

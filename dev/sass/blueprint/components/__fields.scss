@@ -1,0 +1,108 @@
+//////////////////////////////////////////////////
+
+// All Fields
+
+//////////////////////////////////////////////////
+
+
+//////////////////////////////////////////////////
+
+// Callout Field
+
+//////////////////////////////////////////////////
+
+.field-callout {
+	@include box-style($background: $color-white-1);
+	@include field;
+	position: relative;
+	width: 100%;
+}
+
+
+.field-callout input {
+	
+	&[type="text"],
+	&[type="email"],
+	&[type="password"] {
+    	display: block;
+		width: 100%;
+		height: $size-xl;
+		padding-left: 1.5rem; 
+    }
+    
+    &:focus {
+      outline: none;
+	}
+}
+
+//////////////////////////////////////////////////
+
+// Short Field
+
+//////////////////////////////////////////////////
+
+.field-short {
+	@include box-style($background: $color-white-2);
+	@include field;
+	margin-bottom: $size-s;
+	position: relative;
+	width: 100%;
+}
+
+//////////////////////////////////////////////////
+
+// Long Field
+
+//////////////////////////////////////////////////
+
+.field-long {
+	@include field;
+	width: 100%;
+	border-right: $line-s solid $color-white-3;
+	
+	input[type="*"] {
+		padding: 0 baseline(1/2);
+	}
+	
+	select {
+		padding: 0 baseline(1/2);
+	}
+	
+	&.multi-select-field select {
+		border: $color-white-3 solid $line-s;
+		width: auto;
+		height: $size-m;
+		display: inline-block;
+		border-radius: 0;
+		padding-right: baseline(1);
+		margin: baseline(1/2) 0 baseline(1/2) baseline(1/2);
+	}
+	
+	&.dob-field {
+		input[type="text"]{
+			display: inline-block;
+			width: 30%;
+		}
+		span {
+			width: 3%;
+		}
+	}
+}
+
+// Search
+
+.search-field {
+	position: relative;
+	&::after {
+		content:  ' ';
+		position: absolute;
+		left: auto;
+		bottom: auto;
+		top: 50%;
+		right: baseline(1/2);
+		height: baseline(1);
+		width: baseline(1);
+		background-size: 100% auto;
+		transform: translateY(-50%);
+	}
+}

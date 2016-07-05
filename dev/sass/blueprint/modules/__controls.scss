@@ -1,0 +1,24 @@
+.is-active .toolbar_wrapper {
+	opacity: 1;
+}
+
+.toolbar_wrapper {
+	width: 100%;
+	background: $color-black-1;
+	color: $color-white-1;
+	cursor: pointer;
+	opacity: 0;
+	transition: $transition-opacity;
+	.toolbar_item {
+		text-align: center;
+		&:hover {
+			background: $color-black-3;
+		}
+	}
+}
+
+.player {
+	width: 100%;
+	height: $size-l;
+	background: $color-black-1;
+}

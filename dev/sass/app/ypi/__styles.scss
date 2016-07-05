@@ -1,0 +1,154 @@
+.ypi .header-primary {
+	box-shadow: $depth-s;
+	position: fixed;
+	z-index: $z-tippy-top;
+}
+.ypi .hero-header {
+	position: relative;
+	overflow: hidden;
+	
+	.form-callout {
+		position: relative;
+		z-index: 2;
+	}
+}
+
+.ypi .hero-header-copy {
+	padding: baseline(10) 0 baseline(5) 0;
+	@include tablet {
+		padding: baseline(3);
+		width:70%;
+		padding: baseline(1) baseline(1) 0 baseline(1);
+	}
+}
+
+.ypi .hero-header-title {
+	@include type-style((font-size : 5, color : $color-primary-1));
+}
+
+.ypi .hero-header-media {
+	position: absolute;
+	bottom: 0;
+	width: 50%;
+	left: 50%;
+	z-index: 1;
+	
+	img {
+		width: 100%;
+		min-width: 850px;
+		max-width: 950px;
+		display: block;
+	}
+	
+	@include phone {
+		position: relative;
+		width: 100%;
+		left: auto;
+		bottom: auto;
+		z-index: -1;
+		
+		img {
+			width: 100%;
+			min-width: 0;
+			max-width: none;
+		}
+	}
+}
+
+// Page Header
+.ypi .page-header {
+	@include box-style($background : $color-white-2);
+	padding: $size-s;
+}
+
+.ypi .page-header-title {
+	max-width: 700px;
+	margin: 0 auto;
+	
+	@include phone {
+		text-align: center;
+	}
+}
+
+
+// Callout
+
+.ypi .callout {
+	@include box-style($background : $color-white-2);
+	padding: $size-m;
+}
+
+.ypi .callout-title {
+	@include type-style((
+		font-family: $font-body,
+		font-size: 2,
+		font-weight: bold,
+		color: $color-black-3,
+		caps: true,
+	));
+	margin: 0;
+}
+
+.ypi .callout-caption {
+	@include type-style((font-size :2, color : $color-black-1));
+	margin-top: $size-xs;
+}
+
+.callout-lines {
+	display: block;
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+	& > * {
+		position: relative;
+		display: inline-block;
+		
+		&::after {
+			content: ' ';
+			position: absolute;
+			top: 50%;
+			left: 100%;
+			width: 50vw;
+			height: 1px;
+			border-top: $line-s solid $color-secondary-1;
+		}
+		
+		&::before {
+			content: ' ';
+			position: absolute;
+			top: 50%;
+			right: 100%;
+			width: 50vw;
+			height: 1px;
+			border-top: $line-s solid $color-secondary-1;
+		}
+	}
+}
+
+.ypi .form-callout {
+	box-shadow: $depth-s;
+}
+
+// Section Header
+.section-header {
+	text-align: center;
+}
+
+.section-header-title {
+	@include type-style((font-size: 3));
+	margin-bottom: 0;
+}
+
+// Random Blocks
+
+.dark-block-1 {
+	@include box-style($background : $color-black-3, $color : $color-white-3);
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.dark-block-2 {
+	@include box-style($background : $color-black-2, $color : $color-white-3);
+	background-attachment: fixed;
+	background-size: cover;
+}

@@ -1,0 +1,48 @@
+.stickied {
+	position: fixed;
+}
+
+.type-reset {
+	margin-bottom: 0 !important;
+	margin-top: 0 !important;
+	padding-top: 0 !important;
+	padding-bottom: 0 !important;
+}
+
+.easy-read {
+	margin: auto;
+	max-width: 700px;
+	padding: 0 $size-m;
+}
+
+.container {
+	width: 100%;
+	max-width: $site-width;
+	margin: 0 auto;
+}
+
+.row {
+	@include flex-me;
+}
+
+.col {
+	@include col(map-get($gridColumns, '1-1'));
+	flex: 1;
+}
+
+.center-row {
+	@include center-row
+}
+
+.center-column {
+	@include center-column
+}
+
+.baseline-toggle {
+	padding: $size-s;
+}
+
+.main.is-active {
+	z-index: $z-mid-top;
+	background-image: url(../images/baseline_24.png);
+}

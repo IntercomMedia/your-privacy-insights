@@ -1,0 +1,39 @@
+progress {
+	height: baseline(1);
+	
+	&::-webkit-progress-bar {
+		
+	}
+	
+	&::-webkit-progress-value {
+		
+	}
+}
+
+meter {
+	height: baseline(1);
+	
+	&::-moz-meter-bar,
+	&::-webkit-meter-bar {
+
+	}
+
+	&::-moz-meter-optimum,
+	&::-webkit-meter-optimum-value {
+
+	}
+
+	&::-moz-meter-sub-optimum,
+	&::-webkit-meter-suboptimum-value {
+
+	}
+
+	&::-moz-meter-sub-sub-optimum,
+	&::-webkit-meter-even-less-good-value {
+
+	}
+}
+
+output {
+	
+}

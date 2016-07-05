@@ -1,0 +1,50 @@
+// Row
+	// @param : Size of gutters between the columns in a row
+
+@mixin row($gutter: null, $width: null, $wrap: false) {
+	display: flex;
+	max-width: $width;
+	@if $gutter {
+		margin-bottom: $gutter;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		> [class*='col'] {
+			margin-right: $gutter;
+			&:last-child {
+				margin-right: auto;
+			}
+		}
+	}
+	@if $wrap {
+		flex-wrap: wrap;
+	}
+	@include phone {
+		flex-wrap: wrap;
+	}
+}
+
+// Column
+	// Requires a map to process
+
+@mixin col($config) {
+	$config: map-merge((
+		width: null,
+		padding: null,
+		margin: null,
+	), $config);
+	
+	// Conditionals
+	@if map-get($config, width) {
+		width: map-get($config, width);
+	}
+	@if map-get($config, padding) {
+		@include spacing(map-get($config, padding));
+	}
+	@if map-get($config, margin) {
+		@include spacing(map-get($config, margin));
+	}
+	@if map-get($config, display) {
+		display: map-get($config, display);
+	}
+}

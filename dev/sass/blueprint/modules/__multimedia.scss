@@ -1,0 +1,57 @@
+// Post Thumbnail
+
+.post-thumbnail {
+	outline: $line-xs solid $color-white-3;
+	padding: $size-m;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	.thumbnail-image {
+		overflow: hidden;
+		height: 50%;
+		width: 100%;
+		img {
+			width: 100%;
+			height: auto;
+		}
+	}
+	.thumbnail-content {
+		flex-grow: 1;
+		margin: $size-m 0;
+		position: relative;
+		&::after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			height: $line-m;
+			background-color: $color-tertiary-1;
+			width: 100%;
+		}
+		.thumbnail-title {
+
+		}
+		.thumbnail-meta {
+
+		}
+		.thumbnail-excerpt {
+
+		}
+	}
+	.thumbnail-options {
+
+	}
+}
+
+// Media Player Controls
+
+.podcast {
+	.podcast-title {
+		
+	}
+	.podcast-content {
+		
+	}
+	.podcast-controls {
+		
+	}
+}
