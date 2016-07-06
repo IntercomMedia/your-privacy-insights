@@ -41,6 +41,11 @@ var groundWork = (function(){
 	//c = change in value
 	//d = duration
 	
+	
+	Math.linearTween = function (t, b, c, d) {
+		return c*t/d + b;
+	};
+		
 	Math.easeInOutCirc = function (t, b, c, d) {
 			if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
 			return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
@@ -52,6 +57,21 @@ var groundWork = (function(){
 		t -= 2;
 		return -c/2 * (t*t*t*t - 2) + b;
 	}
+	
+	Math.easeInOutQuint = function (t, b, c, d) {
+		t /= d/2;
+		if (t < 1) return c/2*t*t*t*t*t + b;
+		t -= 2;
+		return c/2*(t*t*t*t*t + 2) + b;
+	};
+	
+	Math.easeInOutExpo = function (t, b, c, d) {
+		t /= d/2;
+		if (t < 1) return c/2 * Math.pow( 2, 10 * (t - 1) ) + b;
+		t--;
+		return c/2 * ( -Math.pow( 2, -10 * t) + 2 ) + b;
+	};
+
 	
 	//- - - - - - - - - - - - - - - - - - - - - - - -
 	//	Initialize Ground Work Schema
