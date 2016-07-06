@@ -37,19 +37,26 @@ var ypi = (function(){
 			// - - - - - - - - - - - - - - - - - - - - - -
 	
 			var animateColor = new groundWork.modules.AnimateColor('.animate-color', {
-				margin : 10,
-				hue : -50,
+				threshhold : 210,
 				saturation : -15,
-				lightness : 1,
-				callback : function(el, change) {
+				lightness : 100,
+				in : function(el, change) {
 					var img = el.querySelector('img');
 					if(img){
-						img.style.transform = 'scale(' +Number(+ 1 - (change * 0.15)) +') translateX('+ -change * 15 + '%)';
-						img.style.opacity = 1 - change * 1.5;
+						console.log(1 - (0.45 * (1-change)))
+						img.style.transform = 'scale(' + Number( 1 - (0.15 * (1-change))) +')';
+						img.style.opacity = change;
+					}
+				},
+				out : function(el, change) {
+					var img = el.querySelector('img');
+					if(img){
+						img.style.transform = 'scale(' + Number(1 +  (0.15 * change)) +')';
+						img.style.opacity = 1 - change;
 					}
 				}
 			});
-			groundWork.modules.parallax('.parallax');
+			groundWork.modules.parallax('.parallax', {intensity : 0.1});
 			
 			var sign_up_form = document.getElementById('singup-form');
 				var validateForm = new Validator('singup-form', {

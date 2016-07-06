@@ -41,6 +41,11 @@ var groundWork = (function(){
 	//c = change in value
 	//d = duration
 	
+	
+	Math.linearTween = function (t, b, c, d) {
+		return c*t/d + b;
+	};
+		
 	Math.easeInOutCirc = function (t, b, c, d) {
 			if ((t/=d/2) < 1) return -c/2 * (Math.sqrt(1 - t*t) - 1) + b;
 			return c/2 * (Math.sqrt(1 - (t-=2)*t) + 1) + b;
@@ -52,6 +57,21 @@ var groundWork = (function(){
 		t -= 2;
 		return -c/2 * (t*t*t*t - 2) + b;
 	}
+	
+	Math.easeInOutQuint = function (t, b, c, d) {
+		t /= d/2;
+		if (t < 1) return c/2*t*t*t*t*t + b;
+		t -= 2;
+		return c/2*(t*t*t*t*t + 2) + b;
+	};
+	
+	Math.easeInOutExpo = function (t, b, c, d) {
+		t /= d/2;
+		if (t < 1) return c/2 * Math.pow( 2, 10 * (t - 1) ) + b;
+		t--;
+		return c/2 * ( -Math.pow( 2, -10 * t) + 2 ) + b;
+	};
+
 	
 	//- - - - - - - - - - - - - - - - - - - - - - - -
 	//	Initialize Ground Work Schema
@@ -1302,11 +1322,12 @@ groundWork.modules.AnimateColor = function AnimateColor(selector, options) {
 	options = options ? options : {};
 
 	options.animationRatio = options.animationRatio ? options.animationRatio : 1;
-	options.margin = options.margin ? options.margin : 200;
+	options.threshhold = options.threshhold ? options.threshhold : 200;
 	
 	var winH = window.innerHeight,
 		processed = false,
-		elements = document.querySelectorAll(selector);
+		elements = document.querySelectorAll(selector),
+		last_scroll = 0;
 	
 	this.els = [];
 	
@@ -1327,12 +1348,11 @@ groundWork.modules.AnimateColor = function AnimateColor(selector, options) {
 				center : center,
 				height : el.offsetHeight,
 				hsla : hsla,
-				margin : el.getAttribute('data-offset') ? Number(el.getAttribute('data-offset')) : options.margin
+				threshhold : el.getAttribute('data-threshhold') ? Number(el.getAttribute('data-threshhold')) : options.threshhold
 			}
-			console.log(top, window.scrollY);
 			this.els.push(obj);
-			processed = true;
 		};
+		processed = true;
 	}
 	
 	function animateColor() {
@@ -1342,22 +1362,35 @@ groundWork.modules.AnimateColor = function AnimateColor(selector, options) {
 			var el = this.els[i];
 			if(scrollY > el.top - winH && scrollY < el.bottom){
 				var center_win = scrollY + winH/2,
-					change = (Math.abs(el.center - center_win)  - el.margin) / (winH - el.height/2 - el.margin/2);
-					console.log(groundWork.utils.dom.cumulativeOffset(el.el).top);
-				change = change < 0 ? 0 : change;
-				var h_offset = options.hue ? options.hue * change : 0,
-					s_offset = options.saturation ? options.saturation * change : 0,
-					l_offset = options.lightness ? options.lightness * change: -el.hsla[2] * change;
+					start_mod = el.top - winH,
+					current_time = scrollY - start_mod,
+					start = 0,
+					to = 1,
+					duration =  winH/2 + el.height/2 - el.threshhold/2,
+					dif = duration - current_time;
+					
+					if(dif < 0 && dif > - el.threshhold) {
+						current_time = current_time + dif;
+					}else if(dif < - el.threshhold) {
+						current_time = current_time - duration - el.threshhold;
+						start = 1;
+						to = 2;
+					}
+				var change = Math.linearTween(current_time, start, to, duration);
+					
+				var h_offset = options.hue ? options.hue - (options.hue * change) : 0,
+					s_offset = options.saturation ? options.saturation - (options.saturation * change) : 0,
+					l_offset = options.lightness ? options.lightness - (options.lightness * change) : -el.hsla[2] - (-el.hsla[2] * change);
 					
 				var	H = el.hsla[0] + h_offset,
 					S = el.hsla[1] + s_offset,
 					L = el.hsla[2] + l_offset,
 					A = el.hsla[3],
 					dynamic_hsla = "hsla(" + H +", " + S + "%, " + L + "%, " + A + ")";
-					
 				el.el.style.backgroundColor = dynamic_hsla;
-				console.log(L,(el.hsla[2]) * change,  change);
 				if(typeof options.callback == 'function') options.callback(el.el, change);
+				if(typeof options.in == 'function' && change <= 1) options.in(el.el, change);
+				else if(typeof options.out == 'function' && change > 1) options.out(el.el, change - 1);
 				
 			}
 		}
@@ -2525,18 +2558,62 @@ groundWork.modules.modal = (function() {
 	return module;
 })();
 
-groundWork.modules.parallax = function(selector) {
-	var self = this;
+groundWork.modules.parallax = function(selector, options) {
+	// - - - - - - - - - - - - - - - - - - -
+	// Set defaults
+	// - - - - - - - - - - - - - - - - - - - 
+	
+	var defaults = {
+		intensity : 0.2
+	};
+	
+	options = typeof options == 'object' ? options : defaults;
+	options.intensity = options.intensity ? options.intensity : defaults.intensity;
+	
+	// - - - - - - - - - - - - - - - - - - -
+	// Init
+	// - - - - - - - - - - - - - - - - - - - 
+	
+	var elements = document.querySelectorAll(selector),
+		els = [],
+		winH = window.innerHeight,
+		processed = false;
+		
+	function init(){
+		els = [];
+		winH = window.innerHeight;
+		for(i=0; i < elements.length; i++){
+			var el = elements[i];
+			var top = groundWork.utils.dom.cumulativeOffset(el).top,
+				center = top + el.offsetHeight/2,
+				obj = {
+					el : el,
+					top : top,
+					bottom : top + el.offsetHeight,
+					center : center,
+					height : el.offsetHeight,
+					intensity : el.getAttribute('data-intensity') ? Number(el.getAttribute('data-intensity')) : options.intensity
+				}
+			els.push(obj);
+		};
+		processed = true;
+	}
 	
 	window.addEventListener('optimizedScroll', parallaxScroll);
 	
+	
+	
 	function parallaxScroll() {
+		if(processed == false) init();
+		
 	    var scrollLeft = (window.pageXOffset !== undefined) ? window.pageXOffset : (document.documentElement || document.body.parentNode || document.body).scrollLeft;
 	    var scrollTop = (window.pageYOffset !== undefined) ? window.pageYOffset : (document.documentElement || document.body.parentNode || document.body).scrollTop;
-	    var items = document.querySelectorAll(selector);
-	    for(i=0; i < items.length; i++) {
-				items[i].style.transform = 'translateY(' + (scrollTop * 0.2) + 'px)';
-			}
+	    for(i=0; i < els.length; i++) {
+		    var el = els[i],
+		    	offset = (scrollTop + winH/2) - el.center;
+		    console.log(offset);
+			el.el.style.transform = 'translateY(' + Number(offset * el.intensity) + 'px)';
+		}
 	}
 }
 groundWork.modules.selectButton = function selectButton(selector, options){
@@ -4907,19 +4984,26 @@ var ypi = (function(){
 			// - - - - - - - - - - - - - - - - - - - - - -
 	
 			var animateColor = new groundWork.modules.AnimateColor('.animate-color', {
-				margin : 10,
-				hue : -50,
+				threshhold : 210,
 				saturation : -15,
-				lightness : 1,
-				callback : function(el, change) {
+				lightness : 100,
+				in : function(el, change) {
 					var img = el.querySelector('img');
 					if(img){
-						img.style.transform = 'scale(' +Number(+ 1 - (change * 0.15)) +') translateX('+ -change * 15 + '%)';
-						img.style.opacity = 1 - change * 1.5;
+						console.log(1 - (0.45 * (1-change)))
+						img.style.transform = 'scale(' + Number( 1 - (0.15 * (1-change))) +')';
+						img.style.opacity = change;
+					}
+				},
+				out : function(el, change) {
+					var img = el.querySelector('img');
+					if(img){
+						img.style.transform = 'scale(' + Number(1 +  (0.15 * change)) +')';
+						img.style.opacity = 1 - change;
 					}
 				}
 			});
-			groundWork.modules.parallax('.parallax');
+			groundWork.modules.parallax('.parallax', {intensity : 0.1});
 			
 			var sign_up_form = document.getElementById('singup-form');
 				var validateForm = new Validator('singup-form', {

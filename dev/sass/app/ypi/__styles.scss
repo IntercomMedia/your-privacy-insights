@@ -129,26 +129,32 @@
 	box-shadow: $depth-s;
 }
 
-// Section Header
-.section-header {
-	text-align: center;
-}
-
 .section-header-title {
 	@include type-style((font-size: 3));
 	margin-bottom: 0;
 }
 
-// Random Blocks
 
-.dark-block-1 {
-	@include box-style($background : $color-black-3, $color : $color-white-3);
-	background-attachment: fixed;
-	background-size: cover;
+.type-color-white-1 {
+	color : $color-white-1;
+	
+	* {
+		color: inherit;
+	}
 }
 
-.dark-block-2 {
-	@include box-style($background : $color-black-2, $color : $color-white-3);
-	background-attachment: fixed;
-	background-size: cover;
+// Buttons
+
+.ypi .btn-med-alt-dark {
+	padding-left: 0;
+}
+
+.ypi .btn-icon {
+	display: inline-flex;
+	align-content: center;
+	justify-content: center;
+	height: $size-l;
+	width: $size-l;
+	background: $color-tertiary-1;
+	margin-right: baseline(1/2);
 }

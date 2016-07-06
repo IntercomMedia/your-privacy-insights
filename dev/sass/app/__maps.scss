@@ -15,13 +15,12 @@ $btnTypes: (
 		corners: 0
 	),
 	med: (
-		height: baseline(1.5),
+		height: $size-l,
 		transition: $transition-1,
 		caps: true,
-		type-style: small-type,
 	),
 	small: (
-		height: $size-m,
+		height: baseline(1.5),
 		transition: $transition-1,
 		caps: true,
 		type-style: small-type,
@@ -87,7 +86,16 @@ $btnVariations: (
 		hover: (
 			
 		)
-	)
+	),
+	alt-dark: (
+		color: $color-white-2,
+		border-color: $color-tertiary-1,
+		border-size: $line-s,
+		hover: (
+			background: $color-tertiary-1,
+			color: $color-black-3
+		)
+	),
 );
 
 //////////////////////////////////////////////////
