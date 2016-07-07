@@ -1,0 +1,84 @@
+// Row
+	// @param : Size of gutters between the columns in a row
+
+@mixin row($gutter: null, $width: null, $wrap: false) {
+	display: flex;
+	max-width: $width;
+	@if $gutter {
+		margin-bottom: $gutter;
+		&:last-child {
+			margin-bottom: 0;
+		}
+		> [class*='col'] {
+			margin-right: $gutter;
+			&:last-child {
+				margin-right: auto;
+			}
+		}
+	}
+	@if $wrap {
+		flex-wrap: wrap;
+	}
+	@include phone {
+		flex-wrap: wrap;
+	}
+}
+
+// Column
+	// Requires a map to process
+
+@mixin col($config) {
+	$config: map-merge((
+		desktop: null,
+		tablet: null,
+		phone: null,
+		display: block,
+		width: null,
+		device: null,
+	), $config);
+		
+	// Conditionals
+	
+	// Columns with Default Breakpoints
+	@if map-get($config, desktop) {
+		width: map-get($config, desktop);
+		
+		// Breakpoints
+		
+		// Tablet
+		@if map-get($config, tablet) {
+			@include tablet {
+				width: map-get($config, tablet);
+			}
+		}
+		// Phone
+		@if map-get($config, phone) {
+			@include phone {
+				width: map-get($config, phone);
+			}
+		}
+	}	
+	
+	// Columns with Specified Breakpoints
+	@if map-get($config, width) && map-get($config, device) {
+		@if map-get($config, device) == 'desktop' {
+			@include desktop {
+				width: map-get($config, width);
+			}
+		}
+		@if map-get($config, device) == 'tablet' {
+			@include tablet {
+				width: map-get($config, width);
+			}
+		}
+		@if map-get($config, device) == 'phone' {
+			@include phone {
+				width: map-get($config, width);
+			}
+		}
+	}
+	
+	@if map-get($config, display) {
+		display: map-get($config, display);
+	}
+}

@@ -1,0 +1,39 @@
+//////////////////////////////////////////////////
+
+// Vertical Rhythm
+
+//////////////////////////////////////////////////
+
+// Calculate multiples of the baseline. 
+	// @param : Multiplier
+	// @param : Baseline number
+
+@function baseline($multiplier: 1, $baseline: $base-line-height){
+	@return ($multiplier * $baseline) * 1rem;
+}
+
+// Easily calculate the various font sizes based on $base-font-size and $font-ratio. 
+	// @param : Multiplier
+	// @param : Base font size
+	// @param : Ratio to scale by
+
+@function fontsize($multiplier: 0, $unit: true, $fontsize: $base-font-size, $ratio: $font-ratio){
+	@if $unit {
+		@return ($fontsize * pow($ratio, $multiplier)) * 1rem;
+	}@else {
+		@return ($fontsize * pow($ratio, $multiplier));
+	}
+}
+
+// Calculate the value to offset type based off from the cap height, font size, and the line-height
+	// @param : Font Size
+	// @param : Line Height
+
+@function typeset($font-size: 1, $line-height: 1, $cap-height: 1) {
+	@return (($line-height - ($font-size * $cap-height)) / 2) * 1rem;
+}
+
+@function pxToBaseline($pixels, $context: $font-size) {
+	$relative: (strip-unit($pixels) / $context);
+	@return roundToBaseline($relative) * 1em;
+}

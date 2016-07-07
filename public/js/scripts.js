@@ -1132,6 +1132,7 @@ groundWork.components.fields = function(selector){
 			parent = event.target.parentNode;
 		if(el_val !== '') {
 			groundWork.utils.dom.addClass(parent, 'is-filled');
+			groundWork.utils.dom.removeClass(parent, 'is-focused');
 		}
 		else {
 			groundWork.utils.dom.removeClass(parent, 'is-focused');
@@ -1474,8 +1475,9 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 		scrollDistance = (lastScrollY - scrollY);
 		scrollingUp = (scrollDistance > 0);
 		scrollingDown = (scrollDistance < 0);
-
-		if (scrollingDown) {
+		if(scrollY <= 0){
+			header.style.transform = 'translateY(0)';
+		}else if (scrollingDown) {
 			if (scrollY >= (scrollDownThreshold - (headerHeight / scrollSpeed))) {
 				if(scrollDistance > 5) scrollDistance = 10;
 				thisTransform = (scrollDistance * scrollSpeed) + lastTransform;
@@ -2599,8 +2601,6 @@ groundWork.modules.parallax = function(selector, options) {
 		processed = true;
 	}
 	
-	window.addEventListener('optimizedScroll', parallaxScroll);
-	
 	
 	
 	function parallaxScroll() {
@@ -2615,6 +2615,10 @@ groundWork.modules.parallax = function(selector, options) {
 			el.el.style.transform = 'translateY(' + Number(offset * el.intensity) + 'px)';
 		}
 	}
+	
+	
+	window.addEventListener('optimizedScroll', parallaxScroll);
+	window.addEventListener('optimizedResize', init);
 }
 groundWork.modules.selectButton = function selectButton(selector, options){
 	var self = this;

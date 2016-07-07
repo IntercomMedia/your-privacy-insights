@@ -1,0 +1,49 @@
+.tab-container {
+	position: relative;
+	overflow: hidden;
+	transform: transition(1);
+}
+
+.tab-pane {
+	position: absolute;
+	left: 0;
+	top: 0;
+	transform: transition(1);
+	width: 100%;
+}
+
+.slide-x {
+	.tab-pane.is-active {
+		transform: translateX(0);
+	}
+	.tab-pane.is-prev {
+		transform: translateX(-100%);
+	}
+	.tab-pane.is-next {
+		transform: translateX(100%);
+	}
+}
+
+.slide-y {
+	.tab-pane.is-active {
+		transform: translateY(0);
+	}
+	.tab-pane.is-prev {
+		transform: translateY(-100%);
+	}
+	.tab-pane.is-next {
+		transform: translateY(100%);
+	}
+}
+
+.fade {
+	.tab-pane.is-active {
+		opacity: 1;
+	}
+	.tab-pane.is-prev {
+		opacity: 0;
+	}
+	.tab-pane.is-next {
+		opacity: 0;
+	}
+}

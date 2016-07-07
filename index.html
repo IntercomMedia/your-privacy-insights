@@ -7,42 +7,45 @@
 </head>
 
 <body class="ypi">
-	<header class="header-primary" id="header-animate">
-		<div class="container">
-			<div class="logo col-1-4">
-				<a href="index.html"><img src="public/images/logo.svg"></a>
+	<header class="header" id="header-animate">
+		<div class="header-primary">
+			<div class="container">
+				<div class="logo col-1-4 col-phone-1-1">
+					<a href="index.html"><img src="public/images/logo.svg"></a>
+				</div>
+				<nav class="header-nav">
+					<ul>
+						<li class="is-active"><a href="#">Home</a></li>
+						<li><a href="faq.html">Faqs</a></li>
+						<li><a href="blog.html">Blog</a></li>
+					</ul>
+				</nav>
+				
+				<div class="header-options">
+					<a href="register.html" class="btn-small-def">Sign Up</a>
+					<button class="btn-small-aux" onclick="openLogin()">Login</button>
+				</div>
 			</div>
-			<nav class="header-nav">
-				<ul>
-					<li class="is-active"><a href="#">Home</a></li>
-					<li><a href="faq.html">Faqs</a></li>
-					<li><a href="blog.html">Blog</a></li>
-				</ul>
-			</nav>
-			<div class="header-actions">
-				<a href="register.html" class="btn-med-def">Sign Up</a>
-				<button class="btn-med-aux" onclick="openLogin()">Login</button>
+			<div class="header-mobile-actions">
+				<a class="btn-dot js-toggle"><span></span><span></span><span></span></a>
 			</div>
-		</div>	
-		<div class="header-mobile-actions">
-			<a class="btn-dot js-toggle"><span></span><span></span><span></span></a>
-		</div>				
-		<div id="nav_overlay" class="header-nav-overlay">
-			<div class="mega-nav">
-				<ul>
-					<li class="is-active"><a href="index.html">Home</a></li>
-					<li><a href="#">About</a></li>
-					<li><a href="blog.html">Blog</a></li>
-					<li><a href="faq.html">Faqs</a></li>
-					<li><a href="#">Sign Up</a></li>
-					<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
-				</ul>
-			</div>
-		</div>
+		</div>			
 	</header>
-	<section class="hero-header bg-white-1">
-		<div class="container row">
-			<div class="hero-header-copy parallax col-1-2">
+	<div id="nav_overlay" class="header-nav-overlay">
+		<div class="mega-nav">
+			<ul>
+				<li class="is-active"><a href="index.html">Home</a></li>
+				<li><a href="#">About</a></li>
+				<li><a href="blog.html">Blog</a></li>
+				<li><a href="faq.html">Faqs</a></li>
+				<li><a href="#">Sign Up</a></li>
+				<li><button onclick="openLogin()" class="btn-action-alt">Login</button></li>
+			</ul>
+		</div>
+	</div>
+	<section class="hero-header">
+		<div class="container row row-l-wrap">
+			<div class="hero-header-copy parallax col-1-2 col-phone-1-1">
 				<h1 class="jumbo">See What Criminals are Selling About You</h1>
 				<p class="leader">We scan our database of <strong>600 million records</strong> in real time so you can see if your data has been stolen and is available for sale by criminals on the dark web.</p>
 			</div>
@@ -105,7 +108,7 @@
 				<h2 class="text-media-title h2">What is Identity Theft?</h2>
 				<p>Identity theft is when your personal details are stolen to obtain credit and identity fraud is when those details are then used to commit fraud. By stealing your identity, criminals are able to exploit your personal  details to make fraudulent purchases or access your bank account and personal finances to take your cash.</p>
 				<p>Checking the status of your personal and financial information on a regular basis is critical to preventing the negative financial consequences of this kind of fraud. We give you the tools to check the status of this information to mitigate the ongoing threat of today's frequent hacks and data breaches.</p>
-				<a href="quick-entry.html" class="btn-med-alt-dark">
+				<a href="quick-entry.html" class="btn-callout-alt-dark">
 					<i class="btn-icon"><img src="public/images/icon-lock.svg"></i>
 					FIND OUT IF YOUR IDENTITY IS VULNERABLE</a>
 			</div>
@@ -118,7 +121,7 @@
 				<p>The phrases Dark Web and Deep Web are often used interchangeably; however, they do mean different things.</p>
 				<p>The 'Dark Web' is a network of websites and material similar to the regular Internet, but the IP address of the servers that host these websites is hidden. Due to this, it is a haven for criminal activity.</p>
 				<p>The 'Deep Web' refers to all the websites and material online that is not indexed by any search engine.  The Deep Web will also host legitimate websites and material that organisations such as banks use to hold, for example, the password information you use to login to your online banking. </p>
-				<a href="quick-entry.html" class="btn-med-alt-dark">
+				<a href="quick-entry.html" class="btn-callout-alt-dark">
 					<i class="btn-icon"><img src="public/images/icon-lock.svg"></i>
 					FIND OUT IF YOUR IDENTITY IS VULNERABLE
 				</a>
@@ -128,31 +131,37 @@
 			<div class="text-media-background panel parallax" style="background-image: url(public/images/web.png);">
 		</div>
 	</section>
-	<section class="section-spacing-1">
+	<section class="section-spacing-1 padding-l">
 		<div class="container">
 			<header class="section-header">
-				<h2 class="section-header-title">How It Works</h2>
+				<h2 class="h2">How Your Privacy Insights Can Protect You from Identity Theft</h2>
 				<p class="leader">Yourprivacyinsights is one of the tools from the Vestigium family of personal data analytics solutions. By providing just a few fields of information, we can scan our database of 600 million records in real time to see if your data has been stolen and is available for sale by criminals on the dark web.</p>
 			</header>
 			<div class="row">
 				<!-- {{edits}} extract titles out of the p tag and put them in an h3. Add blurb-title, blurb-copy to respective elements -->
-				<div class="col">
-					<img src="public/images/icon-realtime-search.svg" class="blurb-icon">
-					<h4 class="blurb-title">Real-time Search</h4>
+				<div class="col-1-3 blurb blurb-center">
+					<div class="blurb-icon">
+						<img src="public/images/icon-realtime-search.svg" class="blurb-icon">
+					</div>
+					<h4 class="blurb-title h4">Real-time Search</h4>
 					<p class="blurb-copy">
 We will search our dark web database of 600 million records to see if your data is currently for sale. Unlike other products on the market, we look this up for you in real-time. Our database is refreshed daily with 300,000 new records added each day, so you are constantly up to date on the most recent hacks</p>
 				</div>
 				<!-- {{edits}} extract titles out of the p tag and put them in an h3. Add blurb-title, blurb-copy to respective elements -->
-				<div class="col">
-					<img src="public/images/icon-monthly-alerts.svg" class="blurb-icon">
-					<h4 class="blurb-title">Monthly Alerts</h4>
+				<div class="col-1-3 blurb blurb-center">
+					<div class="blurb-icon">
+						<img src="public/images/icon-monthly-alerts.svg" class="blurb-icon">
+					</div>
+					<h4 class="blurb-title h4">Monthly Alerts</h4>
 					<p class="blurb-copy">
 We will check the Dark Web monthly to see if your data has been stolen and is available for sale. Criminals hack someone new every day so it is important to make sure you check frequently to determine if your data has been exposed.</p>
 				</div>				
 				<!-- {{edits}} extract titles out of the p tag and put them in an h3. Add blurb-title, blurb-copy to respective elements -->
-				<div class="col">
-					<img src="public/images/icon-tips.svg" class="blurb-icon">
-					<h4 class="blurb-title">Data Security Tips</h4>
+				<div class="col-1-3 blurb blurb-center">
+					<div class="blurb-icon">
+						<img src="public/images/icon-tips.svg" class="blurb-icon">
+					</div>
+					<h4 class="blurb-title h4">Data Security Tips</h4>
 					<p class="blurb-copy">
 Data and identify theft can be a life changing event. We will provide you with the most frequent and up to date scan of the dark web and advise you on your best course of action to secure your information.</p>
 				</div>
@@ -188,8 +197,8 @@ Data and identify theft can be a life changing event. We will provide you with t
 			</div>
 		</form>
 	</section>
-	<footer class="global-footer">
-		<nav class="global-footer-nav">
+	<footer class="primary-footer bg-black-1">
+		<nav class="primary-footer-nav">
 			<ul>
 				<li class="is-active"><a href="#">Faqs</a></li>
 				<li><a href="#">Privacy</a></li>
@@ -200,9 +209,9 @@ Data and identify theft can be a life changing event. We will provide you with t
 				<li><a href="#">Cookie Policy</a></li>
 			</ul>
 		</nav>
-		<div class="global-footer-disclaimer">
+		<div class="primary-footer-disclaimer">
 			<div class="container">
-				<p>&copy; Copyright 2016. All rights reserved.<br>
+				<p class="font-white-2 copyright padding-l">&copy; Copyright 2016. All rights reserved.<br>
 This site is owned and operated by IMT Technologies Limited. IMT Technologies Limited is not a credit reference agency, credit broker or debt advisory agency.<br>
 IMT Technologies Limited, is a company registered in England and Wales, registration number 7686022 and having its registered office at
 Credit Reports Matter, 3rd Floor, 207 Regent Street, London, W1B 3HH.

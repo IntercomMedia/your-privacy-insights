@@ -1,0 +1,80 @@
+//////////////////////////////////////////////////
+
+// Math
+
+//////////////////////////////////////////////////
+
+// Round a number to the nearest multiple of another 
+	//	@param : Base number to round
+	// 	@param : Multiple to round to
+
+@function roundUpToAny($n, $x: $base-line-height) {
+    @return round(($n+$x/2) / $x) * $x;
+}
+
+@function roundToBaseline($n) {
+    @return round($n / ($base-line-height/2)) * $base-line-height/2;
+}
+
+// Equate exponents 
+	// @param : Base
+	// @param : Power
+
+@function pow($number, $exp) {
+	$value: 1;
+	// Allow 1 $exp to return $number without any multiplication.
+	$exp : $exp - 1;
+	@if $exp > 0 {
+		@for $i from 1 through $exp {
+			$value: $value * $number;
+		}
+	}
+	@else if $exp < 0 {
+		@for $i from 1 through -$exp {
+			$value: $value / $number;
+		}
+	}
+	@return $value;
+}
+
+// Remove the unit of a value
+	// @param {Number} $number - Number to remove unit from
+	// @return {Number} - Unitless number
+
+@function strip-unit($number) {
+	@if type-of($number) == 'number' and not unitless($number) {
+    	@return $number / ($number * 0 + 1);
+  }
+  @return $number;
+}
+
+// Round to A Divisible Number
+
+@function roundToDivisible($base, $divisible) {
+	@return round($base / $divisible) * $divisible;
+}
+
+// Max-Number
+	// @param : Check Number
+	// @param : Max Number
+
+@function max-number($checknum, $max){
+	$checknum : $checknum * 16;
+	@if $checknum > $max {
+		@return $max * 1px;
+	} @else {	
+		@return ($checknum/16) * 1rem;
+	}
+}
+
+// Circumference from Diameter
+@function circFromDiameter($diameter) {
+	$pi: 3.1415926535897932384626433832795028841971693993751;
+	@return ($diameter * $pi);
+}
+
+// Circumference from Radius
+@function circFromRadius($radius) {
+	$diameter: $radius * 2;
+	@return circFromDiameter($diameter);
+}

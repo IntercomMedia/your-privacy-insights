@@ -1,0 +1,138 @@
+//////////////////////////////////////////////////
+
+// Buttons
+	// This loops through the theme defined maps, generates the classes, and runs it through the btn mixin
+
+//////////////////////////////////////////////////
+
+@each $typeMap in $btnTypes {
+	@each $variationName, $propertiesMap in $btnVariations {
+		$variationProperties: ();
+		
+		@for $i from 1 to length($propertiesMap) {
+			$keyValue: nth($propertiesMap, $i);
+			$key: nth($keyValue, 1);
+			$value: nth($keyValue, 2);
+			$variationProperties: map-set($variationProperties, $key, $value);
+		}
+		
+		.btn-#{nth($typeMap, 1)}-#{$variationName} {
+			@include btn($typeProperties: nth($typeMap, 2), $variationProperties: $variationProperties, $hoverProperties: map-get($propertiesMap, 'hover'));
+		}
+	
+	}
+}
+
+//////////////////////////////////////////////////
+
+// Typographic Classes
+	// This loops through the theme defined maps, generates the classes, and runs it through the type-style mixin
+	// To style the HTML tags, go to __typography.scss
+
+//////////////////////////////////////////////////
+
+@each $type, $typoProperties in $typoBody {
+	.#{$type} {
+		@include type-style($typoProperties);
+	}
+}
+
+@each $type, $typoProperties in $typoHeading {
+	.#{$type} {
+		@include type-style($typoProperties);
+	}
+}
+
+//////////////////////////////////////////////////
+
+// Grid
+	// This loops through the theme defined maps, generates the classes, and runs it through the btn mixin
+
+//////////////////////////////////////////////////
+
+// Columns
+@each $size, $colBreakpoints in $gridColumns {
+	
+	// Default Columns
+	.col-#{$size} {
+		@include col($colBreakpoints);	
+	}
+	
+	// Defined Breakpoints
+	@for $i from 1 through length($colBreakpoints) {
+		$breakpoint: nth($colBreakpoints, $i);
+		$device: nth($breakpoint, 1);
+		$config: (
+			width: size(#{$size}),
+			device: $device,
+		);
+		.col-#{$device}-#{$size} {
+			@include col($config);	
+		}
+	}
+
+}
+
+// Rows
+@each $size, $gutterSize in $gridRows {	
+	
+	// Rows with Gutters
+	.row-#{$size} {
+		@include row($gutterSize);	
+	}
+	
+	// Wrapping Rows with Gutters
+	.row-#{$size}-wrap {
+		@include row($gutterSize, $wrap: true);	
+	}
+
+}
+
+//////////////////////////////////////////////////
+
+// Colors
+	// This loops through the theme defined maps, generates sass color variables as well as background and font color classes.
+
+//////////////////////////////////////////////////
+
+@each $color, $colorProperties in $colors {	
+	@if length($colorProperties) > 1 {
+		@for $i from 1 through length($colorProperties) {
+			$variant: nth($colorProperties, $i);
+			// Background Colors
+			.bg-#{$color}-#{nth($variant, 1)} {
+				background-color: nth($variant, 2);	
+			}
+			// Font Colors
+			.font-#{$color}-#{nth($variant, 1)} {
+				color: nth($variant, 2);	
+			}
+		}
+	} @else {
+		// Background Colors
+		.bg-#{$color} {
+			background-color: $colorProperties;	
+		}
+
+		// Font Colors
+		.font-#{$color} {
+			color: $colorProperties;	
+		}
+	}
+}
+
+//////////////////////////////////////////////////
+
+// Spaces (Padding/Margin)
+	// This loops through the theme defined maps, generates sass color variables as well as background and font color classes.
+
+//////////////////////////////////////////////////
+
+@each $space, $spaceProperties in $spaces {	
+	@for $i from 1 through length($spaceProperties) {
+		$variant: nth($spaceProperties, $i);
+		.#{$space}-#{nth($variant, 1)} {
+			#{$space}: nth($variant, 2);
+		}
+	}
+}

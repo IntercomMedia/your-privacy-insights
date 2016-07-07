@@ -1,0 +1,43 @@
+//////////////////////////////////////////////////
+
+// Finders
+
+//////////////////////////////////////////////////
+
+@function font($name, $variant: null) {
+	@if ($variant != null) {
+		@return map-get(map-get($fonts, $name), $variant);
+	} @else {
+		@return map-get($fonts, $name);
+	}
+}
+
+@function color($name, $variant: null) {
+	@if ($variant != null) {
+		$color : map-deep-get($colors, $name, $variant);
+		@return $color;
+	} @else {
+		$color : map-get($colors, $name);
+		@return $color;
+	}
+}
+
+@function size($name) {
+	@return map-get($sizes, $name);
+}
+
+@function line($name) {
+	@return map-get($lines, $name);
+}
+
+@function layer($name) {
+	@return map-get($layers, $name);
+}
+
+@function depth($name) {
+	@return map-get($depths, $name);
+}
+
+@function transition($name) {
+	@return map-get($transitions, $name);
+}
