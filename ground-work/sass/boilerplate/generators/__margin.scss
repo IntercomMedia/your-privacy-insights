@@ -1,0 +1,19 @@
+//////////////////////////////////////////////////
+
+// Spaces (Padding/Margin)
+	// This loops through the theme defined maps, generates sass color variables as well as background and font color classes.
+
+//		.margin-$size
+//
+//////////////////////////////////////////////////
+
+@each $space, $spaceProperties in $spaces {	
+	@for $i from 1 through length($spaceProperties) {
+		$variant: nth($spaceProperties, $i);
+		@if $space == 'margin' {
+			%#{$space}-#{nth($variant, 1)} {
+				#{$space}: nth($variant, 2);
+			}
+		}
+	}
+}

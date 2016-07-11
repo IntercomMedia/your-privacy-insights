@@ -21,6 +21,15 @@
 	}
 	@include phone {
 		flex-wrap: wrap;
+		
+		> [class*='col'] {
+			margin-right: 0;
+		}
+	}
+	.ie &::after {
+		content: ' ';
+		display: block;
+		clear: both;
 	}
 }
 
@@ -41,20 +50,20 @@
 	
 	// Columns with Default Breakpoints
 	@if map-get($config, desktop) {
-		width: map-get($config, desktop);
+		width: map-get($config, desktop)  * 100%;
 		
 		// Breakpoints
 		
 		// Tablet
 		@if map-get($config, tablet) {
 			@include tablet {
-				width: map-get($config, tablet);
+				width: map-get($config, tablet) * 100%;
 			}
 		}
 		// Phone
 		@if map-get($config, phone) {
 			@include phone {
-				width: map-get($config, phone);
+				width: map-get($config, phone)  * 100%;
 			}
 		}
 	}	
@@ -80,5 +89,8 @@
 	
 	@if map-get($config, display) {
 		display: map-get($config, display);
+	}
+	.ie & {
+		float: left;
 	}
 }

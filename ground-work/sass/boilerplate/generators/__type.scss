@@ -1,0 +1,17 @@
+//////////////////////////////////////////////////
+
+// Typographic Classes
+	// This loops through the theme defined maps, generates the classes, and runs it through the type-style mixin
+	// To style the HTML tags, go to __typography.scss
+
+//////////////////////////////////////////////////
+
+
+@each $type, $typoProperties in $type-styles {
+	%#{$type} {
+		@include type-style($typoProperties);
+	}
+	.#{$type} {
+		@extend %#{$type};
+	}
+}

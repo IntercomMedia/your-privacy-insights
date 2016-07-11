@@ -1,6 +1,5 @@
 .text-media {
-	display: flex;
-	flex: auto;
+	@include row();
 	@include phone {
 		flex-direction: column;
 	}

@@ -1,0 +1,37 @@
+//////////////////////////////////////////////////
+
+// Buttons
+	// This loops through the theme defined maps, generates the classes, and runs it through the btn mixin
+
+//////////////////////////////////////////////////
+
+@each $typeMap in $btnTypes {
+	@each $variationName, $propertiesMap in $btnVariations {
+		$variationProperties: ();
+		
+		@for $i from 1 to length($propertiesMap) {
+			$keyValue: nth($propertiesMap, $i);
+			$key: nth($keyValue, 1);
+			$value: nth($keyValue, 2);
+			$variationProperties: map-set($variationProperties, $key, $value);
+		}
+		
+		@if $variationName == 'def' or $variationName == 'base' {
+			%btn-#{nth($typeMap, 1)} {
+				@include btn($typeProperties: nth($typeMap, 2), $variationProperties: $variationProperties, $hoverProperties: map-get($propertiesMap, 'hover'));
+			}
+			.btn-#{nth($typeMap, 1)} {
+				@extend %btn-#{nth($typeMap, 1)};
+			}
+		}
+		@else {
+			%btn-#{nth($typeMap, 1)}-#{$variationName} {
+				@include btn($typeProperties: nth($typeMap, 2), $variationProperties: $variationProperties, $hoverProperties: map-get($propertiesMap, 'hover'));
+			}
+			.btn-#{nth($typeMap, 1)}-#{$variationName} {
+				@extend %btn-#{nth($typeMap, 1)}-#{$variationName};
+			}
+		}
+	
+	}
+}

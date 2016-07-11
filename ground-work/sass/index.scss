@@ -4,18 +4,17 @@
 
 //////////////////////////////////////////////////
 
-@import 'app/__config.scss';
 @import 'boilerplate/functions/__rhythm.scss';
 @import 'boilerplate/functions/__finders.scss';
 @import 'boilerplate/functions/__helpers.scss';
 @import 'boilerplate/functions/__math.scss';
+@import 'boilerplate/functions/__shadify.scss';
 
 //////////////////////////////////////////////////
 
 // App
 
 //////////////////////////////////////////////////
-
 @import 'app/maps/__colors.scss';
 @import 'app/maps/__sizes.scss';
 @import 'app/maps/__fonts.scss';
@@ -40,11 +39,18 @@
 
 //////////////////////////////////////////////////
 
-// Class Builders
+// Class Generators
 
 //////////////////////////////////////////////////
 
-@import 'boilerplate/constructors/__loops.scss';
+@import 'boilerplate/generators/__bg.scss';
+@import 'boilerplate/generators/__font.scss';
+@import 'boilerplate/generators/__btn.scss';
+@import 'boilerplate/generators/__col.scss';
+@import 'boilerplate/generators/__row.scss';
+@import 'boilerplate/generators/__padding.scss';
+@import 'boilerplate/generators/__margin.scss';
+@import 'boilerplate/generators/__type.scss';
 
 //////////////////////////////////////////////////
 
@@ -111,3 +117,4 @@
 //////////////////////////////////////////////////
 
 @import 'app/ypi/_styles.scss';
+@import 'app/ypi/_admin.scss';

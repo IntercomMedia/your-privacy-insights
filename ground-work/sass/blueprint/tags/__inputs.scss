@@ -43,16 +43,50 @@ select {
 	}
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-	width: size(m);
-	height: size(m);
+input[type="radio"]{
+	position: relative;
+	width: baseline(1);
+	height: baseline(1);
 	border-radius: 100%;
-	background: color('white', 3);
+	background: color('white', 1);
+	border: line(l) color('neutral', 1) solid;
 	cursor: pointer;
-	&:checked {
-		background: color('black', 1);
+	transition: transition(all);
+	margin-right: size(s);
+	vertical-align: middle;
+	
+	&::after {
+		content: ' ';
+		position: absolute;
+		height: 0;
+		width: 0;
+		left: 50%;
+		top: 50%;
+		transform: translate3d(-50%, -50%, 0);
+		transition: transition(all);
+		opacity: 0;
+		background: color('primary', 1);
+		border-radius: 100%;
 	}
+	&:checked::after {
+		height: 120%;
+		width: 120%;
+		opacity: 1;
+	}
+	&:checked {
+		border-color: color('primary', 1);
+	}
+}
+
+input[type="radio"] + label {
+	vertical-align: middle;
+	margin-right: baseline(1);
+	transition: transition(all);
+	opacity: 0.7;
+}
+
+input[type="radio"]:checked + label {
+	opacity: 1;
 }
 
 label {

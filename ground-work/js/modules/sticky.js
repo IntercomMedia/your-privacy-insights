@@ -19,6 +19,7 @@ groundWork.modules.Sticky = function Sticky(el, options) {
 	
 	var dom = groundWork.utils.dom,
 		els = document.querySelectorAll(el);
+		winH = window.innerHeight;
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - -
 	// Cache and bind constructor functions
@@ -36,6 +37,9 @@ groundWork.modules.Sticky = function Sticky(el, options) {
 		var el = els[i];
 		var item_offset = dom.cumulativeOffset(el);
 		var el_obj = { el : el, offset : item_offset};
+		
+		el.style.paddingTop = groundWork.trackers.header_transform + 'px';
+		
 		if(el.hasAttribute('data-contain')){
 			var container = document.getElementById((el.getAttribute('data-contain')));
 			var container_offset = dom.cumulativeOffset(container);
@@ -49,8 +53,8 @@ groundWork.modules.Sticky = function Sticky(el, options) {
 	
 	var headerHeight = document.querySelector('.js-header');
 	
-	document.addEventListener('scroll', makeSticky);
-	document.addEventListener('resize', resizeSticky);
+	window.addEventListener('optimizedScroll', makeSticky);
+	window.addEventListener('optimizedResize', resizeSticky);
 }
 
 
@@ -62,12 +66,14 @@ groundWork.modules.Sticky.prototype.resizeSticky = function(){
 	
 	var dom = groundWork.utils.dom;
 	
+	winH = window.innerHeight;
+	
 	for(i=0; i < this.els.length; i++) {
 		var item = this.els[i];
-		item.offset = dom.cumulativeOffset(el);
-		if(item.hasAttribute('data-contain')){
+		item.offset = dom.cumulativeOffset(item.el);
+		if(item.el.hasAttribute('data-contain')){
 			var container_offset = dom.cumulativeOffset(item.container);
-			var stop = container_offset.top + item.container.offsetHeight - el.offsetHeight;
+			var stop = container_offset.top + item.container.offsetHeight - item.el.offsetHeight;
 			item.container_offset = item.container_offset;
 			item.stop = stop;
 		}
@@ -93,14 +99,27 @@ groundWork.modules.Sticky.prototype.makeSticky = function(event) {
 			if(scroll_pos > item.container_offset.top && scroll_pos < item.stop) {
 				if(!item.el.classList.contains('stickied')){
 					item.el.style.width = item.el.offsetWidth + 'px';
+					item.el.style.bottom = '';
+					item.el.style.position = '';
 					dom.addClass(item.el, 'stickied');
 				}
 			}
-			else{
+			else if(scroll_pos + winH >= item.stop){
 				if(item.el.classList.contains('stickied')){
-					container.style.paddingTop = '';
+					item.container.style.paddingTop = '';
 					dom.removeClass(item.el, 'stickied');
 					item.el.style.top = '';
+					item.el.style.bottom = '0';
+					item.el.style.position = 'absolute';
+					item.el.style.width = ''
+				}
+			}else {
+				if(item.el.classList.contains('stickied')){
+					item.container.style.paddingTop = '';
+					dom.removeClass(item.el, 'stickied');
+					item.el.style.top = '';
+					item.el.style.bottom = '';
+					item.el.style.position = '';
 					item.el.style.width = ''
 				}
 			}

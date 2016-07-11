@@ -22,7 +22,7 @@
 				</nav>
 				
 				<div class="header-options">
-					<a href="register.html" class="btn-small-def">Sign Up</a>
+					<a href="register.html" class="btn-small">Sign Up</a>
 					<button class="btn-small-aux" onclick="openLogin()">Login</button>
 				</div>
 			</div>
@@ -45,37 +45,37 @@
 	</div>
 	<section class="hero-header">
 		<div class="container row row-l-wrap">
-			<div class="hero-header-copy parallax col-1-2 col-phone-1-1">
-				<h1 class="jumbo">See What Criminals are Selling About You</h1>
-				<p class="leader">We scan our database of <strong>600 million records</strong> in real time so you can see if your data has been stolen and is available for sale by criminals on the dark web.</p>
+			<div class="hero-header-copy parallax">
+				<h1>See What Criminals are Selling About You</h1>
+				<p>We scan our database of <strong>600 million records</strong> in real time so you can see if your data has been stolen and is available for sale by criminals on the dark web.</p>
 			</div>
 			<div class="hero-header-media parallax">
 				<img src="public/images/hero-header-bg.png">
 			</div>
 		</div>
-		<form class="callout" id="singup-form">
+		<form class="callout small" id="singup-form">
 			<div class="container">
 				<h4 class="title">Find out in Less Than 60 Seconds</h4>
 				<p class="subtitle">Stop identity theft before it hits your finances</p>
 				<div class="form-callout">
 					<div class="form-callout-fields col-3-4">
 						<div class="field-callout col-1-6">
-							<input class="field-element validate"  required data-validate="isName" data-message="Please fill in your First Name." type="text" placeholder="First Name">
+							<input class="field-element validate" validate="required, validname" type="text" placeholder="First Name">
 						</div>
 						<div class="field-callout col-1-6">
-							<input class="field-element validate" required data-validate="isName" data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
+							<input class="field-element validate" validate="required, validname" type="text" placeholder="Last Name">
 						</div>
 						<div class="field-callout col-1-3">
-							<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="text" placeholder="Email" name="postcode">
+							<input class="field-element validate" validate="required, email" type="text" placeholder="Email" name="postcode">
 						</div>
 						<div class="field-callout col-1-6">
-							<input type="text" class="field-element validate" required data-validate="isPhone" data-min="10" data-message="Please input a valid Phone Number." type="text" placeholder="Phone" name="phone">
+							<input type="text" class="field-element validate" validate="required, validname" placeholder="Phone" name="phone">
 						</div>
 						<div class="field-callout col-1-6">
-							<input class="field-element validate" required data-min="4" data-message="Please input a valid postcode." type="text" placeholder="Post Code" name="postcode">
+							<input class="field-element validate" validate="required, validname" type="text" placeholder="Post Code" name="postcode">
 						</div>
 					</div>
-					<button type="submit" class="btn-callout-alt">SEE MY RESULTS</button>
+					<button type="submit">SEE MY RESULTS</button>
 				</div>
 			</div>
 		</form>
@@ -94,7 +94,7 @@
 				<p>Some details, like a credit card number or a password, you know to keep locked up for safety, and most websites use encryption to make it harder for people to get these details without your permission.</p>
 				<p>Other details, like an account username or a home telephone number, may not seem as threatening when they sit on the internet. But in the wrong hands, a collection of these seemingly innocent details can be used to confirm your identity. And once your identity has been confirmed, it can be stolen and sold to someone who could do you grave financial harm.</p>
 				<div class="center-block">
-					<a href="quick-entry.html" class="btn-callout-def">AM I AT RISK?</a>
+					<a href="quick-entry.html" class="btn-callout">AM I AT RISK?</a>
 				</div>
 			</div>
 		</div>
@@ -168,34 +168,6 @@ Data and identify theft can be a life changing event. We will provide you with t
 				
 			</div>
 		</div>
-	</section>
-	<section>
-		<form class="callout" id="singup-form">
-			<div class="container">
-				<h4 class="callout-title">Find out in Less Than 60 Seconds</h4>
-				<p class="callout-caption">Stop identity theft before it hits your finances</p>
-				<div class="form-callout">
-					<div class="form-callout-fields">
-						<div class="field-callout">
-							<input class="field-element validate"  required data-validate="isName" data-message="Please fill in your First Name." type="text" placeholder="First Name">
-						</div>
-						<div class="field-callout">
-							<input class="field-element validate" required data-validate="isName" data-message="Please fill in your Last Name." type="text" placeholder="Last Name">
-						</div>
-						<div class="field-callout col-1-2">
-							<input class="field-element validate" required data-validate="isEmail" data-message="Please input a valid email." type="text" placeholder="Email" name="postcode">
-						</div>
-						<div class="field-callout field">
-							<input type="text" class="field-element validate" required data-validate="isPhone" data-min="10" data-message="Please input a valid Phone Number." type="text" placeholder="Phone" name="phone">
-						</div>
-						<div class="field-callout field col-1-4">
-							<input class="field-element validate" required data-min="4" data-message="Please input a valid postcode." type="text" placeholder="Post Code" name="postcode">
-						</div>
-					</div>
-					<button type="submit" class="btn-callout">SEE MY RESULTS</button>
-				</div>
-			</div>
-		</form>
 	</section>
 	<footer class="primary-footer bg-black-1">
 		<nav class="primary-footer-nav">

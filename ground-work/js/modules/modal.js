@@ -85,28 +85,32 @@ groundWork.modules.modal = (function() {
 	-------------------------------------------------- */
 	
 	module.open = function(content, options, done) {
-		if(!module.locals.modal.container) {
-			var defaults = {
-				style : 'simple',
-				position :'bottom',
-				overlay : true,
-				width : 'auto',
-				height : 'auto',
-			}
-			// Set Default Options
-			if(typeof options == 'object') {
-				options.style = options.style ? options.style : defaults.style;
-				options.position = options.position ? options.position : defaults.position;
-				options.width = options.width ? options.width : defaults.width;
-				options.height = options.height ? options.height : defaults.height;
-			}else {
-				options = defaults;
-			}
+		// Set Default Options
+		var defaults = {
+			style : 'simple',
+			position :'bottom',
+			overlay : true,
+			width : 'auto',
+			height : 'auto',
+		}
 			
-			module.createModal(options.style + ' ' + options.position);
-			module.locals.modal.container.style.width = options.width;
-			module.locals.modal.container.style.height = options.height;
-			module.locals.modal.slides = [utils.dom.appendElement('div', content, 'modal-slide', module.locals.modal.content)];
+		if(typeof options == 'object') {
+			options.style = options.style ? options.style : defaults.style;
+			options.position = options.position ? options.position : defaults.position;
+			options.width = options.width ? options.width : defaults.width;
+			options.height = options.height ? options.height : defaults.height;
+		}else {
+			options = defaults;
+		}
+		if(!module.locals.modal.container || !options.slide) {
+			if(!module.locals.modal.container) {
+				module.createModal(options.style + ' ' + options.position);
+				module.locals.modal.container.style.width = options.width;
+				module.locals.modal.container.style.height = options.height;
+				module.locals.modal.slides = [utils.dom.appendElement('div', content, 'modal-slide', module.locals.modal.content)];
+			}else {
+				module.locals.modal.slides[0].innerHTML = content;
+			}
 			
 			if(options.overlay) {
 				utils.dom.addClass(document.body, 'is-overlay');
@@ -200,7 +204,7 @@ groundWork.modules.modal = (function() {
 	module.closeModal = function(element) {
 		utils.dom.removeClass(document.body, 'modal-open');	
 		utils.dom.removeClass(document.body, 'is-overlay');
-		utils.dom.removeClass(element, 'is-open');
+		utils.dom.removeClass(module.locals.modal.container, 'is-open');
 		
 		utils.dom.killElement(module.locals.modal.container, 300, false, function(){
 			module.locals.modal.container = false;

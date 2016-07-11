@@ -1,0 +1,29 @@
+// Columns
+@each $size, $colBreakpoints in $gridColumns {
+	
+	// Default Columns
+	%col-#{$size} {
+		@include col($colBreakpoints);	
+	}
+	
+	.col-#{$size} {
+		@extend %col-#{$size}
+	}
+	
+	// Defined Breakpoints
+	@for $i from 1 through length($colBreakpoints) {
+		$breakpoint: nth($colBreakpoints, $i);
+		$device: nth($breakpoint, 1);
+		$config: (
+			width: size(#{$size}),
+			device: $device,
+		);
+		%col-#{$device}-#{$size} {
+			@include col($config);	
+		}
+		.col-#{$device}-#{$size} {
+			@extend %col-#{$device}-#{$size}
+		}
+	}
+
+}

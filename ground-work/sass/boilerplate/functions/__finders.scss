@@ -13,7 +13,10 @@
 }
 
 @function color($name, $variant: null) {
-	@if ($variant != null) {
+	@if ($variant != null and type-of($variant) == 'number') {
+		$color : nth(map-get($colors, $name), $variant);
+		@return $color;
+	} @else if ($variant != null) {
 		$color : map-deep-get($colors, $name, $variant);
 		@return $color;
 	} @else {

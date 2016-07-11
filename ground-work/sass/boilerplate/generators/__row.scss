@@ -1,0 +1,28 @@
+//////////////////////////////////////////////////
+
+// Grid
+	// This loops through the theme defined maps, generates the classes, and runs it through the btn mixin
+
+//////////////////////////////////////////////////
+
+
+// Rows
+@each $size, $gutterSize in $gridRows {	
+	
+	// Rows with Gutters
+	%row-#{$size} {
+		@include row($gutterSize);	
+	}
+	.row-#{$size} {
+		@extend %row-#{$size};
+	}
+	
+	// Wrapping Rows with Gutters
+	%row-#{$size}-wrap {
+		@include row($gutterSize, $wrap: true);	
+	}
+	.row-#{$size}-wrap {
+		@extend %row-#{$size}-wrap;
+	}
+
+}

@@ -95,15 +95,15 @@ var groundWork = (function(){
 	
 })();
 groundWork.animate = {
-	slideDown : function(el, duration){
+	slideDown : function(el){
 		var height = el.scrollHeight;
-		groundWork.utils.removeClass(el, 'is-up');
-		groundWork.utils.addClass(el, 'is-down');
+		groundWork.utils.dom.removeClass(el, 'is-up');
+		groundWork.utils.dom.addClass(el, 'is-down');
 		
 		if(el.offsetHeight < 1) {
-			if(!groundWork.utils.hasClass(el, 'is-active')){
+			if(!groundWork.utils.dom.hasClass(el, 'is-active')){
 				setTimeout(function(){
-					groundWork.utils.addClass(el, 'is-active');
+					groundWork.utils.dom.addClass(el, 'is-active');
 					el.style.height = height + 'px';
 				}, 1);
 			}else{
@@ -111,81 +111,81 @@ groundWork.animate = {
 			}
 		}
 	},
-	slideUp : function(el, duration){
+	slideUp : function(el){
 		el.style.height = el.scrollHeight + 'px';
-		groundWork.utils.removeClass(el, 'is-down');
-		groundWork.utils.addClass(el, 'is-up');
+		groundWork.utils.dom.removeClass(el, 'is-down');
+		groundWork.utils.dom.addClass(el, 'is-up');
 		
-		if(!groundWork.utils.hasClass(el, 'is-active')){
+		if(!groundWork.utils.dom.hasClass(el, 'is-active')){
 			setTimeout(function(){
-				groundWork.utils.addClass(el, 'is-active');
+				groundWork.utils.dom.addClass(el, 'is-active');
 				el.style.height = '0';
 			}, 1);
 		}else{
 			el.style.height = '0';
 		}
 	},
-	slideToggle : function(el, callback){
+	slideToggle : function(el){
 		var height = el.scrollHeight;
 		el.style.height = el.offsetHeight + 'px';
 		
 		if(el.offsetHeight < 1) {
-			this.slideDown(el, duration);
+			this.slideDown(el);
 		}else {
-			this.slideUp(el, duration);
+			this.slideUp(el);
 		}
 	},
 	scrollTo : function(element, to, duration, callback) {
+	    element = document.documentElement.scrollTo ? document.documentElement : document.body;
 	    var start = element.scrollTop,
 	        change = to - start,
 	        currentTime = 0,
 	        increment = 20,
 	        timer;
-	    scrolling = true;
-		
+	    groundWork.trackers.scrolling = true;
 		if(typeof to !== 'number') {
-			var win_scroll = document.documentElement.scrollTop || document.body.scrollTop;
+			var win_scroll = window.scrollY;
 			var offset = element.getBoundingClientRect();
 			var to = start + offset.top - window.innerHeight;
 		}
 		
 	    var animateScroll = function(){
-		    if(stopscroll == true) {
-			    scrolling = false;
+		    if(groundWork.trackers.stopscroll == true) {
+			    groundWork.trackers.scrolling = false;
 			    if (callback) callback();
 		    }else {	      
 		        currentTime += increment;
 		        var val = Math.easeInOutCirc(currentTime, start, change, duration);
-		        if(element == 'body'){
-			        document.body.scrollTop = val;
-			        document.documentElement.scrollTop = val;
-		        }else{
-		        	element.scrollTop = val;
-		        }
+		        element.scrollTop = val;
 		        if(currentTime < duration) {
 		            timer = setTimeout(animateScroll, increment);
 		        }
 		        else{
-			        scrolling = false;
+			        groundWork.trackers.scrolling = false;
 			        if (callback) callback();
 		        }
 	        }
 	    };
-	    animateScroll();
+		animateScroll();
 	},
 	scrollToCenterOfEl : function(element, duration, callback) {
-		var win_scroll = document.documentElement.scrollTop || document.body.scrollTop;
+		var winH = window.innerHeight;
+		var body = document.documentElement.scrollTo ? document.documentElement : document.body
+		var win_scroll = body.scrollTop;
+		var height = element.offsetHeight;
 		var offset = element.getBoundingClientRect();
-		var to = win_scroll + offset.top - window.innerHeight/2;
+		var to = win_scroll + offset.top - winH/2 + height/2;
 		var speed = (Math.abs(win_scroll-to)/1000) * duration;
-		if(scrolling) {
-			stopscroll = true;
+		speed = speed < duration/2 ? duration/2 : speed;
+		to = height > window.winH ? win_scroll + offset.top + 100 : to;
+		if(groundWork.trackers.scrolling) {
+			groundWork.trackers.stopscroll = true;
 			window.setTimeout(function(){
-				stopscroll = false;
-				this.scrollTo('body', to, duration, callback);
+				groundWork.trackers.stopscroll = false;
+				this.scrollTo(body, to, speed, callback);
 			}, 30)
 		}else {
-			this.scrollTo('body', to, duration, callback);
+			this.scrollTo(body, to, speed, callback);
 		}
 	}
 }
@@ -715,13 +715,71 @@ groundWork.listenerManager = (function(){
 	
 })();
 
-groundWork.Validator = function(form, args) {
+groundWork.Validator = function(form, options) {
 	form = document.getElementById(form);
-	if (form) {
-		// My Privates
-		var self = this; // to reference this inside of event listener functions
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// Cache groundWork tools
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	
+	var createElement = groundWork.utils.dom.createElement;
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// Set Options
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 		
-		function getRadioCheckedValue(form, radio_name){
+	options = { // set default options
+		success : options.success ? options.success : function() { form.submit() },
+		fail : options.fail ?  options.fail : function(msg) { console.log(msg)},
+		rules : options.rules ? options.rules : false,
+		error_class : options.error_class ? options.error_class : 'is-error',
+		valid_class : options.valid_class ? options.valid_class : 'is-valid',
+		validHandler : options.validHandler && typeof options.validHandler == 'function' ? options.validHandler : function(el) {
+			el.parentNode.classList.remove(options.error_class);
+			el.parentNode.classList.add(options.valid_class);
+		},
+		errorHandler : options.errorHandler && typeof options.errorHandler == 'function'? options.errorHandler : function(el, message) {
+			el.parentNode.classList.remove(options.valid_class);
+			el.parentNode.classList.add(options.error_class);
+			var error_message = el.parentNode.querySelector('.field-tooltip');
+			if(error_message) error_message.innerHTML = message;
+			else createElement('div', message, 'field-tooltip', null, el.parentNode);
+		},
+	}
+	var self = this;
+	this.options = options;
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// Handler Functions
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	
+	function isValid(el){
+		self.options.validHandler(el);
+	}
+	
+	function isError(el, message){
+		self.options.errorHandler(el, message);
+		self.message.errors ++;
+		self.message.fields.push(message);
+		
+		el.addEventListener('input', validateField);
+	}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// If there is a form, init
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	
+	if (form) {
+				
+		this.el = form;
+		this.validate_fields = this.el.querySelectorAll('.validate');
+		this.message = {
+			errors : 0,
+			fields : []
+		};
+		
+		// My Privates
+		var getRadioCheckedValue = function(form, radio_name){
 		   var oRadio = form.els[radio_name];
 		 
 		   for(var i = 0; i < oRadio.length; i++)
@@ -735,309 +793,67 @@ groundWork.Validator = function(form, args) {
 		   return '';
 		}
 		
-		function validateEventHandler(event){
-			self.validateHandler(event.target)
-		}
-		
-						
-		function validateForm(event) {
-			if(event.target) event.preventDefault();
-			self.isValid = true;
-			self.message.errors = 0;
-			self.message.fields = [];
-			for (i = 0; i < self.validate_fields.length; i++) {
-				if (self.validateHandler(self.validate_fields[i])) {
-					continue;
-				}
-				
-				self.message.errors ++;
-				self.message.fields.push(self.validate_fields[i].getAttribute('data-message'));
-				self.isValid = false;
-			}
-			if (self.isValid) {
-				self.args.success(event);
-			} else {
-				if (form.querySelector('.is-error .field-el')) form.querySelector('.is-error .field-el').focus();
-				self.args.fail(self.message);
-			}
-			return false;
-		}
-		
-		// Public 
-		
-		this.args = { // set default args
-			success : args.success ? args.success : function() { form.submit() },
-			fail : args.fail ?  args.fail : function(msg) { console.log(msg)}
-		}
-		
-		this.el = form;
-		this.validate_fields = this.el.querySelectorAll('.validate');
-		this.message = {
-			errors : 0,
-			fields : []
-		};
-		
 		// Init
 		
-		for (i = 0; i < self.validate_fields.length; i++) {
-			var el = self.validate_fields[i],
+		for (i = 0; i < this.validate_fields.length; i++) {
+			var el = this.validate_fields[i],
 				method 	= el.getAttribute('data-validate'),
-				isError = el.parentNode.classList.contains('is-error');
-			if(isError) {
-				el.addEventListener('change', validateEventHandler);
+				errored = el.parentNode.classList.contains('is-error');
+			if(errored) {
+				el.addEventListener('change', validateField);
 			}
 		}
 		
-		form.addEventListener('submit', validateForm);
+		form.addEventListener('submit', function(e){ e.preventDefault(); validateForm(e)});
 	}
 	
-	this.validateMethods = { // private prop
-		required: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			var required = (el.hasAttribute('required') || el.hasAttribute('data-validate-required'));
-			if (required || val.length > 0) {
-				return true;
-			} else {
-				false;
-			}
-		},
-		isRequired : function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (val.length > 0 && val !== '') {
-				return true;
-			} else {
-				false;
-			}
-		},
-		isNumber : function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var re = /^[0-9.]+$/
-				var rslt = re.test(val);
-				return rslt;
-			}
-			else {
-				return true;
-			}
-		},
-		isEmail: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-				var rslt = re.test(val);
-				return rslt;
-			}
-			else {
-				return true;
-			}
-		},
-		isChecked: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				if (el.checked == true) {
-					return true;
-				} else {
-					el.focus();
-					return false;
-				}
-			} else {
-				return true;
-			}
-		},
-		isPhone: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var str = el.value;
-				var phone2 = /^(\+\d)*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2}(-{0,1}|\s{0,1})\d{2}$/;
-				if (str.match(phone2)) {
-					return true;
-				} else {
-					el.focus();
-					return false;
-				}
-			}
-		},
-		isFileExtension: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (validateMethods.required(event.target)) {
-				var alphaExp = /.*\.(gif)|(jpeg)|(jpg)|(png)$/;
-				if (el.value.toLowerCase().match(alphaExp)) {
-					return true;
-				} else {
-					return false;
-				}
-			} else {
-				return true;
-			}
-		},
-		isDate: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			var format = "MMDDYYYY";
-			if (self.validateMethods.required(el)) {
-				if (format == null) {
-					format = "MDY";
-				}
-				format = format.toUpperCase();
-				if (format.length != 3) {
-					format = "MDY";
-				}
-				if ((format.indexOf("M") == -1) || (format.indexOf("D") == -1) || (format.indexOf("Y") == -1)) {
-					format = "MDY";
-				}
-				if (format.substring(0, 1) == "Y") { // If the year is first
-					var reg1 = /^\d{2}(\-|\/|\.)\d{1,2}\1\d{1,2}$/;
-					var reg2 = /^\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}$/;
-				} else if (format.substring(1, 2) == "Y") { // If the year is second
-					var reg1 = /^\d{1,2}(\-|\/|\.)\d{2}\1\d{1,2}$/;
-					var reg2 = /^\d{1,2}(\-|\/|\.)\d{4}\1\d{1,2}$/;
-				} else { // The year must be third
-					var reg1 = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{2}$/;
-					var reg2 = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/;
-				}
-				// If it doesn't conform to the right format (with either a 2 digit year or 4 digit year), fail
-				if ((reg1.test(val) == false) && (reg2.test(val) == false)) {
-					return false;
-				}
-				var parts = val.split(RegExp.$1); // Split into 3 parts based on what the divider was
-				// Check to see if the 3 parts end up making a valid date
-				if (format.substring(0, 1) == "M") {
-					var mm = parts[0];
-				} else
-				if (format.substring(1, 2) == "M") {
-					var mm = parts[1];
-				} else {
-					var mm = parts[2];
-				}
-				if (format.substring(0, 1) == "D") {
-					var dd = parts[0];
-				} else
-				if (format.substring(1, 2) == "D") {
-					var dd = parts[1];
-				} else {
-					var dd = parts[2];
-				}
-				if (format.substring(0, 1) == "Y") {
-					var yy = parts[0];
-				} else
-				if (format.substring(1, 2) == "Y") {
-					var yy = parts[1];
-				} else {
-					var yy = parts[2];
-				}
-				if (parseFloat(yy) <= 50) {
-					yy = (parseFloat(yy) + 2000).toString();
-				}
-				if (parseFloat(yy) <= 99) {
-					yy = (parseFloat(yy) + 1900).toString();
-				}
-				var dt = new Date(parseFloat(yy), parseFloat(mm) - 1, parseFloat(dd), 0, 0, 0, 0);
-				if (parseFloat(dd) != dt.getDate()) {
-					return false;
-				}
-				if (parseFloat(mm) - 1 != dt.getMonth()) {
-					return false;
-				}
-				return true;
-			} else {
-				return true;
-			}
-		},
-		isDob : function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				if(validateMethods.isDate(el)) {
-					dob = new Date(val);
-					today = new Date();
-					today.setFullYear(today.getFullYear() - 5);
-					return dob < today;
-				}else {
-					return false;
-				}
-			} else {
-				return true;
-			}
-		},
-		isName: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var re = /^[A-Za-z0-9 ]{3,50}$/;
-				var rslt = re.test(val);
-				return rslt;
-			} else {
-				return true;
-			}
-		},
-		isPassword: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var re = /^(?=.*\d).{8,20}$/;
-				var rslt = re.test(val);
-				return rslt;
-			} else {
-				return true;
-			}
-		},
-		isUrl: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var re = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
-				var rslt = re.test(val);
-				return rslt;
-			} else {
-				return true;
-			}
-		},
-		isZip: function(el) {
-			el = (el.target) ? el.target : el;
-			var val = el.value;
-			if (self.validateMethods.required(el)) {
-				var re = /^\d{5}(?:[-\s]\d{4})?$/;
-				var rslt = re.test(val);
-				return rslt;
-			} else {
-				return true;
-			}
-		},
-		isMatch: function(el) {
-			el = (el.target) ? el.target : el;
-			var val 	= el.value,
-				match 	= document.getElementById(el.getAttribute('val-match')).value;
-			
-			if (val == match) {
-				return true;
-			}
-			else {
-				return false;
-			}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// Core Public Methods
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	
+	this.validateForm = function(el) {
+		if(el.target){
+			el.preventDefault();
+			el = el.target;
 		}
+		this.isValid = true;
+		this.message.errors = 0;
+		this.message.fields = [];
+		for (i = 0; i < this.validate_fields.length; i++) {
+			if (this.validateField(this.validate_fields[i])) {
+				continue;
+			}
+			this.isValid = false;
+		}
+		if (this.isValid) {
+			this.options.success(event);
+		} else {
+			if (form.querySelector('.is-error .field-element')) form.querySelector('.is-error .field-element').focus();
+			this.options.fail(this.message);
+		}
+		return false;
 	}
-
-	this.validateHandler = function(el) {
-		if(el.hasAttribute('data-depends')) {
+	
+	this.validateField = function(el) {
+		var el = el.target ? el.target : el,
+			value = el.value;
+			
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Check if element depends on another elements value or checkedness...
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		if(el.hasAttribute('validate-depends')) {
 			var el_value;
-			if(form.els[el.getAttribute('data-depends')].type == 'radio') {
-				el_value = getRadioCheckedValue(form, el.getAttribute('data-depends'));
+			if(form.els[el.getAttribute('validate-depends')].type == 'radio') {
+				el_value = getRadioCheckedValue(form, el.getAttribute('validate-depends'));
 			}else{
-				el_value = form.els[el.dataset.depends].value;
+				el_value = form.els[el.getAttribute('validate-depends')].value;
 			}
 			
-			if(el.hasAttribute('data-depends-value') && el_value !== el.getAttribute('data-depends-value')) {
+			if(el.hasAttribute('validate-depends-value') && el_value !== el.getAttribute('validate-depends-value')) {
 				el.parentNode.classList.remove('is-error');
 				el.parentNode.classList.remove('is-valid');
 				return true;
-				console.log(el_value);
 			}
 			if(el_value == '') {
 				el.parentNode.classList.remove('is-error');
@@ -1046,28 +862,268 @@ groundWork.Validator = function(form, args) {
 			}
 		}
 		
-		var method	= el.getAttribute('data-validate'),
-			message 	= el.getAttribute('data-message'),
-			parent_el	= el.parentNode,
-			required	= (el.hasAttribute('required') || el.hasAttribute('data-validate-required'));
-		method = (required && !method) ? 'isRequired' : method;
-		
-		if(method) {
-			if (self.validateMethods[method](el)) {
-				parent_el.classList.remove('is-error');
-				parent_el.classList.add('is-valid');
-				return true;
-			} else {
-				parent_el.classList.remove('is-valid');
-				parent_el.classList.add('is-error');
-				el.addEventListener('input', validateEventHandler);
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Check max character length
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		if(el.hasAttribute('data-max')) {
+			var max = Number(el.getAttribute('data-max'));
+			if(max < value.length){
+				isError(el);
 				return false;
 			}
-		} else {
-			return true;
 		}
+		
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Check min character length
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		if(el.hasAttribute('data-min')) {
+			var min = Number(el.getAttribute('data-min'));
+			if(min < value.length){
+				isError(el);
+				return false;
+			}
+		}
+		
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Cache validation methods and messages
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		var methods		= el.getAttribute('validate'),
+			message 	= el.getAttribute('validate-message'),
+			parent_el	= el.parentNode,
+			required	= el.hasAttribute('required'),
+			valid		= true;
+			
+		methods = (required && !methods) ? ['required'] : methods.replace(/\s/g,'').split(',');
+		required = !required ?  Array.prototype.indexOf('required', methods) : required;
+		
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+		// Iterate through the validation methods
+		// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+		
+		if(required || !required && value.length > 0) {
+			for (t = 0; t < methods.length; t++) { 
+				if(methods[t] && typeof this.validateMethods[methods[t]].validate == 'function') {
+					var valMethod = this.validateMethods[methods[t]];
+					if (valMethod.validate(value, el)) {
+						isValid(el);
+					} else {
+						isError(el, valMethod.message);
+						valid = false;
+						break;
+					}
+				}
+			}
+		}
+		return valid;
+	}
+	
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	// Bind this to event driven methods
+	// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+	
+	var validateForm = this.validateForm.bind(this),
+		validateField = this.validateField.bind(this);
+};
+
+groundWork.Validator.prototype.addMethod = function(name, method, message) {
+	groundWork.Validator.prototype.validateMethods[name] = {
+		validate : method,
+		message : message
 	}
 };
+
+groundWork.Validator.prototype.validateMethods = { // private prop
+	required: {
+		validate : function(val, el) {
+			if (val.length > 0) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		message : 'This field is required'
+	},
+	number : {
+		validate : function(val, el) {
+			var re = /^[0-9.]+$/
+			var rslt = re.test(val);
+			return rslt;
+		},
+		message : 'This field is required'
+	},
+	email: {
+		validate : function(val, el) {
+			var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+			var rslt = re.test(val);
+			return rslt;
+		},
+		message : 'Please input a valid email address'
+	},
+	checked: {
+		validate : 
+		function(val, el) {
+			if (el.checked == true) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		message : 'This field is required'
+	},
+	phone: {
+		validate : function(val, el) {
+			var phone2 = /^(\+\d)*\s*(\(\d{3}\)\s*)*\d{3}(-{0,1}|\s{0,1})\d{2}(-{0,1}|\s{0,1})\d{2}$/;
+			if (val.match(phone2)) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		message : 'This field is required'
+	},
+	fileExtension: {
+		validate : function(val, el) {
+			var alphaExp = /.*\.(gif)|(jpeg)|(jpg)|(png)$/;
+			if (el.value.toLowerCase().match(alphaExp)) {
+				return true;
+			} else {
+				return false;
+			}
+		},
+		message : 'This field is required'
+	},
+	date: {
+		validate : 
+		function(val, el) {
+			var format = "MMDDYYYY";
+			if (format == null) {
+				format = "MDY";
+			}
+			format = format.toUpperCase();
+			if (format.length != 3) {
+				format = "MDY";
+			}
+			if ((format.indexOf("M") == -1) || (format.indexOf("D") == -1) || (format.indexOf("Y") == -1)) {
+				format = "MDY";
+			}
+			if (format.substring(0, 1) == "Y") { // If the year is first
+				var reg1 = /^\d{2}(\-|\/|\.)\d{1,2}\1\d{1,2}$/;
+				var reg2 = /^\d{4}(\-|\/|\.)\d{1,2}\1\d{1,2}$/;
+			} else if (format.substring(1, 2) == "Y") { // If the year is second
+				var reg1 = /^\d{1,2}(\-|\/|\.)\d{2}\1\d{1,2}$/;
+				var reg2 = /^\d{1,2}(\-|\/|\.)\d{4}\1\d{1,2}$/;
+			} else { // The year must be third
+				var reg1 = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{2}$/;
+				var reg2 = /^\d{1,2}(\-|\/|\.)\d{1,2}\1\d{4}$/;
+			}
+			// If it doesn't conform to the right format (with either a 2 digit year or 4 digit year), fail
+			if ((reg1.test(val) == false) && (reg2.test(val) == false)) {
+				return false;
+			}
+			var parts = val.split(RegExp.$1); // Split into 3 parts based on what the divider was
+			// Check to see if the 3 parts end up making a valid date
+			if (format.substring(0, 1) == "M") {
+				var mm = parts[0];
+			} else
+			if (format.substring(1, 2) == "M") {
+				var mm = parts[1];
+			} else {
+				var mm = parts[2];
+			}
+			if (format.substring(0, 1) == "D") {
+				var dd = parts[0];
+			} else
+			if (format.substring(1, 2) == "D") {
+				var dd = parts[1];
+			} else {
+				var dd = parts[2];
+			}
+			if (format.substring(0, 1) == "Y") {
+				var yy = parts[0];
+			} else
+			if (format.substring(1, 2) == "Y") {
+				var yy = parts[1];
+			} else {
+				var yy = parts[2];
+			}
+			if (parseFloat(yy) <= 50) {
+				yy = (parseFloat(yy) + 2000).toString();
+			}
+			if (parseFloat(yy) <= 99) {
+				yy = (parseFloat(yy) + 1900).toString();
+			}
+			var dt = new Date(parseFloat(yy), parseFloat(mm) - 1, parseFloat(dd), 0, 0, 0, 0);
+			if (parseFloat(dd) != dt.getDate()) {
+				return false;
+			}
+			if (parseFloat(mm) - 1 != dt.getMonth()) {
+				return false;
+			}
+			return true;
+		},
+		message : 'This field is required'
+	},
+	dob : {
+		validate : function(val, el) {
+				if(validateMethods.isDate(el)) {
+					dob = new Date(val);
+					today = new Date();
+					today.setFullYear(today.getFullYear() - 5);
+					return dob < today;
+				}else {
+					return false;
+				}
+		},
+		message : 'This field is required'
+	},
+	name: {
+		validate : function(val, el) {
+			var re = /^[A-Za-z0-9 ]{3,50}$/;
+			var rslt = re.test(val);
+			return rslt;
+		},
+		message : 'This field is required'
+	},
+	password: {
+		validate : function(val, el) {
+			var re = /^(?=.*\d).{8,20}$/;
+			var rslt = re.test(val);
+			return rslt;
+		},
+		message : 'This field is required'
+	},
+	url: {
+		validate : function(val, el) {
+			var re = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
+			var rslt = re.test(val);
+			return rslt;
+		},
+		message : 'This field is required'
+	},
+	zip: {
+		validate : function(val, el) {
+			var re = /^\d{5}(?:[-\s]\d{4})?$/;
+			var rslt = re.test(val);
+			console.log(rslt)
+			return rslt;
+		},
+		message : 'This field is required'
+	},
+	match: {
+		validate : function(val, el) {
+			var match = document.getElementById(el.getAttribute('validate-match-value')).value;
+			
+			if (val == match) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		},
+		message : 'This field is required'
+	}
+}
 groundWork.components.dropUpload = function(selector, options) {
 	// - - - - - - - - - - - - - - - - - - - - - - - - 
 	// Cache GW utils
@@ -1457,9 +1513,11 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 	
 	if(!header) return null;
 	
-	headerHeight = header.offsetHeight;
-	negHeaderHeight = (headerHeight * -1);
-
+	var headerHeight = header.offsetHeight;
+	var negHeaderHeight = (headerHeight * -1);
+	
+	groundWork.trackers.header_transform = headerHeight + thisTransform;
+	
 	var lastTransform = 0;
 	var thisTransform = 0;
 	var lastScrollY = 0;
@@ -1476,12 +1534,13 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 		scrollingUp = (scrollDistance > 0);
 		scrollingDown = (scrollDistance < 0);
 		if(scrollY <= 0){
+			thisTransform = 0;
 			header.style.transform = 'translateY(0)';
 		}else if (scrollingDown) {
 			if (scrollY >= (scrollDownThreshold - (headerHeight / scrollSpeed))) {
 				if(scrollDistance > 5) scrollDistance = 10;
 				thisTransform = (scrollDistance * scrollSpeed) + lastTransform;
-				thisTransform = thisTransform >= negHeaderHeight ? thisTransform : negHeaderHeight;
+				thisTransform = Math.round(thisTransform >= negHeaderHeight ? thisTransform : negHeaderHeight);
 				header.style.transform = 'translateY(' + thisTransform + 'px)';
 			}
 			if (thisTransform <= (negHeaderHeight + 1)) {
@@ -1494,15 +1553,17 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 				tickerSum += scrollUpTicker[i];
 			}
 			if ((lastTransform + (scrollDistance * scrollSpeed)) >= 0) {
+				thisTransform = 0;
 				header.style.transform = 'translateY(' + 0 + 'px)';
 			} else if (tickerSum >= scrollUpThreshold || scrollY <= scrollDownThreshold || scrollY <= (headerHeight / scrollSpeed)) {
-				thisTransform = lastTransform + (scrollDistance * scrollSpeed);
+				thisTransform = Math.round(lastTransform + (scrollDistance * scrollSpeed));
 				header.style.transform = 'translateY(' + thisTransform + 'px)';
 			}
 		};
 
 		lastScrollY = scrollY;
 		lastTransform = thisTransform;
+		groundWork.trackers.header_transform = headerHeight + thisTransform;
 		tickerSum = 0;
 	};
 
@@ -2092,28 +2153,32 @@ groundWork.modules.modal = (function() {
 	-------------------------------------------------- */
 	
 	module.open = function(content, options, done) {
-		if(!module.locals.modal.container) {
-			var defaults = {
-				style : 'simple',
-				position :'bottom',
-				overlay : true,
-				width : 'auto',
-				height : 'auto',
-			}
-			// Set Default Options
-			if(typeof options == 'object') {
-				options.style = options.style ? options.style : defaults.style;
-				options.position = options.position ? options.position : defaults.position;
-				options.width = options.width ? options.width : defaults.width;
-				options.height = options.height ? options.height : defaults.height;
-			}else {
-				options = defaults;
-			}
+		// Set Default Options
+		var defaults = {
+			style : 'simple',
+			position :'bottom',
+			overlay : true,
+			width : 'auto',
+			height : 'auto',
+		}
 			
-			module.createModal(options.style + ' ' + options.position);
-			module.locals.modal.container.style.width = options.width;
-			module.locals.modal.container.style.height = options.height;
-			module.locals.modal.slides = [utils.dom.appendElement('div', content, 'modal-slide', module.locals.modal.content)];
+		if(typeof options == 'object') {
+			options.style = options.style ? options.style : defaults.style;
+			options.position = options.position ? options.position : defaults.position;
+			options.width = options.width ? options.width : defaults.width;
+			options.height = options.height ? options.height : defaults.height;
+		}else {
+			options = defaults;
+		}
+		if(!module.locals.modal.container || !options.slide) {
+			if(!module.locals.modal.container) {
+				module.createModal(options.style + ' ' + options.position);
+				module.locals.modal.container.style.width = options.width;
+				module.locals.modal.container.style.height = options.height;
+				module.locals.modal.slides = [utils.dom.appendElement('div', content, 'modal-slide', module.locals.modal.content)];
+			}else {
+				module.locals.modal.slides[0].innerHTML = content;
+			}
 			
 			if(options.overlay) {
 				utils.dom.addClass(document.body, 'is-overlay');
@@ -2207,7 +2272,7 @@ groundWork.modules.modal = (function() {
 	module.closeModal = function(element) {
 		utils.dom.removeClass(document.body, 'modal-open');	
 		utils.dom.removeClass(document.body, 'is-overlay');
-		utils.dom.removeClass(element, 'is-open');
+		utils.dom.removeClass(module.locals.modal.container, 'is-open');
 		
 		utils.dom.killElement(module.locals.modal.container, 300, false, function(){
 			module.locals.modal.container = false;
@@ -2620,6 +2685,47 @@ groundWork.modules.parallax = function(selector, options) {
 	window.addEventListener('optimizedScroll', parallaxScroll);
 	window.addEventListener('optimizedResize', init);
 }
+/*	======================================
+
+		Scroll Hash v1
+		
+		options :
+			navigation 	: String, default ".tab-nav", the selector for the navigation ul element.
+			next		: String, default ".tab-next", Selctor for the next button.
+			prev		: String, default ".tab-prev", Selctor for the prev button.
+		
+		methods :
+			Tabs.next()
+			Tabs.prev()
+		datasets :
+			data-url : If provided, url content will be loaded into tab when first activated
+
+========================================== */
+
+groundWork.modules.scrollHash = function(selector, speed){
+	
+	speed = speed || 600;
+	// - - - - - - - - - - - - - - - - - - - -
+	// Create Handlers
+	// - - - - - - - - - - - - - - - - - - - -
+	
+	function scrollHandler(e) {
+		e.preventDefault();
+		console.log(e);
+		var target = document.querySelector(e.target.getAttribute('href'));
+		if(target) {
+			history.pushState(e.target.getAttribute('href'), "page 2", e.target.getAttribute('href'));
+			groundWork.animate.scrollToCenterOfEl(target, speed);
+		}
+	}
+	
+	// - - - - - - - - - - - - - - - - - - - -
+	// Add handlers
+	// - - - - - - - - - - - - - - - - - - - -
+	
+	groundWork.listenerManager.bind([selector, function(el) { el.addEventListener('click', scrollHandler)}]);
+	
+};
 groundWork.modules.selectButton = function selectButton(selector, options){
 	var self = this;
 	var elements = document.querySelectorAll(selector);
@@ -2642,6 +2748,21 @@ groundWork.modules.selectButton = function selectButton(selector, options){
 		var label = element.parentNode.querySelector('.title');
 		label.innerHTML = title;
 	}
+}
+groundWork.modules.selectList = function(selector, options){
+	
+	function selectHandler(e) {
+		e.preventDefault();
+		var el = e.currentTarget,
+			active = el.parentNode.querySelectorAll('.is-active');
+			console.log(active);
+		if(active.length) groundWork.utils.dom.removeClass(active,'is-active');
+		groundWork.utils.dom.addClass(el, 'is-active');
+	}
+	
+	groundWork.listenerManager.bind([selector + ' > *', function(el) {
+		el.addEventListener('click', selectHandler);
+	}]);
 }
 /*	======================================
 
@@ -3201,6 +3322,7 @@ groundWork.modules.Sticky = function Sticky(el, options) {
 	
 	var dom = groundWork.utils.dom,
 		els = document.querySelectorAll(el);
+		winH = window.innerHeight;
 	
 	// - - - - - - - - - - - - - - - - - - - - - - - -
 	// Cache and bind constructor functions
@@ -3218,6 +3340,9 @@ groundWork.modules.Sticky = function Sticky(el, options) {
 		var el = els[i];
 		var item_offset = dom.cumulativeOffset(el);
 		var el_obj = { el : el, offset : item_offset};
+		
+		el.style.paddingTop = groundWork.trackers.header_transform + 'px';
+		
 		if(el.hasAttribute('data-contain')){
 			var container = document.getElementById((el.getAttribute('data-contain')));
 			var container_offset = dom.cumulativeOffset(container);
@@ -3231,8 +3356,8 @@ groundWork.modules.Sticky = function Sticky(el, options) {
 	
 	var headerHeight = document.querySelector('.js-header');
 	
-	document.addEventListener('scroll', makeSticky);
-	document.addEventListener('resize', resizeSticky);
+	window.addEventListener('optimizedScroll', makeSticky);
+	window.addEventListener('optimizedResize', resizeSticky);
 }
 
 
@@ -3244,12 +3369,14 @@ groundWork.modules.Sticky.prototype.resizeSticky = function(){
 	
 	var dom = groundWork.utils.dom;
 	
+	winH = window.innerHeight;
+	
 	for(i=0; i < this.els.length; i++) {
 		var item = this.els[i];
-		item.offset = dom.cumulativeOffset(el);
-		if(item.hasAttribute('data-contain')){
+		item.offset = dom.cumulativeOffset(item.el);
+		if(item.el.hasAttribute('data-contain')){
 			var container_offset = dom.cumulativeOffset(item.container);
-			var stop = container_offset.top + item.container.offsetHeight - el.offsetHeight;
+			var stop = container_offset.top + item.container.offsetHeight - item.el.offsetHeight;
 			item.container_offset = item.container_offset;
 			item.stop = stop;
 		}
@@ -3275,14 +3402,27 @@ groundWork.modules.Sticky.prototype.makeSticky = function(event) {
 			if(scroll_pos > item.container_offset.top && scroll_pos < item.stop) {
 				if(!item.el.classList.contains('stickied')){
 					item.el.style.width = item.el.offsetWidth + 'px';
+					item.el.style.bottom = '';
+					item.el.style.position = '';
 					dom.addClass(item.el, 'stickied');
 				}
 			}
-			else{
+			else if(scroll_pos + winH >= item.stop){
 				if(item.el.classList.contains('stickied')){
-					container.style.paddingTop = '';
+					item.container.style.paddingTop = '';
 					dom.removeClass(item.el, 'stickied');
 					item.el.style.top = '';
+					item.el.style.bottom = '0';
+					item.el.style.position = 'absolute';
+					item.el.style.width = ''
+				}
+			}else {
+				if(item.el.classList.contains('stickied')){
+					item.container.style.paddingTop = '';
+					dom.removeClass(item.el, 'stickied');
+					item.el.style.top = '';
+					item.el.style.bottom = '';
+					item.el.style.position = '';
 					item.el.style.width = ''
 				}
 			}
@@ -4968,56 +5108,49 @@ var ypi = (function(){
 		scrollSpeed: .5
 	});
 	
+	//- Sticky
+	var stickies = new groundWork.modules.Sticky('.sticky');
+	
+	// Scroll Hash
+	groundWork.modules.scrollHash('.scroll-to');
+	
+	// Select List
+	groundWork.modules.selectList('.select-list');
+	
+	
+	// animate color sections
+	var animateColor = new groundWork.modules.AnimateColor('.animate-color', {
+		threshhold : 210,
+		saturation : -15,
+		lightness : 100,
+		in : function(el, change) {
+			var img = el.querySelector('img');
+			if(img){
+				console.log(1 - (0.45 * (1-change)))
+				img.style.transform = 'scale(' + Number( 1 - (0.15 * (1-change))) +')';
+				img.style.opacity = change;
+			}
+		},
+		out : function(el, change) {
+			var img = el.querySelector('img');
+			if(img){
+				img.style.transform = 'scale(' + Number(1 +  (0.15 * change)) +')';
+				img.style.opacity = 1 - change;
+			}
+		}
+	});
+	
+	// Parallaxification
+	groundWork.modules.parallax('.parallax', {intensity : 0.1});
+	
 	
 	//- - - - - - - - - - - - - - - - - - - - - - - -
 	//	Create applicating schema
 	//- - - - - - - - - - - - - - - - - - - - - - - -
 	
+	
 	var ypi = {		
 		home : function(){
-			
-			// - - - - - - - - - - - - - - - - - - - - - -
-			// Cache ground work functions
-			// - - - - - - - - - - - - - - - - - - - - - -
-		
-			var Validator = groundWork.Validator,
-				modal = groundWork.modules.modal;
-			
-			// - - - - - - - - - - - - - - - - - - - - - -
-			// Instantiate
-			// - - - - - - - - - - - - - - - - - - - - - -
-	
-			var animateColor = new groundWork.modules.AnimateColor('.animate-color', {
-				threshhold : 210,
-				saturation : -15,
-				lightness : 100,
-				in : function(el, change) {
-					var img = el.querySelector('img');
-					if(img){
-						console.log(1 - (0.45 * (1-change)))
-						img.style.transform = 'scale(' + Number( 1 - (0.15 * (1-change))) +')';
-						img.style.opacity = change;
-					}
-				},
-				out : function(el, change) {
-					var img = el.querySelector('img');
-					if(img){
-						img.style.transform = 'scale(' + Number(1 +  (0.15 * change)) +')';
-						img.style.opacity = 1 - change;
-					}
-				}
-			});
-			groundWork.modules.parallax('.parallax', {intensity : 0.1});
-			
-			var sign_up_form = document.getElementById('singup-form');
-				var validateForm = new Validator('singup-form', {
-		      	success : function(event) { window.location = 'register.html' },
-		      	fail	: function(err) { err.fields.forEach(function(err, i){ modal.toast(err, 3000 * i)});},
-	      	});
-			var validateForm2 = new Validator('singup-form-2', {
-	      		success : function(event) { window.location = 'register.html' },
-	      		fail	: function(err) { err.fields.forEach(function(err, i){ modal.toast(err, 3000 * i)});},
-	      	});
 		},
 	};
 	

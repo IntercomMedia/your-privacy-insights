@@ -14,7 +14,8 @@ var source = require('vinyl-source-stream'),
     postcss      = require('gulp-postcss'),
     sourcemaps   = require('gulp-sourcemaps'),
     autoprefixer = require('autoprefixer'),
-	cssnano 	= require('cssnano');
+	cssnano 	= require('cssnano'),
+	rename = require("gulp-rename");
 
 gulp.task('js', function(){
     return gulp.src([
@@ -48,8 +49,9 @@ gulp.task('css', ['sass'], function () {
 // Compile sass files
 var sass = require('gulp-sass');
 gulp.task('sass', function () {
-  return gulp.src('sass/main.scss')
+  return gulp.src('sass/config.scss')
     .pipe(sass().on('error', sass.logError))
+    .pipe(rename('main.css'))
     .pipe(gulp.dest('../public/styles/'));
 });
 

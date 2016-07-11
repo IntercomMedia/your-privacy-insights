@@ -23,9 +23,11 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 	
 	if(!header) return null;
 	
-	headerHeight = header.offsetHeight;
-	negHeaderHeight = (headerHeight * -1);
-
+	var headerHeight = header.offsetHeight;
+	var negHeaderHeight = (headerHeight * -1);
+	
+	groundWork.trackers.header_transform = headerHeight + thisTransform;
+	
 	var lastTransform = 0;
 	var thisTransform = 0;
 	var lastScrollY = 0;
@@ -42,12 +44,13 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 		scrollingUp = (scrollDistance > 0);
 		scrollingDown = (scrollDistance < 0);
 		if(scrollY <= 0){
+			thisTransform = 0;
 			header.style.transform = 'translateY(0)';
 		}else if (scrollingDown) {
 			if (scrollY >= (scrollDownThreshold - (headerHeight / scrollSpeed))) {
 				if(scrollDistance > 5) scrollDistance = 10;
 				thisTransform = (scrollDistance * scrollSpeed) + lastTransform;
-				thisTransform = thisTransform >= negHeaderHeight ? thisTransform : negHeaderHeight;
+				thisTransform = Math.round(thisTransform >= negHeaderHeight ? thisTransform : negHeaderHeight);
 				header.style.transform = 'translateY(' + thisTransform + 'px)';
 			}
 			if (thisTransform <= (negHeaderHeight + 1)) {
@@ -60,15 +63,17 @@ groundWork.modules.AnimateHeader = function AnimateHeader(id, options) {
 				tickerSum += scrollUpTicker[i];
 			}
 			if ((lastTransform + (scrollDistance * scrollSpeed)) >= 0) {
+				thisTransform = 0;
 				header.style.transform = 'translateY(' + 0 + 'px)';
 			} else if (tickerSum >= scrollUpThreshold || scrollY <= scrollDownThreshold || scrollY <= (headerHeight / scrollSpeed)) {
-				thisTransform = lastTransform + (scrollDistance * scrollSpeed);
+				thisTransform = Math.round(lastTransform + (scrollDistance * scrollSpeed));
 				header.style.transform = 'translateY(' + thisTransform + 'px)';
 			}
 		};
 
 		lastScrollY = scrollY;
 		lastTransform = thisTransform;
+		groundWork.trackers.header_transform = headerHeight + thisTransform;
 		tickerSum = 0;
 	};
 

@@ -43,7 +43,7 @@
 		padding: 0 baseline(map-get($config, padding));
 	}
 	@if map-get($config, type-style) {
-		@include type-style(map-get($typoBody, #{map-get($config, type-style)}), $typeset: false);
+		@include type-style(map-get($type-styles, #{map-get($config, type-style)}), $typeset: false);
 	}
 	@if map-get($config, border-size) {
 		border-color: map-get($config, border-color);
@@ -175,7 +175,7 @@
 		bottom: 0;
 		height: line(s);
 		width: 100%;
-		background: color('white', 3);
+		background: color('white', 3);;
 		transition: all 0.2s;
 	}
 	
@@ -184,6 +184,7 @@
 		left: 50%;
 		transform: translateX(-50%);
 	}
+
 	
 	& > label{
 		display: block;
@@ -197,7 +198,7 @@
 	label.is-active,
 	&.is-filled label,
 	&.is-focused label {
-		color: color('black', 2);	
+		color: color('black', 2);
 		transform: scale(0.9) translate3d(0, baseline(0.5), 0);
 		
 	}
@@ -212,17 +213,33 @@
 	&.is-focused.is-valid::after,
 	&.is-valid::after {
 		width: 100%;
-		background: color('success');
+		background: color(success);
 	}
 	
 	&.is-filled.is-error::after,
 	&.is-focused.is-error::after,
 	&.is-error::after {
 		width: 100%;
-		background: color('danger');
+		background: color(danger);
 	}
 	
-	.icon {
+	.field-select-icon {
+		position: absolute;
+		top: 50%;
+		right: baseline(1);
+		font-size: baseline(1);
+		transform: translateY(-50%);
+		transition : opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+		color: color(neutral, 1);
+		z-index: -1;
+	}
+	
+	&.is-focused .field-select-icon {
+		transform: translateY(-45%);
+		color: color(primary, 1);
+	}
+	
+	.field-icon {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -231,31 +248,51 @@
 		opacity: 0;
 		transform: translateY(baseline(-1/2));
 		visibility: hidden;
-		transition : opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease
+		transition : opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
 	}
 	
-	&.is-error .icon,
-	&.is-valid .icon {
+	&.is-error .field-icon,
+	&.is-valid .field-icon {
 		opacity: 1;
 		transform: translateY(0);
 		visibility: visible;
 	}
 	
-	&.is-error .icon::after {
+	&.is-error .field-icon::after {
 		content: '\f05c';
 		position: absolute;
 		top: baseline(1);
 		right: 0;
 		transform: translate3d(-50%, -50%, 0);
-		color: color('primary', 1);
+		color: color(primary,1);
 	}
 	
-	&.is-valid .icon::after {
+	&.is-valid .field-icon::after {
 		content: '\f05d';
 		position: absolute;
 		top: baseline(1);
 		transform: translate3d(-50%, -50%, 0);
-		color: color('tertiary', 1);
+		color: color(tertiary, 1);
+	}
+	
+	.field-tooltip {
+		position: absolute;
+		left: 50%;
+		top:90%;
+		padding: size(s);
+		color: color('white', 1);
+		background: color('black', 1);
+		transition : transition(all);
+		transform: translateX(-50%);
+		opacity: 0;
+		visibility: hidden;
+		z-index: 10;
+	}
+	
+	&.is-error.is-focused .field-tooltip {
+		top:100%;
+		opacity: 1;
+		visibility: visible;
 	}
 }
 

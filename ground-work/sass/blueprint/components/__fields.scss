@@ -16,6 +16,18 @@
 	@include field;
 	position: relative;
 	width: 100%;
+	
+	.field-tooltip {
+		width: 100%;
+		top: auto;
+		bottom: 90%;
+		text-align: center;
+	}
+	
+	&.is-error.is-focused .field-tooltip {
+		top: auto;
+		bottom: 100%;
+	}
 }
 
 //////////////////////////////////////////////////
@@ -41,7 +53,7 @@
 .field-long {
 	@include field;
 	width: 100%;
-	border-right: line(s) solid color('white', 1);
+	border-right: line(s) solid color('white', 3);
 	
 	input[type="*"] {
 		padding: 0 baseline(1/2);
