@@ -26,7 +26,6 @@
 	margin-top: 0;
 	
 	@if $typeset == true {
-		
 		$capHeight: map-get(map-get($config, font-base), 'cap-height');
 		$lineHeight: 0;
 		

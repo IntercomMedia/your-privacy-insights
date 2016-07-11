@@ -1,3 +1,5 @@
+@import 'config.scss';
+
 //////////////////////////////////////////////////
 
 // Prerequisite
@@ -15,14 +17,14 @@
 // App
 
 //////////////////////////////////////////////////
-@import 'app/maps/__colors.scss';
-@import 'app/maps/__sizes.scss';
-@import 'app/maps/__fonts.scss';
-@import 'app/maps/__layers.scss';
-@import 'app/maps/__depths.scss';
-@import 'app/maps/__spaces.scss';
-@import 'app/maps/__transitions.scss';
-@import 'app/maps/__buttons.scss';
+@import 'app/library/__colors.scss';
+@import 'app/library/__sizes.scss';
+@import 'app/library/__fonts.scss';
+@import 'app/library/__layers.scss';
+@import 'app/library/__depths.scss';
+@import 'app/library/__spaces.scss';
+@import 'app/library/__transitions.scss';
+@import 'app/library/__buttons.scss';
 
 //////////////////////////////////////////////////
 

@@ -49,7 +49,7 @@ gulp.task('css', ['sass'], function () {
 // Compile sass files
 var sass = require('gulp-sass');
 gulp.task('sass', function () {
-  return gulp.src('sass/config.scss')
+  return gulp.src('sass/index.scss')
     .pipe(sass().on('error', sass.logError))
     .pipe(rename('main.css'))
     .pipe(gulp.dest('../public/styles/'));

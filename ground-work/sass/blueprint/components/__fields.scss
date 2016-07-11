@@ -12,7 +12,7 @@
 //////////////////////////////////////////////////
 
 .field-callout {
-	@include box-style($background: color('white', 1));
+	@include box-style($background: color(light, 1));
 	@include field;
 	position: relative;
 	width: 100%;
@@ -37,7 +37,7 @@
 //////////////////////////////////////////////////
 
 .field-short {
-	@include box-style($background: color('white', 2));
+	@include box-style($background: color(light, 2));
 	@include field;
 	margin-bottom: size(s);
 	position: relative;
@@ -53,7 +53,7 @@
 .field-long {
 	@include field;
 	width: 100%;
-	border-right: line(s) solid color('white', 3);
+	border-right: line(s) solid color(light, 3);
 	
 	input[type="*"] {
 		padding: 0 baseline(1/2);
@@ -64,7 +64,7 @@
 	}
 	
 	&.multi-select-field select {
-		border: color('white', 3) solid line(s);
+		border: color(light, 3) solid line(s);
 		width: auto;
 		height: size(m);
 		display: inline-block;

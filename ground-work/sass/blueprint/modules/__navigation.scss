@@ -76,7 +76,7 @@
 			width: baseline(3/4);
 			background: color('primary', 1);
 			border-radius: baseline(1/2);
-			color: color('white', 1);
+			color: color(light, 1);
 			line-height: baseline(3/4);
 		}
 
@@ -126,7 +126,7 @@
 				height: auto;
 				transform: translateX(-50%);
 				opacity: 0;
-				background: color('white', 1);
+				background: color(light, 1);
 			}
 
 			&:hover .place-nav {
@@ -146,7 +146,7 @@
 				width: baseline(3/4);
 				background: color('secondary', 1);
 				border-radius: baseline(1/2);
-				color: color('white', 1);
+				color: color(light, 1);
 				line-height: baseline(3/4);
 				margin: baseline(1/8);
 			}

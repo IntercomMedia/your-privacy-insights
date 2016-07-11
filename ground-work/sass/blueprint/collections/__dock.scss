@@ -29,7 +29,7 @@
 	}
 
 	a {
-		color: color('white', 1);
+		color: color(light, 1);
 	}
 	
 	.mega-nav {
@@ -55,7 +55,7 @@
 				width: 0%;
 				transform: translateX(-50%);
 				height: 3px;
-				background: color('white', 1);
+				background: color(light, 1);
 				transition: .35s;
 			}
 		}

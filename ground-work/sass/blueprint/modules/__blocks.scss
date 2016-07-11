@@ -1,11 +1,11 @@
 .nametag {
-	@include box-style($background: color('white', 3), $color: color('black', 1), $corners: size(s));
+	@include box-style($background: color(light, 3), $color: color(dark, 1), $corners: size(s));
 	padding: size(m);
 	white-space: nowrap;
 }
 
 .chip {
-	@include box-style($background: color('white', 3), $color: color('black', 1), $corners: size(s));
+	@include box-style($background: color(light, 3), $color: color(dark, 1), $corners: size(s));
 	padding: size(m);
 	white-space: nowrap;
 }
@@ -70,12 +70,12 @@
 	position: relative;
 	@include border-style($size: line(l), $color: color('primary', 1), $position: left);
 	padding: size(s);
-	outline: solid line(xs) color('white', 3);
+	outline: solid line(xs) color(light, 3);
 	margin-bottom: size(m);
 }
 
 .snippet {
-	outline: solid line(xs) color('white', 3);
+	outline: solid line(xs) color(light, 3);
 	margin-bottom: size(m);
 	position: relative;
 	.snippet-title {
@@ -94,7 +94,7 @@
 }
 
 .console {
-	@include box-style($background: color('black', 1));
+	@include box-style($background: color(dark, 1));
 	padding: size(s);
 	overflow: scroll;
 	max-height: baseline(9); // This shows 8 lines in the console

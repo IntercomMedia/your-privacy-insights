@@ -7,7 +7,7 @@
 //////////////////////////////////////////////////
 
 
-@each $type, $typoProperties in $type-styles {
+@each $type, $typoProperties in $typography {
 	%#{$type} {
 		@include type-style($typoProperties);
 	}

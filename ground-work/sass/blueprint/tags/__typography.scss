@@ -43,7 +43,7 @@ article {
 }
 
 body {
-	@include type-style(map-get($type-styles, body));
+	@include type-style(map-get($typography, body));
 	padding-top: 0;
 	margin-bottom: 0;
 }
@@ -162,13 +162,13 @@ q {
 
 // Code (Can go into 'pre' for console effect)
 code {
-	@include type-style(map-get($typoInline, code));
+	@include type-style(map-get($typography, code));
 }
 
 // Keyboard
 kbd {
-	@include type-style(map-get($typoInline, code));
-	@include box-style($corners: size(xs), $background: color('white', 2));
+	@include type-style(map-get($typography, code));
+	@include box-style($corners: size(xs), $background: color(light, 2));
 	padding: 0 size(xs);
 }
 

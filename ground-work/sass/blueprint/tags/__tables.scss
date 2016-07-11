@@ -20,11 +20,11 @@ thead {
 tbody {
 	tr {
 		&:nth-child(odd) {
-			background: color('white', 2);
+			background: color(light, 2);
 		}
 		&:hover {
-			background: color('black', 1);
-			color: color('white', 1);
+			background: color(dark, 1);
+			color: color(light, 1);
 		}
 	}
 }

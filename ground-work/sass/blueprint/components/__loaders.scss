@@ -2,7 +2,7 @@
 	> div {
 		padding: size(l);
 		&:nth-child(odd) {
-			background: color('white', 2);
+			background: color(light, 2);
 		}
 	}
 }
@@ -125,7 +125,7 @@
 		transform: translateY(-50%);
 		&:first-child {
 			.icon-circle {
-				stroke: color('white', 3);
+				stroke: color(light, 3);
 			}
 		}
 		.icon-circle {
@@ -167,7 +167,7 @@
 		transform: translateY(-50%);
 		&:first-child {
 			.icon-circle {
-				stroke: color('white', 3);
+				stroke: color(light, 3);
 			}
 		}
 		.icon-circle {

@@ -4,15 +4,15 @@
 
 .toolbar_wrapper {
 	width: 100%;
-	background: color('black', 1);
-	color: color('white', 1);
+	background: color(dark, 1);
+	color: color(light, 1);
 	cursor: pointer;
 	opacity: 0;
 	transition: transition(opacity);
 	.toolbar_item {
 		text-align: center;
 		&:hover {
-			background: color('black', 3);
+			background: color(dark, 3);
 		}
 	}
 }
@@ -20,5 +20,5 @@
 .player {
 	width: 100%;
 	height: size(l);
-	background: color('black', 1);
+	background: color(dark, 1);
 }

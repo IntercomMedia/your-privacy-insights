@@ -1,82 +1,56 @@
 //////////////////////////////////////////////////
 
 // Button
-	// -global button
-	// @param : Width of Element
-	// @param : Height of element
-	// @param : Optional Transition
+	// Input
+		// type-style : string
+		// caps : boolean
+		// height : size($key)
+		// width : size($key)
+		// padding : size($key)
+		// color : color($key)
+		// background-color : color($key)
+		// border-size : size($key)
+		// border-color : color($key)
+		// border-radius : size($key)
+		// depth : depth($key)
+		// transition : transition($key)
+		// cursor : css value
+	// Output
+		// .btn-[type]-[variation]
 
 //////////////////////////////////////////////////
 
-@mixin btn($typeProperties, $variationProperties, $hoverProperties) {
-	// Map Defaults
-	$config: map-merge(
-		map-merge((
-		height: null,
-		width: null,
-		type-style: p,
-		transition: null,
-		caps: false,
-		padding: 1,
-		background: null,
-		cursor: pointer,
-		color: null,
-		corners: null,
-		border-size: null,
-		border-color: null,
-	), $typeProperties), $variationProperties);
+@mixin btn($properties, $defaults : false) {
 	
-	// Defaults
-	display: inline-flex;
-	vertical-align: middle;
-	align-items: center;
-	justify-content: center;
-	height: map-get($config, height);
-	width: map-get($config, width);
-	text-align: center;
-	transition: map-get($config, transition);
-	text-decoration: none;
-	line-height: 1;
+	@if type-of($defaults) == map{
+		$defaults: map-merge((
+			padding: 0 map-get($properties, height)/2),
+			$defaults);
+	}
 	
-	// Conditionals
-	@if map-get($config, padding) {
-		padding: 0 baseline(map-get($config, padding));
-	}
-	@if map-get($config, type-style) {
-		@include type-style(map-get($type-styles, #{map-get($config, type-style)}), $typeset: false);
-	}
-	@if map-get($config, border-size) {
-		border-color: map-get($config, border-color);
-		border-width: map-get($config, border-size);
-		border-style: solid;
-	} @else {	
-		line-height: map-get($config, height);
-	}
-	@if map-get($config, background) or map-get($config, color) or map-get($config, corners) or map-get($config, depth){
-		@include box-style($background: map-get($config, background), $color: map-get($config, color), $corners: map-get($config, corners), $depth: map-get($config, depth));
-	}
-	@if map-get($config, caps) == true {
-		text-transform: uppercase;
-	}
-	@if map-get($config, cursor) {
-		cursor: map-get($config, cursor);
-	}
-
-	&:hover {
-		@if map-get($hoverProperties, border-size) {
-			@include border-style($size: map-get($hoverProperties, border-size));
-		}
-		@if map-get($hoverProperties, background) or map-get($hoverProperties, color) {
-			@include box-style($background: map-get($hoverProperties, background), $color: map-get($hoverProperties, color));
-		}
-		@if map-get($hoverProperties, border-color)  {
-			$border-color: map-get($hoverProperties, border-color);
-			border-color: $border-color;
+	// Output styles from map.
+	@include output($properties, $defaults);
+	
+	// Ouput hover
+	@if map-has-key($properties, hover) {
+		&:hover {	
+			$hover: map-get($properties, hover);
+			@include output($hover);
 		}
 	}
-
-	&.disabled {
-		cursor: none;
+	
+	// Output States
+	@if map-has-key($properties, states) {
+		@each $key, $val in map-get($properties, states) {
+			&.#{$key} {
+				@include btn($val);
+			}
+			@if map-has-key($properties, hover) == false {
+				&:hover {
+					@include output($val);
+				}
+			}
+		}
 	}
 }
 
@@ -89,7 +63,7 @@
 
 //////////////////////////////////////////////////
 
-@mixin tool-tip($position: top, $transition: none, $background: color('black', 3), $color: color('white', 1)) {
+@mixin tool-tip($position: top, $transition: none, $background: color(dark, 3), $color: color(light, 1)) {
 	> span {
 		background: $background;
 		color: $color;
@@ -175,7 +149,7 @@
 		bottom: 0;
 		height: line(s);
 		width: 100%;
-		background: color('white', 3);;
+		background: color(light, 3);;
 		transition: all 0.2s;
 	}
 	
@@ -198,7 +172,7 @@
 	label.is-active,
 	&.is-filled label,
 	&.is-focused label {
-		color: color('black', 2);
+		color: color(dark, 2);
 		transform: scale(0.9) translate3d(0, baseline(0.5), 0);
 		
 	}
@@ -206,7 +180,7 @@
 	&.is-filled::after,
 	&.is-focused::after {
 			width: 100%;
-			background: color('black', 2);
+			background: color(dark, 2);
 	}
 	
 	&.is-filled.is-valid::after,
@@ -280,8 +254,8 @@
 		left: 50%;
 		top:90%;
 		padding: size(s);
-		color: color('white', 1);
-		background: color('black', 1);
+		color: color(light, 1);
+		background: color(dark, 1);
 		transition : transition(all);
 		transform: translateX(-50%);
 		opacity: 0;

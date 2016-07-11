@@ -1,7 +1,7 @@
 @function shadify($base, $count, $change) {
-	$shades: ('1' : $base);
+	$shades: (1 : $base);
 	@for $i from 1 through $count {
-		$shades : map-merge($shades, ("dark-#{$i}" : darken($base, $change * $i)));
+		$shades : map-merge($shades, ($i+1 : darken($base, $change * $i)));
 	}
 	@for $i from 1 through $count {
 		$shades : map-merge($shades, ("light-#{$i}" : lighten($base, $change * $i)));

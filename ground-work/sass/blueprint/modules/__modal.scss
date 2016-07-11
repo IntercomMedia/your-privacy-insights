@@ -7,9 +7,9 @@
 	position: fixed;
 	max-width: 90vw;
 	opacity: 0;
-	background: color('white', 1);
+	background: color(light, 1);
 	box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
-	background: color('white', 1);
+	background: color(light, 1);
 	z-index: layer(tippy-top);
 	box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
 	overflow: hidden;
@@ -50,7 +50,7 @@
 	}
 	
 	&.loading {
-		background-color: color('black', 1);
+		background-color: color(dark, 1);
 		background-image: url(../images/loader.svg);
 	}
 	
@@ -98,8 +98,8 @@
 	right: 0;
 	height: baseline(1.5);
 	width: baseline(1.5);
-	background: color('black', 1);
-	color: color('white', 1);
+	background: color(dark, 1);
+	color: color(light, 1);
 	text-align: center;
 	line-height: baseline(1.5);
 	&::after {
@@ -136,7 +136,7 @@
 	top: 50%;
 	left: 50%;
 	background-color: color('neutral', 3);
-	color: color('white', 2);
+	color: color(light, 2);
 	opacity: 0;
 	text-align: center;
 	z-index: layer(tippy-top);
@@ -160,7 +160,7 @@
 	
 	.dialog-btn-alt {
 		border-color: rgba(0,0,0,0.5);
-		color: color('white', 1);
+		color: color(light, 1);
 		width: baseline(5);
 		margin: 0 baseline(1/2);
 	}
@@ -169,11 +169,11 @@
 		border-radius: baseline(1/2)  baseline(1/2) 0 0;
 		line-height: baseline(1.5);
 		margin: baseline(-1) baseline(-1) baseline(1/2) baseline(-1);
-		background: color('black', 3);
+		background: color(dark, 3);
 	}
 	
 	input {
-		color: color('black', 3);
+		color: color(dark, 3);
 		line-height: baseline(1.5);
 		margin-right: baseline(1/2);
 	}
@@ -193,7 +193,7 @@
 .toast {
 	position: relative;
 	background-color: color('neutral', 3);
-	color: color('white', 2);
+	color: color(light, 2);
 	opacity: 0;
 	overflow: hidden;
 	text-align: center;
@@ -272,7 +272,7 @@
 .slat {
 	position: relative;
 	background-color: color('neutral', 3);
-	color: color('white', 2);
+	color: color(light, 2);
 	overflow: hidden;
 	text-align: center;
     user-select: none;
@@ -407,7 +407,7 @@
 .overlay {
 	width: 100vw;
 	height: 100vh;
-	background: color('black', 2);
+	background: color(dark, 2);
 	position: fixed;
 	display: block;
 	top: 0;
