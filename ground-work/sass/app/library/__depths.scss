@@ -1,0 +1,15 @@
+//////////////////////////////////////////////////
+
+// Depth
+
+//////////////////////////////////////////////////
+
+// $depth-[*]
+// Layer comments are relative to the document
+$depths: (
+	'xs': 0 5px size(xs) rgba(0, 0, 0, 0.05),
+	's': 0 5px size(s)  rgba(0, 0, 0, 0.10),
+	'm': 0 5px size(m) rgba(0, 0, 0, 0.20),
+	'l': 0 5px size(l) rgba(0, 0, 0, 0.30),
+	'xl': 0 5px size(xl) rgba(0, 0, 0, 0.40),
+);

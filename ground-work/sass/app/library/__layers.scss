@@ -1,0 +1,16 @@
+//////////////////////////////////////////////////
+
+// Layers
+
+//////////////////////////////////////////////////
+
+// $z-[*]
+// Layer comments are relative to the document
+$layers: (
+	'tippy-top': 9999, // Modal
+	'top': 8888, // Header
+	'mid-top': 7777,
+	'middle': 5555,
+	'mid-bottom': 3333,
+	'bottom': 0, // Body
+);

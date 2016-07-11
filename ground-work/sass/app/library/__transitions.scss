@@ -1,0 +1,16 @@
+//////////////////////////////////////////////////
+
+// Transitions
+
+//////////////////////////////////////////////////
+
+// $transition-[*]
+// Layer comments are relative to the document
+
+$transition-speed: 0.33s;
+$transitions: (
+	'all': all $transition-speed ease,
+	'opacity': opacity $transition-speed ease,
+	'width': width $transition-speed ease,
+	'height': height $transition-speed ease,
+);
