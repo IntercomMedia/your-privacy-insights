@@ -1,5 +1,0 @@
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-	@include type-style($fontSize : 0, $lineHeight : 2);
-}
